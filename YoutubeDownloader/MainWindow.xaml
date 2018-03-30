@@ -1,0 +1,616 @@
+﻿<Window x:Class="YoutubeDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YoutubeDownloader"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Width="1350"
+        Height="1100"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResize"
+        
+        >
+    <Window.Resources>
+        <LinearGradientBrush x:Key="WindowFrameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Color="CadetBlue" Offset="0.4"/>
+            <GradientStop Color="CadetBlue" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+   
+    
+    <Border Background="#ffffff"
+            CornerRadius="0" 
+            BorderBrush="{StaticResource WindowFrameBrush}" 
+            BorderThickness="1,1,1,1">
+
+        <StackPanel Orientation="Vertical">
+          
+            
+            <DockPanel >
+                <DockPanel x:Name="RootWindow" DockPanel.Dock="Top" Height="40" Background="#ff0000" VerticalAlignment="Top" MouseDown="RootWindow_MouseDown">
+                    <DockPanel x:Name="TitleBar" DockPanel.Dock="Right" >
+
+                       
+                        <Button x:Name="CloseButton" DockPanel.Dock="Right"  Height="auto" Width="auto" Background="Transparent" BorderBrush="Transparent" Click="CloseButton_Click" >
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <Image Source="/Resources/close_icon.png" Width="14" Height="14" />
+
+                            </StackPanel>
+                        </Button>
+
+
+                        <Button x:Name="MaxButton" DockPanel.Dock="Right"  Margin="5,5,5,5" Height="auto" Width="auto" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <Image Source="/Resources/resize_icon.png" Width="14" Height="14" />
+
+                            </StackPanel>
+                        </Button>
+                       
+                        <Button x:Name="MinButton" DockPanel.Dock="Right" Height="auto"   Width="auto" Background="Transparent" BorderBrush="Transparent" >
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <Image Source="/Resources/minimize_icon.png" Width="14" Height="14" />
+
+                            </StackPanel>
+                        </Button>
+                        <Label Content="Youtube Downloader" FontSize="14" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0"/>
+
+                        
+                        
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+
+            <Menu    DockPanel.Dock="Top" 
+                     Background="{x:Null}"
+                     Foreground="WhiteSmoke" 
+                     VerticalAlignment="Top"
+                     >
+
+
+
+                <MenuItem Header="_File" 
+                          Background="White"
+                          Foreground="#282828"
+                          >
+
+                   
+                    <MenuItem 
+                            
+                        Background="White"
+                        Foreground="#282828"
+                        Margin="0,0,0,0"
+                        BorderThickness="0"
+                        >
+                            
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Width="20" Height="20" Source="C:/Users/steve/Desktop/path_icon.png" Margin="0,0,15,0"/>
+                                <Label Content="_Manage Paths" 
+                                       Foreground="#282828" />
+                               
+                            </StackPanel>
+                        </MenuItem.Header>
+
+                    </MenuItem>
+                    <MenuItem Background="White"
+                              Foreground="#282828"
+                              Margin="0,0,0,0"
+                              BorderThickness="0"
+                              >
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Width="20" Height="20" Source="C:/Users/steve/Desktop/project_icon.png" Margin="0,0,15,0"/>
+                                <Label Content="_Manage Projects" 
+                                       Foreground="#282828" />
+                               
+                            </StackPanel>
+                        </MenuItem.Header>
+
+                    </MenuItem>
+                    <MenuItem Header="_Open GIFF Files" 
+                              Background="White"
+                              Foreground="#282828" 
+                              BorderThickness="0" />
+                      
+                    <MenuItem Header="_View GIFF Files" 
+                              Background="White"
+                              Foreground="#282828"/>
+                        
+                    <MenuItem Header="_Exit" 
+                              Background="White"
+                              Foreground="#282828"/>
+
+                </MenuItem>
+
+
+
+
+                <MenuItem Header="_Settings" 
+                             
+                          Background="White"
+                          Foreground="#282828"
+                          Margin="5,5,5,5">
+                        
+                      
+                    <MenuItem Header="_Editor Settings"
+                               Background="White"
+                              />
+                       
+                    <MenuItem Header="_Graphics Settings"
+                               Background="White"     
+                              BorderThickness="0" />
+                      
+                    <MenuItem Header="_Start Up Config"
+                               Background="White"
+                              />
+                </MenuItem>
+                <MenuItem Header="_About" 
+                          Foreground="#282828" 
+                          Margin="5,5,5,5">
+                    <MenuItem Header="_About"
+                              Foreground="#282828"
+                               Background="White"/>
+                    
+                    <MenuItem Header="_File Reference"
+                              Foreground="#282828" 
+                               Background="White"/>
+                </MenuItem>
+
+            </Menu>
+
+
+            <ContentControl Content="{Binding CurrentPage}" />
+            
+            
+            
+            <StackPanel Orientation="Horizontal">
+                <DockPanel>
+                    <Border BorderBrush="White" BorderThickness="0,0,0,0">
+                   
+                        <StackPanel Name="wrapper" DockPanel.Dock="Left"  Width="420" Background="#262626">
+                            <Label Content="Current Playlist Title" Foreground="White" Margin="5,5,5,5" FontSize="22" Name="playlistTitle"/>
+                            <Label Content="Author" Foreground="White" Margin="5,5,5,5" FontSize="15" Name="playlistAuthor" Opacity="0.6"/>
+                            <Separator Height="0.5" Background="White" Opacity="0.6"/>
+                            <StackPanel Orientation="Horizontal">
+                            <Button VerticalAlignment="Top" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="2,2,2,2"
+                                            Height="50" 
+                                            
+                                            Background="Transparent"
+                                            BorderBrush="Transparent" 
+                                           
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                            >
+                                        <Button.ToolTip >
+
+                                            <ToolTip Background="#212121" BorderBrush="CadetBlue" BorderThickness="1" Padding="12,12,12,12"
+                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                                     >
+
+                                                <StackPanel >
+                                                    <TextBlock FontWeight="Bold" 
+                                                               FontSize="14" 
+                                                               Margin="0,0,0,5">Open file</TextBlock>
+                                                    <TextBlock>
+                                                        Choose the a custom output directory for the current images to be placed
+                                                        <LineBreak />
+
+                                                    </TextBlock>
+                                                    <Border BorderBrush="White"
+                                                            BorderThickness="0,0.6,0,0" Margin="0,8" />
+                                                    <WrapPanel>
+
+                                                        <TextBlock FontStyle="Italic">Press F1 for more help</TextBlock>
+                                                    </WrapPanel>
+                                                </StackPanel>
+
+                                            </ToolTip>
+
+                                        </Button.ToolTip>
+
+
+
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="5">
+                                           <materialDesign:PackIcon Kind="Download" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                            <Label Content="  Download Entire Playlist " 
+                                                   Foreground="White" 
+                                                   FontSize="14" 
+                                                   HorizontalAlignment="Center" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   VerticalAlignment="Center"
+                                                   Height="auto"/>
+
+                                            <TextBlock></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                <ComboBox
+                               Name="LocaleCombo"
+                             
+                                    Foreground="White"
+                                    >
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel />
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                    <ComboBoxItem Foreground="White">Mp4</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True" Foreground="White">Mp3</ComboBoxItem>
+                                    <ComboBoxItem Foreground="White">Webm</ComboBoxItem>
+                                    <ComboBoxItem Foreground="White">Wav</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True" Foreground="White">Oebm</ComboBoxItem>
+                                    <ComboBoxItem Foreground="White">Something</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <ListBox Name="playListBox" Height="670" MaxHeight="670" />
+                            
+
+
+
+                        </StackPanel>
+                
+               
+                    </Border>
+                </DockPanel>
+
+                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="400" Margin="30,10,10,10">
+                        <ScrollViewer Height="620" MaxHeight="620" Margin="5,5,5,5">
+                            <StackPanel Orientation="Vertical">
+                    <Label Content="Video Title" Foreground="Black" FontSize="20" Name="videoTitle" FontWeight="DemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                     <Image Name="videoThumbnail" Width="150" Height="100" HorizontalAlignment="Left"/>
+
+
+
+                                    <StackPanel Orientation="Vertical">
+                               
+                                 
+
+
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="5">
+                                           <materialDesign:PackIcon Kind="ThumbUp" 
+                                                                    Opacity="1" 
+                                                                    Foreground="Gray" 
+                                                                    
+                                                                    Width="25" 
+                                                                    Height="25" 
+                                                                    VerticalAlignment="Center"  />
+                                            <Label Content="Likes"
+                                                   Name="likesCount"
+                                                   Foreground="Gray" 
+                                                   FontSize="12" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   Height="auto"/>
+
+                                            <TextBlock></TextBlock>
+                                        </StackPanel>
+                                 
+                                   
+                                        
+                                        
+                                        
+                                       
+
+
+
+                                        
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="5">
+                                           <materialDesign:PackIcon Kind="ThumbDown" 
+                                                                    Opacity="1" 
+                                                                    Foreground="Gray" 
+                                                                   
+                                                                    Width="25" 
+                                                                    Height="25" 
+                                                                    VerticalAlignment="Center"  />
+                                            <Label Content=" ThumbDown " 
+                                                   Name="dislikesCount"
+                                                   Foreground="Gray" 
+                                                   FontSize="12" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   Height="auto"/>
+
+                                            <TextBlock></TextBlock>
+                                        </StackPanel>
+               
+                                         <Label Content="Views" 
+                                                Name="viewCount"
+                                                   Foreground="Gray" 
+                                                  
+                                                   FontSize="12" 
+                                                   HorizontalAlignment="Left" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   Height="auto"/>
+                                        
+                                        
+                                        
+                                    </StackPanel>
+                                    
+                              
+                                    
+                                </StackPanel>
+                              
+                    <Label Content="Author" Foreground="Black" Name="videoAuthor" FontSize="14"/>
+                    <Label Content="Published Date" Foreground="LightGray" FontSize="12" Name="videoPublishedDate"/>
+                    <Label Content="Caption" Foreground="Black" Name="videoDesciption"/>
+                    <Label Content="Author" Foreground="Black"/>
+                    
+                    <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5"/>
+                    
+                    <Label Content="Video Info" Foreground="Black" FontSize="19" FontWeight="DemiBold"/>
+                    <Label Content="Duration" Foreground="DarkGray" Name="videoDuration"/>
+                    <Label Content="URL" Foreground="DarkGray" Name="videoURL"/>
+                    <Label Content="File Type" Foreground="DarkGray" Name="videoExtension"/>
+              
+                    <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5"/>
+                    
+                    <Label Content="Availability" Foreground="Black" FontSize="17"/>
+                    <Label Content="Video Only" Foreground="DarkGray" Name="videoAvailable"/>
+                    <Label Content="Sound Only" Foreground="DarkGray" Name="soundAvailable"/>
+                    <Label Content="Mixed" Foreground="DarkGray" Name="mixedAvailable"/>
+                       </StackPanel>         
+                     </ScrollViewer>       
+                 <Button VerticalAlignment="Top" 
+                                            HorizontalAlignment="Center" 
+                                            Margin="5,5,5,5"
+                                            Height="50" 
+                                            Width="260"
+                                            BorderBrush="Transparent" 
+                                            Click="Download_Video"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            >
+                                        <Button.ToolTip >
+
+                                            <ToolTip Background="#212121" BorderBrush="CadetBlue" BorderThickness="1" Padding="12,12,12,12"
+                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                                     >
+
+                                                <StackPanel >
+                                                    <TextBlock FontWeight="Bold" 
+                                                               FontSize="14" 
+                                                               Margin="0,0,0,5">Open file</TextBlock>
+                                                    <TextBlock>
+                                                        Choose the a custom output directory for the current images to be placed
+                                                        <LineBreak />
+
+                                                    </TextBlock>
+                                                    <Border BorderBrush="White"
+                                                            BorderThickness="0,0.6,0,0" Margin="0,8" />
+                                                    <WrapPanel>
+
+                                                        <TextBlock FontStyle="Italic">Press F1 for more help</TextBlock>
+                                                    </WrapPanel>
+                                                </StackPanel>
+
+                                            </ToolTip>
+
+                                        </Button.ToolTip>
+
+
+
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="5">
+                                            <Image Source="/Resources/file_icon.png" 
+                                                   Width="20" 
+                                                   Height="20" 
+                                                   Margin="0,0,0,0"/>
+                                            <Label Content="  Download Video " 
+                                                   Foreground="White" 
+                                                   FontSize="14" 
+                                                   HorizontalAlignment="Center" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   Height="auto"/>
+
+                                            <TextBlock></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button VerticalAlignment="Top" 
+                                            HorizontalAlignment="Center" 
+                                            Margin="5,5,5,5"
+                                            Height="50" 
+                                            Width="260"
+                                            BorderBrush="Transparent" 
+                                            Click="Button_Click_1"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            >
+                                        <Button.ToolTip >
+
+                                            <ToolTip Background="#212121" BorderBrush="CadetBlue" BorderThickness="1" Padding="12,12,12,12"
+                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                                     >
+
+                                                <StackPanel >
+                                                    <TextBlock FontWeight="Bold" 
+                                                               FontSize="14" 
+                                                               Margin="0,0,0,5">Open file</TextBlock>
+                                                    <TextBlock>
+                                                        Choose the a custom output directory for the current images to be placed
+                                                        <LineBreak />
+
+                                                    </TextBlock>
+                                                    <Border BorderBrush="White"
+                                                            BorderThickness="0,0.6,0,0" Margin="0,8" />
+                                                    <WrapPanel>
+
+                                                        <TextBlock FontStyle="Italic">Press F1 for more help</TextBlock>
+                                                    </WrapPanel>
+                                                </StackPanel>
+
+                                            </ToolTip>
+
+                                        </Button.ToolTip>
+
+
+
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="5" >
+                                            <Image Source="/Resources/file_icon.png" 
+                                                   Width="20" 
+                                                   Height="20" 
+                                                   Margin="0,0,0,0"/>
+                                            <Label Content="  Download and Add to Plylst " 
+                                                   Foreground="White" 
+                                                   HorizontalAlignment="Center" 
+                                                   HorizontalContentAlignment="Center" 
+                                                   Height="auto"/>
+                                                
+
+                                            <TextBlock></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                </StackPanel>
+              
+                
+                <DockPanel>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="5,5,5,5">
+                        
+                         <Border CornerRadius="3,3,3,3" Background="LightGray" Margin="0,5,0,5">
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBox Name="urlInput" Margin="15,15,15,15" Width="425"/>
+                             
+                            <Button         Margin="5,5,5,5"
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                            Click="Button_Click"
+                                            >
+                                      
+
+
+
+                                        <StackPanel>
+                                            <Image Source="/Resources/search_icon.png" 
+                                                   Width="25" 
+                                                   Height="25" 
+                                                   Margin="0,0,0,0"/>
+                                          
+
+                                        </StackPanel>
+                                    </Button>
+                      </StackPanel>
+
+
+                    </Border>
+                    <MediaElement Source="C:/Users/steve/Desktop/Private world (Vaporwave mix).Mp4"
+                              Width="500"
+                              Height="500"
+                              LoadedBehavior="Manual" 
+                              Name="youtubePlayer" />
+
+
+                            <StackPanel Orientation="Horizontal" Background="LightGray">
+                                <DockPanel>
+                                 <Button    Margin="5,5,5,5"
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                           >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="Play" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                
+                                  <Button    
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                           >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="SkipNext" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                
+                                 <Button    Margin="5,5,5,5"
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                           >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <DockPanel DockPanel.Dock="Right">
+                                <Button   
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                         DockPanel.Dock="Right"       
+                                    >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                 <Button   
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                           DockPanel.Dock="Right"  
+                                     >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                  <Button    
+                                            BorderBrush="Transparent" 
+                                            Background="Transparent"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                           DockPanel.Dock="Right"  
+                                      >
+                                      <StackPanel>
+                                           <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                                        </StackPanel>
+                                    </Button>
+                                     </DockPanel>   
+                                   </DockPanel> 
+                            </StackPanel>
+                        
+                        
+                        
+                    </StackPanel>
+                </DockPanel>
+           </StackPanel>
+            
+            </StackPanel>
+            <StackPanel Orientation="Vertical" 
+                        Width="auto" 
+                        Background="#262626">
+               
+                <StackPanel Orientation="Horizontal" Height="50">
+                    <Label Content="My Playlists" Foreground="White" FontSize="25" Margin="5,5,5,5" VerticalAlignment="Center"/>
+                    <Button Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth0" Margin="5,5,5,5" BorderBrush="Transparent" Click="AddPlayList">
+                        <materialDesign:PackIcon Kind="Plus" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center"  />
+                    </Button>
+                </StackPanel>
+                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                          Name="albumItemsList">
+                <ListBox.ItemsPanel>
+               <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True" />
+             </ItemsPanelTemplate>
+             </ListBox.ItemsPanel>
+           
+           </ListBox>
+            </StackPanel>
+                
+        </StackPanel>
+            
+    </Border>
+</Window>
