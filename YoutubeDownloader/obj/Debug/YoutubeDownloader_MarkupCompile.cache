@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\steve\source\repos\YoutubeDownloader\YoutubeDownloader\obj\Debug\
+C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\
 YoutubeDownloader
 none
 false
 DEBUG;TRACE
-C:\Users\steve\source\repos\YoutubeDownloader\YoutubeDownloader\App.xaml
-383060332
+C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\App.xaml
+8-179190668
 
-10-1411409429
-19-1405493013
-MainWindow.xaml;PlaylistCreationWindow\View\PlaylistCreationWindow.xaml;PlayList\ViewModel\PlayListItemControl.xaml;
+14-953351980
+1942535420
+MainWindow.xaml;MenuPanel\View\MenuPanel.xaml;PlaylistCreationWindow\View\PlaylistCreationWindow.xaml;PlayList\ViewModel\PlayListItemControl.xaml;PlayList\View\PlayListControl.xaml;UserPlayListPanel\View\UserPlayListPanel.xaml;VideoInfoPanel\View\VideoInfoPanel.xaml;VideoPanel\View\VideoPanel.xaml;
 
 False
 
