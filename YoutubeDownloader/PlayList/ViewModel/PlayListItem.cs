@@ -1,115 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
+﻿using System.Windows.Controls;
 using YoutubeExplode.Models;
 
 namespace YoutubeDownloader.PlayList.ViewModel
 {
-    class PlayListItem : ListBoxItem
+    internal class PlayListItem : ListBoxItem
     {
         public Video video
         {
-            get;set;
+            get; set;
         }
+
         public PlayListItem(Video video)
         {
             this.video = video;
         }
 
-
         public void setupPlayListItem()
         {
-           /* Border border = new Border();
-            border.BorderBrush = Brushes.Red;
-            border.BorderThickness = new Thickness(0, 0, 0, 0);
-            border.Background = Brushes.Transparent;
-            border.Margin = new Thickness(12, 12, 12, 12);
-            border.CornerRadius = new CornerRadius(5, 5, 5, 5);
+            /* Border border = new Border();
+             border.BorderBrush = Brushes.Red;
+             border.BorderThickness = new Thickness(0, 0, 0, 0);
+             border.Background = Brushes.Transparent;
+             border.Margin = new Thickness(12, 12, 12, 12);
+             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
 
+             StackPanel stack = new StackPanel();
+             stack.Orientation = Orientation.Horizontal;
 
+             Image numImage = new Image();
+             numImage.Height = 30;
+             numImage.Width = 30;
 
-            StackPanel stack = new StackPanel();
-            stack.Orientation = Orientation.Horizontal;
+             Image thumbNail = new Image();
+             thumbNail.Height = 30;
+             thumbNail.Width = 30;
 
-            Image numImage = new Image();
-            numImage.Height = 30;
-            numImage.Width = 30;
+             StackPanel titleStack = new StackPanel();
+             titleStack.Orientation = Orientation.Vertical;
 
+             Label label = new Label();
+             label.Content = "Item";
+             label.Foreground = Brushes.DarkGray;
+             label.FontSize = 15;
+             label.HorizontalAlignment = HorizontalAlignment.Center;
 
+             border.Child = stack;
 
-            Image thumbNail = new Image();
-            thumbNail.Height = 30;
-            thumbNail.Width = 30;
+             stack.Children.Add(image);
+             stack.Children.Add(label);
 
-            StackPanel titleStack = new StackPanel();
-            titleStack.Orientation = Orientation.Vertical;
-            
+             DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
+             // Set the color of the shadow to Black.
+             Color myShadowColor = new Color();
+             myShadowColor.ScA = 1;
+             myShadowColor.ScB = 0;
+             myShadowColor.ScG = 0;
+             myShadowColor.ScR = 0;
+             myDropShadowEffect.Color = myShadowColor;
 
+             // Set the direction of where the shadow is cast to 320 degrees.
+             myDropShadowEffect.Direction = 320;
 
-            Label label = new Label();
-            label.Content = "Item";
-            label.Foreground = Brushes.DarkGray;
-            label.FontSize = 15;
-            label.HorizontalAlignment = HorizontalAlignment.Center;
+             // Set the depth of the shadow being cast.
+             myDropShadowEffect.ShadowDepth = 8;
 
+             // Set the shadow softness to the maximum (range of 0-1).
+             myDropShadowEffect.Softness = 1;
+             myDropShadowEffect.Opacity = 0.8;
 
-            border.Child = stack;
+             // Apply the bitmap effect to the Button.
+             border.BitmapEffect = myDropShadowEffect;
 
-
-
-            stack.Children.Add(image);
-            stack.Children.Add(label);
-
-
-
-            DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
-            // Set the color of the shadow to Black.
-            Color myShadowColor = new Color();
-            myShadowColor.ScA = 1;
-            myShadowColor.ScB = 0;
-            myShadowColor.ScG = 0;
-            myShadowColor.ScR = 0;
-            myDropShadowEffect.Color = myShadowColor;
-
-            // Set the direction of where the shadow is cast to 320 degrees.
-            myDropShadowEffect.Direction = 320;
-
-            // Set the depth of the shadow being cast.
-            myDropShadowEffect.ShadowDepth = 8;
-
-            // Set the shadow softness to the maximum (range of 0-1).
-            myDropShadowEffect.Softness = 1;
-            myDropShadowEffect.Opacity = 0.8;
-
-            // Apply the bitmap effect to the Button.
-            border.BitmapEffect = myDropShadowEffect;
-
-
-
-
-
-
-
-
-            
-            this.Content = border;
-            this.MouseEnter += (s, e) =>
-            {
-                border.Background = Brushes.Red;
-                label.Foreground = Brushes.White;
-            };
-            this.MouseLeave += (s, e) =>
-            {
-                border.Background = Brushes.Transparent;
-                label.Foreground = Brushes.DarkGray;
-            };
-          */
+             this.Content = border;
+             this.MouseEnter += (s, e) =>
+             {
+                 border.Background = Brushes.Red;
+                 label.Foreground = Brushes.White;
+             };
+             this.MouseLeave += (s, e) =>
+             {
+                 border.Background = Brushes.Transparent;
+                 label.Foreground = Brushes.DarkGray;
+             };
+           */
         }
     }
 }

@@ -12,45 +12,37 @@
         AllowsTransparency="True"
         ResizeMode="CanResize"
          materialDesign:ShadowAssist.ShadowDepth="Depth2"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="WindowFrameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
-            <GradientStop Color="CadetBlue" Offset="0.4"/>
-            <GradientStop Color="CadetBlue" Offset="1"/>
+            <GradientStop Color="CadetBlue" Offset="0.4" />
+            <GradientStop Color="CadetBlue" Offset="1" />
         </LinearGradientBrush>
     </Window.Resources>
-   
-    
+
     <Border Background="White"
-            CornerRadius="3" 
-            BorderBrush="Red" 
+            CornerRadius="3"
+            BorderBrush="Red"
             BorderThickness="1,1,1,1">
 
         <StackPanel Orientation="Vertical">
 
-            <DockPanel >
+            <DockPanel>
                 <DockPanel x:Name="RootWindow" DockPanel.Dock="Top" Height="40" Background="#ff0000" VerticalAlignment="Top" MouseDown="RootWindow_MouseDown">
-                    <DockPanel x:Name="TitleBar" Width="500" DockPanel.Dock="Right" >
+                    <DockPanel x:Name="TitleBar" Width="500" DockPanel.Dock="Right">
 
-
-                        <Button x:Name="CloseButton" DockPanel.Dock="Right"  Height="auto" Width="auto" Background="Transparent" BorderBrush="Transparent" Click="CloseButton_Click" >
+                        <Button x:Name="CloseButton" DockPanel.Dock="Right"  Height="auto" Width="auto" Background="Transparent" BorderBrush="Transparent" Click="CloseButton_Click">
                             <StackPanel Orientation="Horizontal" Margin="0">
                                 <Image Source="/Resources/close_icon.png" Width="14" Height="14" />
-
                             </StackPanel>
                         </Button>
-                        <Label Content="Create Playlist" FontSize="17" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
-
+                        <Label Content="Create Playlist" FontSize="17" Foreground="White" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" />
                     </DockPanel>
                 </DockPanel>
             </DockPanel>
 
-          
-
-
             <ContentControl Content="{Binding CurrentPage}" />
-            
+
             <TextBox
             Margin="15,15,15,15"
             materialDesign:HintAssist.Hint="Playlist Name"
@@ -58,7 +50,7 @@
             materialDesign:HintAssist.FloatingScale="0.50"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             FontSize="20" />
-            
+
            <TextBox
             Margin="15,15,15,15"
             materialDesign:HintAssist.Hint="Genre"
@@ -69,11 +61,9 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="15,15,15,15">
 
-                <Button Content="Create and Add" Margin="10,10,10,10" Height="50" Width="200"/>
+                <Button Content="Create and Add" Margin="10,10,10,10" Height="50" Width="200" />
 
-                <Button Content="Cancel"  Margin="10,10,10,10" Height="50" Width="200"/>
-
-
+                <Button Content="Cancel"  Margin="10,10,10,10" Height="50" Width="200" />
             </StackPanel>
         </StackPanel>
     </Border>

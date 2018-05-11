@@ -1,24 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using YoutubeExplode;
 using YoutubeExplode.Models;
 using YoutubeExplode.Models.MediaStreams;
 
 namespace YoutubeDownloader.VideoInfoPanel.View
 {
-
     public partial class VideoInfoPanel : UserControl
     {
         public VideoInfoPanel()
@@ -44,7 +32,7 @@ namespace YoutubeDownloader.VideoInfoPanel.View
                 this.videoDesciption.Content = video.Description;
                 this.videoAuthor.Content = video.Author;
                 this.videoDuration.Content = video.Duration;
-                 _mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
+                _mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
                 var streaminfo = _mediaStreamInfos.Muxed.WithHighestVideoQuality();
 
                 videoAvailable.Content = streaminfo.Container.GetFileExtension();
@@ -53,19 +41,7 @@ namespace YoutubeDownloader.VideoInfoPanel.View
             }
             catch (Exception ex)
             {
-
             }
-
-
-
         }
-
-
-
-
-
     }
-
-
-
 }

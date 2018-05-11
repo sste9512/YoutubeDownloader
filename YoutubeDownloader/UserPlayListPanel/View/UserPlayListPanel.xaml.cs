@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace YoutubeDownloader.UserPlayListPanel.View
 {
@@ -39,7 +28,6 @@ namespace YoutubeDownloader.UserPlayListPanel.View
                 image.Height = 140;
                 image.Width = 155;
 
-
                 Label label = new Label();
                 label.Content = "Playlist" + i;
                 label.Foreground = Brushes.DarkGray;
@@ -58,7 +46,6 @@ namespace YoutubeDownloader.UserPlayListPanel.View
                 stack.Children.Add(image);
                 stack.Children.Add(label);
                 stack.Children.Add(subjectLabel);
-
 
                 DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
                 // Set the color of the shadow to Black.
@@ -83,13 +70,6 @@ namespace YoutubeDownloader.UserPlayListPanel.View
 
                 // Apply the bitmap effect to the Button.
                 border.BitmapEffect = myDropShadowEffect;
-
-
-
-
-
-
-
 
                 ListBoxItem item = new ListBoxItem();
                 item.Content = border;
@@ -117,12 +97,8 @@ namespace YoutubeDownloader.UserPlayListPanel.View
          */
         }
 
-
         public async void initListFromUserPlayList()
         {
-
-
-
         }
     }
 }
