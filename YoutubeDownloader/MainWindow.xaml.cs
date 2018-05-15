@@ -53,6 +53,7 @@ namespace YoutubeDownloader
             {
             }
         }
+
         /*
         public void encodeToMP4(VideoType type, string inputFile, string outputFile)
         {
@@ -72,9 +73,9 @@ namespace YoutubeDownloader
                  AudioQuality.Hd,
                  true,
                  false);
-                 
         }
     */
+
         private async void DownloadMediaStream(MediaStreamInfo info)
         {
             // Create dialog

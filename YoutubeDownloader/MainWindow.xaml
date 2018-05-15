@@ -102,28 +102,20 @@
             <!-- Basic Menu, Abstracted Away for tidieness -->
             <custom3:MenuPanel x:Name="menuPanel"></custom3:MenuPanel>
 
-          
             <DockPanel LastChildFill="True">
 
-              
                 <!-- Video Playlist Control (Contains the youtube playlist for corresponding video) -->
                 <Border BorderBrush="White" BorderThickness="0,0,0,0" DockPanel.Dock="Left">
                     <custom:PlayListControl x:Name="playList"></custom:PlayListControl>
                 </Border>
 
-                
                 <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
                 <custom1:VideoInfoPanel x:Name="videoInfoPanel" DockPanel.Dock="Right"></custom1:VideoInfoPanel>
 
-             
-                
                 <!-- Video Panel (Contains search function and video player) -->
                 <custom2:VideoPanel x:Name="videoPanel" DockPanel.Dock="Right"></custom2:VideoPanel>
             </DockPanel>
-           
-            
-            
-            
+
             <!-- UserPlayListPanel (Contains ) -->
             <custom4:UserPlayListPanel x:Name="userPlayList" DockPanel.Dock="Bottom"></custom4:UserPlayListPanel>
         </StackPanel>

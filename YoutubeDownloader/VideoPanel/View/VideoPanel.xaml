@@ -12,11 +12,11 @@
 
                 <TextBox Name="urlInput" Margin="10,10,10,10" Width="425" />
 
-                <Button         Margin="5,5,5,5"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                Name="queryVideoButton">
+                <Button     Margin="5,5,5,5"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            Name="queryVideoButton">
 
                     <StackPanel>
                         <Image Source="/Resources/search_icon.png"
@@ -35,10 +35,11 @@
 
         <StackPanel Orientation="Horizontal" Background="LightGray">
             <DockPanel>
-                <Button    Margin="5,5,5,5"
-                           BorderBrush="Transparent"
-                           Background="Transparent"
-                           materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <!-- Play Video Button -->
+                <Button   DockPanel.Dock="Left" Margin="5,5,5,5"
+                          BorderBrush="Transparent"
+                          Background="Transparent"
+                          materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Play"
                                                  Opacity="1"
@@ -48,11 +49,11 @@
                                                  VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-
-                <Button
-                    BorderBrush="Transparent"
-                    Background="Transparent"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <!-- Play Next Button -->
+                <Button DockPanel.Dock="Left"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="SkipNext"
                                                  Opacity="1"
@@ -62,46 +63,53 @@
                                                  VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-
-                <Button    Margin="5,5,5,5"
-                           BorderBrush="Transparent"
-                           Background="Transparent"
-                           materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <!-- Undo Button -->
+                <Button    
+                    DockPanel.Dock="Left"
+                    Margin="5,5,5,5"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
 
-                <DockPanel DockPanel.Dock="Right">
-                    <Button
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        DockPanel.Dock="Right">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                    <Button
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        DockPanel.Dock="Right">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                    <Button
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        DockPanel.Dock="Right">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                </DockPanel>
+             
+                 <!-- Closed Caption Button -->
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                    
+                
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                   
+                <!--Settings Button -->
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
             </DockPanel>
+          
         </StackPanel>
     </StackPanel>
 </UserControl>
