@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\App.xaml
-8-179190668
+91146379633
 
-18764363830
-1942535420
-MainWindow.xaml;MenuPanel\View\MenuPanel.xaml;PlaylistCreationWindow\View\PlaylistCreationWindow.xaml;PlayList\ViewModel\PlayListItemControl.xaml;PlayList\View\PlayListControl.xaml;UserPlayListPanel\View\UserPlayListPanel.xaml;VideoInfoPanel\View\VideoInfoPanel.xaml;VideoPanel\View\VideoPanel.xaml;
+20225464381
+191302530497
+Conversion\ConversionDialog\ConversionDialog.xaml;MainWindow.xaml;MenuPanel\View\MenuPanel.xaml;PlaylistCreationWindow\View\PlaylistCreationWindow.xaml;PlayList\ViewModel\PlayListItemControl.xaml;PlayList\View\PlayListControl.xaml;UserPlayListPanel\View\UserPlayListPanel.xaml;VideoInfoPanel\View\VideoInfoPanel.xaml;VideoPanel\View\VideoPanel.xaml;
 
 True
 

@@ -112,4 +112,6 @@ C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\MenuPanel\V
 C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\UserPlayListPanel\View\UserPlayListPanel.baml
 C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\VideoInfoPanel\View\VideoInfoPanel.baml
 C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\VideoPanel\View\VideoPanel.baml
-C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.csprojResolveAssemblyReference.cache
+C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\Conversion\ConversionDialog\ConversionDialog.g.cs
+C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\bin\Debug\MediaToolkit.dll
+C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\Conversion\ConversionDialog\ConversionDialog.baml

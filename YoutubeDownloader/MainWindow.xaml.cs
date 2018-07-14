@@ -54,27 +54,12 @@ namespace YoutubeDownloader
             }
         }
 
-        /*
-        public void encodeToMP4(VideoType type, string inputFile, string outputFile)
-        {
-            //string inputVideoFile = "C:/Users/steve/Desktop/Private world (Vaporwave mix).webm",
-            //outputVideoFile = "C:/Users/steve/Desktop/Private world (Vaporwave mix).Mp4";
-            /* FileInfo outputFile = new FileInfo(outputVideoFile);
+       
+        
 
-            var video = VideoInfo.FromPath(inputVideoFile);
 
-             // easily track conversion progress
-             //video.OnConversionProgress += video_OnConversionProgress;
 
-             // input and output strings are required
-             // all other parameters are optional
-             video.ConvertTo(VideoType.Mp4, outputFile, Speed.UltraFast,
-                 VideoSize.Original,
-                 AudioQuality.Hd,
-                 true,
-                 false);
-        }
-    */
+
 
         private async void DownloadMediaStream(MediaStreamInfo info)
         {
@@ -113,15 +98,28 @@ namespace YoutubeDownloader
             }
         }
 
+
+
+
+
+
         private async void Download_Video(object sender, RoutedEventArgs e)
         {
             DownloadMediaStream(_mediaStreamInfos.Muxed.WithHighestVideoQuality());
         }
 
+
+
+
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // encodeToMP4();
         }
+
+
+
+
 
         private void AddPlayList(object sender, RoutedEventArgs e)
         {

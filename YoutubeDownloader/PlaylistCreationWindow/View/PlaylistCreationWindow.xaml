@@ -11,7 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResize"
-         materialDesign:ShadowAssist.ShadowDepth="Depth2"
+         materialDesign:ShadowAssist.ShadowDepth="Depth4"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="WindowFrameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
@@ -21,7 +21,7 @@
     </Window.Resources>
 
     <Border Background="White"
-            CornerRadius="3"
+            CornerRadius="7,7,7,7"
             BorderBrush="Red"
             BorderThickness="1,1,1,1">
 
