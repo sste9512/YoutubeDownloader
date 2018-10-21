@@ -88,6 +88,7 @@
     <Compile Include="VideoPanel\View\VideoPanel.xaml.cs">
       <DependentUpon>VideoPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="Conversion\ConversionDialog\ConversionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,19 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\search_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MenuPanel\Model\" />
-    <Folder Include="MenuPanel\ViewModel\" />
-    <Folder Include="PlaylistCreationWindow\Model\" />
-    <Folder Include="PlaylistCreationWindow\ViewWindow\" />
-    <Folder Include="PlayList\Model\" />
-    <Folder Include="UserPlayListPanel\Model\" />
-    <Folder Include="UserPlayListPanel\ViewModel\" />
-    <Folder Include="VideoInfoPanel\Model\" />
-    <Folder Include="VideoInfoPanel\ViewModel\" />
-    <Folder Include="VideoPanel\Model\" />
-    <Folder Include="VideoPanel\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FFMpegSharp-master\FFMpegSharp\FFMpegSharp.csproj">

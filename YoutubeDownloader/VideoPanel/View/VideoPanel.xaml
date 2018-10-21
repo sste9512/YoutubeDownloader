@@ -10,13 +10,13 @@
         <Border CornerRadius="3,3,3,3" Background="LightGray" Margin="0,5,0,5" Padding="3,3,3,3">
             <StackPanel Orientation="Horizontal">
 
-                <TextBox Name="urlInput" Margin="10,10,10,10" Width="425" />
+                <TextBox Name="UrlInput" Margin="10,10,10,10" Width="425" />
 
                 <Button     Margin="5,5,5,5"
                             BorderBrush="Transparent"
                             Background="Transparent"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                            Name="queryVideoButton">
+                            Name="QueryVideoButton">
 
                     <StackPanel>
                         <Image Source="/Resources/search_icon.png"
@@ -31,7 +31,7 @@
                       Width="500"
                       Height="500"
                       LoadedBehavior="Manual"
-                      Name="youtubePlayer" />
+                      Name="YoutubePlayer" />
 
         <StackPanel Orientation="Horizontal" Background="LightGray">
             <DockPanel>

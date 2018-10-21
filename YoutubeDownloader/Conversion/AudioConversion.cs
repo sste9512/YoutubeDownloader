@@ -20,33 +20,33 @@ namespace YoutubeDownloader.Conversion
     public  class AudioConversion
     {
         
-        private string outputFile = "";
-        private string inputFile = "";
-        private int videoType = 0;
-        private Video video;
+        private string _outputFile = "";
+        private string _inputFile = "";
+        private int _videoType = 0;
+        private Video _video;
        
         
-        public  AudioConversion setOutPutFile(string output)
+        public  AudioConversion SetOutPutFile(string output)
         {
-            outputFile = output;
+            _outputFile = output;
             return this;
         }
 
-        public AudioConversion setInputFile(string input)
+        public AudioConversion SetInputFile(string input)
         {
-            inputFile = input;
+            _inputFile = input;
             return this;
         }
 
-        public AudioConversion setVideoType(int vidType)
+        public AudioConversion SetVideoType(int vidType)
         {
-            videoType = vidType;
+            _videoType = vidType;
             return this;
         }
 
-        public AudioConversion setVideo(Video video)
+        public AudioConversion SetVideo(Video video)
         {
-            this.video = video;
+            this._video = video;
             return this;
         }
         

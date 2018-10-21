@@ -14,33 +14,34 @@ namespace YoutubeDownloader.VideoInfoPanel.View
             InitializeComponent();
         }
 
-        public async void syncInfoToPanel(Video video, string url, YoutubeClient client, MediaStreamInfoSet _mediaStreamInfos)
+        public async void SyncInfoToPanel(Video video, string url, YoutubeClient client, MediaStreamInfoSet mediaStreamInfos)
         {
             try
             {
-                this.videoTitle.Content = video.Title;
+                this.VideoTitle.Content = video.Title;
 
                 BitmapImage thmbNail = new BitmapImage();
                 thmbNail.BeginInit();
                 thmbNail.UriSource = new Uri(video.Thumbnails.MediumResUrl, UriKind.Absolute);
                 thmbNail.EndInit();
-                this.viewCount.Content = video.Statistics.ViewCount + " views";
-                this.likesCount.Content = video.Statistics.LikeCount;
-                this.dislikesCount.Content = video.Statistics.DislikeCount;
-                this.videoThumbnail.Source = thmbNail;
-                this.videoPublishedDate.Content = video.UploadDate;
-                this.videoDesciption.Content = video.Description;
-                this.videoAuthor.Content = video.Author;
-                this.videoDuration.Content = video.Duration;
-                _mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
-                var streaminfo = _mediaStreamInfos.Muxed.WithHighestVideoQuality();
+                this.ViewCount.Content = video.Statistics.ViewCount + " views";
+                this.LikesCount.Content = video.Statistics.LikeCount;
+                this.DislikesCount.Content = video.Statistics.DislikeCount;
+                this.VideoThumbnail.Source = thmbNail;
+                this.VideoPublishedDate.Content = video.UploadDate;
+                this.VideoDesciption.Content = video.Description;
+                this.VideoAuthor.Content = video.Author;
+                this.VideoDuration.Content = video.Duration;
+                mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
+                var streaminfo = mediaStreamInfos.Muxed.WithHighestVideoQuality();
 
-                videoAvailable.Content = streaminfo.Container.GetFileExtension();
-                soundAvailable.Content = _mediaStreamInfos.GetAll();
-                videoURL.Content = url;
+                VideoAvailable.Content = streaminfo.Container.GetFileExtension();
+                SoundAvailable.Content = mediaStreamInfos.GetAll();
+                VideoUrl.Content = url;
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
     }

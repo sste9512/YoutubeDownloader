@@ -13,40 +13,41 @@ namespace YoutubeDownloader.PlayList.View
             InitializeComponent();
         }
 
-        public async void initPlayListFromURL(string playListUrl, YoutubeClient client)
+        public async void InitPlayListFromUrl(string playListUrl, YoutubeClient client)
         {
             try
             {
                 var playlist = await client.GetPlaylistAsync(YoutubeClient.ParsePlaylistId(playListUrl));
-                this.playlistAuthor.Content = playlist.Author;
-                this.playlistTitle.Content = playlist.Title;
+                this.PlaylistAuthor.Content = playlist.Author;
+                this.PlaylistTitle.Content = playlist.Title;
                 for (int i = 0; i < playlist.Videos.Count; i++)
                 {
                     ListBoxItem item = new ListBoxItem();
                     PlayListItemControl playItem = new PlayListItemControl();
-                    playItem.numberLabel.Content = i + 1;
-                    playItem.videoTitle.Content = playlist.Videos[i].Title;
+                    playItem.NumberLabel.Content = i + 1;
+                    playItem.VideoTitle.Content = playlist.Videos[i].Title;
 
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.UriSource = new Uri(playlist.Videos[i].Thumbnails.MediumResUrl, UriKind.Absolute);
                     bitmap.EndInit();
-                    playItem.videoThumbnail.Source = bitmap;
+                    playItem.VideoThumbnail.Source = bitmap;
                     if (playlist.Videos[i].Author.Equals(""))
                     {
-                        playItem.videoAuthor.Content = "Youtube";
+                        playItem.VideoAuthor.Content = "Youtube";
                     }
                     else
                     {
-                        playItem.videoAuthor.Content = playlist.Videos[i].Author;
+                        playItem.VideoAuthor.Content = playlist.Videos[i].Author;
                     }
-                    playItem.videoDuration.Content = playlist.Videos[i].Duration;
+                    playItem.VideoDuration.Content = playlist.Videos[i].Duration;
                     item.Content = playItem;
-                    playListBox.Items.Add(item);
+                    PlayListBox.Items.Add(item);
                 }
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
     }

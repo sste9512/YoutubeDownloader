@@ -5,17 +5,17 @@ namespace YoutubeDownloader.PlayList.ViewModel
 {
     internal class PlayListItem : ListBoxItem
     {
-        public Video video
+        public Video Video
         {
             get; set;
         }
 
         public PlayListItem(Video video)
         {
-            this.video = video;
+            this.Video = video;
         }
 
-        public void setupPlayListItem()
+        public void SetupPlayListItem()
         {
             /* Border border = new Border();
              border.BorderBrush = Brushes.Red;

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\obj\Debug\
+C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\
 YoutubeDownloader
 none
 false
 DEBUG;TRACE
-C:\Users\steve\Desktop\YoutubeDownloader\YoutubeDownloader\App.xaml
+C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\App.xaml
 91146379633
 
 16-1492251429
-191302530497
+19-2116708829
 Conversion\ConversionDialog\ConversionDialog.xaml;MainWindow.xaml;MenuPanel\View\MenuPanel.xaml;PlaylistCreationWindow\View\PlaylistCreationWindow.xaml;PlayList\ViewModel\PlayListItemControl.xaml;PlayList\View\PlayListControl.xaml;UserPlayListPanel\View\UserPlayListPanel.xaml;VideoInfoPanel\View\VideoInfoPanel.xaml;VideoPanel\View\VideoPanel.xaml;
 
 False

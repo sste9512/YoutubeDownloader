@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:YoutubeDownloader.VideoInfoPanel.View"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <StackPanel Orientation="Vertical"
@@ -16,11 +15,11 @@
                 <Label Content="Video Title"
                        Foreground="Black"
                        FontSize="20"
-                       Name="videoTitle"
+                       Name="VideoTitle"
                        FontWeight="DemiBold" />
                 <StackPanel Orientation="Horizontal">
 
-                    <Image Name="videoThumbnail"
+                    <Image Name="VideoThumbnail"
                            Width="150"
                            Height="100"
                            HorizontalAlignment="Left" />
@@ -37,7 +36,7 @@
                                                      Height="25"
                                                      VerticalAlignment="Center" />
                             <Label Content="Likes"
-                                   Name="likesCount"
+                                   Name="LikesCount"
                                    Foreground="Gray"
                                    FontSize="12"
                                    VerticalAlignment="Center"
@@ -57,7 +56,7 @@
                                                      Height="25"
                                                      VerticalAlignment="Center" />
                             <Label Content=" ThumbDown "
-                                   Name="dislikesCount"
+                                   Name="DislikesCount"
                                    Foreground="Gray"
                                    FontSize="12"
                                    VerticalAlignment="Center"
@@ -67,7 +66,7 @@
                         </StackPanel>
 
                         <Label Content="Views"
-                               Name="viewCount"
+                               Name="ViewCount"
                                Foreground="Gray"
                                FontSize="12"
                                HorizontalAlignment="Left"
@@ -76,24 +75,24 @@
                     </StackPanel>
                 </StackPanel>
 
-                <Label Content="Author" Foreground="Black" Name="videoAuthor" FontSize="14" />
-                <Label Content="Published Date" Foreground="LightGray" FontSize="12" Name="videoPublishedDate" />
-                <Label Content="Caption" Foreground="Black" Name="videoDesciption" />
+                <Label Content="Author" Foreground="Black" Name="VideoAuthor" FontSize="14" />
+                <Label Content="Published Date" Foreground="LightGray" FontSize="12" Name="VideoPublishedDate" />
+                <Label Content="Caption" Foreground="Black" Name="VideoDesciption" />
                 <Label Content="Author" Foreground="Black" />
 
                 <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5" />
 
                 <Label Content="Video Info" Foreground="Black" FontSize="19" FontWeight="DemiBold" />
-                <Label Content="Duration" Foreground="DarkGray" Name="videoDuration" />
-                <Label Content="URL" Foreground="DarkGray" Name="videoURL" />
-                <Label Content="File Type" Foreground="DarkGray" Name="videoExtension" />
+                <Label Content="Duration" Foreground="DarkGray" Name="VideoDuration" />
+                <Label Content="URL" Foreground="DarkGray" Name="VideoUrl" />
+                <Label Content="File Type" Foreground="DarkGray" Name="VideoExtension" />
 
                 <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5" />
 
                 <Label Content="Availability" Foreground="Black" FontSize="17" />
-                <Label Content="Video Only" Foreground="DarkGray" Name="videoAvailable" />
-                <Label Content="Sound Only" Foreground="DarkGray" Name="soundAvailable" />
-                <Label Content="Mixed" Foreground="DarkGray" Name="mixedAvailable" />
+                <Label Content="Video Only" Foreground="DarkGray" Name="VideoAvailable" />
+                <Label Content="Sound Only" Foreground="DarkGray" Name="SoundAvailable" />
+                <Label Content="Mixed" Foreground="DarkGray" Name="MixedAvailable" />
             </StackPanel>
         </ScrollViewer>
 
@@ -104,7 +103,7 @@
                 Width="260"
                 BorderBrush="Transparent"
                 materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                Name="downloadButton">
+                Name="DownloadButton">
             <Button.ToolTip>
 
                 <ToolTip Background="#212121" BorderBrush="CadetBlue" BorderThickness="1" Padding="12,12,12,12"

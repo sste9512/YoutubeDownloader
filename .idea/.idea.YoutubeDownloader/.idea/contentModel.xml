@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\steve\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\steve\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_YoutubeDownloader.1375428.00" t="ExcludeRecursive" />
+    <e p="C:\Users\steve\RiderProjects\FFMpegSharp-master\FFMpegSharp" t="IncludeRecursive">
+      <e p="FFMpegSharp.csproj" t="IncludeRecursive" />
+    </e>
+    <e p="C:\Users\steve\RiderProjects\YoutubeDownloader" t="IncludeFlat">
+      <e p="Data" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Data.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="YoutubeDownloader" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Config" t="Include">
+          <e p="Config.cs" t="Include" />
+        </e>
+        <e p="Conversion" t="Include">
+          <e p="AudioConversion.cs" t="Include" />
+          <e p="ConversionDialog" t="Include">
+            <e p="ConversionDialog.xaml" t="Include" />
+            <e p="ConversionDialog.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="MenuPanel" t="Include">
+          <e p="View" t="Include">
+            <e p="MenuPanel.xaml" t="Include" />
+            <e p="MenuPanel.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PlayList" t="Include">
+          <e p="View" t="Include">
+            <e p="PlayListControl.xaml" t="Include" />
+            <e p="PlayListControl.xaml.cs" t="Include" />
+          </e>
+          <e p="ViewModel" t="Include">
+            <e p="PlayListItem.cs" t="Include" />
+            <e p="PlayListItemControl.xaml" t="Include" />
+            <e p="PlayListItemControl.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="PlaylistCreationWindow" t="Include">
+          <e p="View" t="Include">
+            <e p="PlaylistCreationWindow.xaml" t="Include" />
+            <e p="PlaylistCreationWindow.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="close_icon.png" t="Include" />
+          <e p="minimize_icon.png" t="Include" />
+          <e p="resize_icon.png" t="Include" />
+          <e p="search_icon.png" t="Include" />
+        </e>
+        <e p="UserPlayListPanel" t="Include">
+          <e p="View" t="Include">
+            <e p="UserPlayListPanel.xaml" t="Include" />
+            <e p="UserPlayListPanel.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="VideoInfoPanel" t="Include">
+          <e p="View" t="Include">
+            <e p="VideoInfoPanel.xaml" t="Include" />
+            <e p="VideoInfoPanel.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="VideoPanel" t="Include">
+          <e p="View" t="Include">
+            <e p="VideoPanel.xaml" t="Include" />
+            <e p="VideoPanel.xaml.cs" t="Include" />
+          </e>
+        </e>
+        <e p="ViewModels" t="Include">
+          <e p="MainWindowViewModel.cs" t="Include" />
+        </e>
+        <e p="YoutubeDownloader.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="YoutubeDownloader.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

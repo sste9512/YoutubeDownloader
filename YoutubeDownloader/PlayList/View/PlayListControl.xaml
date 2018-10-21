@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:YoutubeDownloader.PlayList.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              Width="420">
-    <StackPanel Name="wrapper" DockPanel.Dock="Left"  Width="420" Background="#262626">
-        <Label Content="Current Playlist Title" Foreground="White" Margin="5,5,5,5" FontSize="22" Name="playlistTitle" />
-        <Label Content="Author" Foreground="White" Margin="5,5,5,5" FontSize="15" Name="playlistAuthor" Opacity="0.6" />
+    <StackPanel Name="Wrapper" DockPanel.Dock="Left"  Width="420" Background="#262626">
+        <Label Content="Current Playlist Title" Foreground="White" Margin="5,5,5,5" FontSize="22" Name="PlaylistTitle" />
+        <Label Content="Author" Foreground="White" Margin="5,5,5,5" FontSize="15" Name="PlaylistAuthor" Opacity="0.6" />
         <Separator Height="0.5" Background="White" Opacity="0.6" />
         <StackPanel Orientation="Horizontal">
             <Button VerticalAlignment="Top"
@@ -74,6 +74,6 @@
                 <ComboBoxItem Foreground="White">Something</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <ListBox Name="playListBox" Height="670" MaxHeight="670" />
+        <ListBox Name="PlayListBox" Height="670" MaxHeight="670" />
     </StackPanel>
 </UserControl>

@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+
+using System;
 using System.Windows;
+using YoutubeDownloader.Config;
 
 namespace YoutubeDownloader
 {
@@ -9,34 +12,30 @@ namespace YoutubeDownloader
         {
             base.OnStartup(e);
 
-            /* if (Config.Instance.AppPath == null)
-             {
-                 Config.Instance.DefaultProjectPath = System.AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"/") + "config.txt";
-                 Config.Instance.RetrieveAllSettingsFromConfig();
-             }
-
-     */
+            if (YtConfig.GetInstance.AppPath != null) return;
+            
+            YtConfig.GetInstance.AppPath =
+                System.AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"/") + "config.txt";
+            YtConfig.GetInstance.RetrieveAllSettingsFromConfig();
         }
 
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
 
-            // MessageBox.Show("This is the activated lifecycle");
+            MessageBox.Show("This is the activated lifecycle");
         }
 
         protected override void OnSessionEnding(SessionEndingCancelEventArgs e)
         {
             base.OnSessionEnding(e);
-
-            //Config.Instance.SaveAllToConfigFile();
+            YtConfig.GetInstance.SaveAllToConfigFile();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-
-            //  Config.Instance.SaveAllToConfigFile();
+            YtConfig.GetInstance.SaveAllToConfigFile();
         }
     }
 }

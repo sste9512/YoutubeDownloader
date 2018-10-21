@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YoutubeDownloader"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:custom="clr-namespace:YoutubeDownloader.PlayList.View"
         xmlns:custom1="clr-namespace:YoutubeDownloader.VideoInfoPanel.View"
         xmlns:custom2="clr-namespace:YoutubeDownloader.VideoPanel.View"
@@ -100,24 +98,24 @@
             </DockPanel>
 
             <!-- Basic Menu, Abstracted Away for tidieness -->
-            <custom3:MenuPanel x:Name="menuPanel"></custom3:MenuPanel>
+            <custom3:MenuPanel x:Name="MenuPanel"></custom3:MenuPanel>
 
             <DockPanel LastChildFill="True">
 
                 <!-- Video Playlist Control (Contains the youtube playlist for corresponding video) -->
                 <Border BorderBrush="White" BorderThickness="0,0,0,0" DockPanel.Dock="Left">
-                    <custom:PlayListControl x:Name="playList"></custom:PlayListControl>
+                    <custom:PlayListControl x:Name="PlayList"></custom:PlayListControl>
                 </Border>
 
                 <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
-                <custom1:VideoInfoPanel x:Name="videoInfoPanel" DockPanel.Dock="Right"></custom1:VideoInfoPanel>
+                <custom1:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"></custom1:VideoInfoPanel>
 
                 <!-- Video Panel (Contains search function and video player) -->
-                <custom2:VideoPanel x:Name="videoPanel" DockPanel.Dock="Right"></custom2:VideoPanel>
+                <custom2:VideoPanel x:Name="VideoPanel" DockPanel.Dock="Right"></custom2:VideoPanel>
             </DockPanel>
 
             <!-- UserPlayListPanel (Contains ) -->
-            <custom4:UserPlayListPanel x:Name="userPlayList" DockPanel.Dock="Bottom"></custom4:UserPlayListPanel>
+            <custom4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"></custom4:UserPlayListPanel>
         </StackPanel>
     </Border>
 </Window>

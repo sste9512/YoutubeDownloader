@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using YoutubeDownloader.ViewModels;
 using YoutubeExplode;
 using YoutubeExplode.Models;
 using YoutubeExplode.Models.ClosedCaptions;
@@ -12,22 +14,14 @@ namespace YoutubeDownloader
 {
     public partial class MainWindow : Window
     {
-        private bool _isBusy;
-        private string _query;
-        private YoutubeClient client = new YoutubeClient();
-        private Channel _channel;
-        private MediaStreamInfoSet _mediaStreamInfos;
-        private MediaStreamInfo mediaStream;
-        private IReadOnlyList<ClosedCaptionTrackInfo> _closedCaptionTrackInfos;
-        private double _progress;
-        private bool _isProgressIndeterminate;
-        private Video video;
-
+        private readonly MainWindowViewModel _model;
+        
         public MainWindow()
         {
             InitializeComponent();
-            videoPanel.queryVideoButton.Click += this.queryVideoEvent;
-            videoInfoPanel.downloadButton.Click += this.Download_Video;
+            this._model = new MainWindowViewModel();
+            VideoPanel.QueryVideoButton.Click += this.QueryVideoEvent;
+            VideoInfoPanel.DownloadButton.Click += this.Download_Video;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -40,25 +34,20 @@ namespace YoutubeDownloader
             this.DragMove();
         }
 
-        private async void queryVideoEvent(object sender, RoutedEventArgs e)
+        private async void QueryVideoEvent(object sender, RoutedEventArgs e)
         {
             try
             {
-                string url = videoPanel.urlInput.Text;
-                video = await client.GetVideoAsync(YoutubeClient.ParseVideoId(url));
-                videoInfoPanel.syncInfoToPanel(video, url, client, _mediaStreamInfos);
-                playList.initPlayListFromURL(url, client);
+                string url = VideoPanel.UrlInput.Text;
+                _model.Video = await _model.Client.GetVideoAsync(YoutubeClient.ParseVideoId(url));
+                VideoInfoPanel.SyncInfoToPanel(_model.Video, url, _model.Client, _model.MediaStreamInfos);
+                PlayList.InitPlayListFromUrl(url, _model.Client);
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
-
-       
-        
-
-
-
 
 
         private async void DownloadMediaStream(MediaStreamInfo info)
@@ -67,7 +56,7 @@ namespace YoutubeDownloader
             try
             {
                 var fileExt = info.Container.GetFileExtension();
-                var defaultFileName = video.Title + "." + fileExt;
+                var defaultFileName = _model.Video.Title + "." + fileExt;
                 // .Replace(Path.GetInvalidFileNameChars(), '_');
                 var sfd = new SaveFileDialog
                 {
@@ -84,41 +73,29 @@ namespace YoutubeDownloader
                 var filePath = sfd.FileName;
 
                 // Download to file
-                _isBusy = true;
-                _progress = 0;
+                _model.IsBusy = true;
+               _model.Progress = 0;
 
-                var progressHandler = new Progress<double>(p => _progress = p);
-                await client.DownloadMediaStreamAsync(info, filePath, progressHandler);
+                var progressHandler = new Progress<double>(p => _model.Progress = p);
+                await _model.Client.DownloadMediaStreamAsync(info, filePath, progressHandler);
 
-                _isBusy = false;
-                _progress = 0;
+                _model.IsBusy = false;
+                _model.Progress = 0;
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
-
-
-
-
 
 
         private async void Download_Video(object sender, RoutedEventArgs e)
         {
-            DownloadMediaStream(_mediaStreamInfos.Muxed.WithHighestVideoQuality());
+            await Task.Factory.StartNew(() =>
+            {
+                DownloadMediaStream(_model.MediaStreamInfos.Muxed.WithHighestVideoQuality());
+            });
         }
-
-
-
-
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            // encodeToMP4();
-        }
-
-
-
 
 
         private void AddPlayList(object sender, RoutedEventArgs e)

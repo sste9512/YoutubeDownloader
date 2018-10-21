@@ -83,7 +83,7 @@ namespace YoutubeDownloader.UserPlayListPanel.View
                     border.Background = Brushes.Transparent;
                     label.Foreground = Brushes.DarkGray;
                 };
-                this.albumItemsList.Items.Add(item);
+                this.AlbumItemsList.Items.Add(item);
             }
             /*
             for(int i = 0; i < 20; i++)
@@ -97,7 +97,7 @@ namespace YoutubeDownloader.UserPlayListPanel.View
          */
         }
 
-        public async void initListFromUserPlayList()
+        public void InitListFromUserPlayList()
         {
         }
     }
