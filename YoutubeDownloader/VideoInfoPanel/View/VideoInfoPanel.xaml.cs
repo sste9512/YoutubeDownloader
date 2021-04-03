@@ -13,25 +13,27 @@ namespace YoutubeDownloader.VideoInfoPanel.View
         {
             InitializeComponent();
         }
+        
+        
 
         public async void SyncInfoToPanel(Video video, string url, YoutubeClient client, MediaStreamInfoSet mediaStreamInfos)
         {
             try
             {
-                this.VideoTitle.Content = video.Title;
+                VideoTitle.Content = video.Title;
 
-                BitmapImage thmbNail = new BitmapImage();
+                var thmbNail = new BitmapImage();
                 thmbNail.BeginInit();
                 thmbNail.UriSource = new Uri(video.Thumbnails.MediumResUrl, UriKind.Absolute);
                 thmbNail.EndInit();
-                this.ViewCount.Content = video.Statistics.ViewCount + " views";
-                this.LikesCount.Content = video.Statistics.LikeCount;
-                this.DislikesCount.Content = video.Statistics.DislikeCount;
-                this.VideoThumbnail.Source = thmbNail;
-                this.VideoPublishedDate.Content = video.UploadDate;
-                this.VideoDesciption.Content = video.Description;
-                this.VideoAuthor.Content = video.Author;
-                this.VideoDuration.Content = video.Duration;
+                ViewCount.Content = video.Statistics.ViewCount + " views";
+                LikesCount.Content = video.Statistics.LikeCount;
+                DislikesCount.Content = video.Statistics.DislikeCount;
+                VideoThumbnail.Source = thmbNail;
+                VideoPublishedDate.Content = video.UploadDate;
+                VideoDesciption.Content = video.Description;
+                VideoAuthor.Content = video.Author;
+                VideoDuration.Content = video.Duration;
                 mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
                 var streaminfo = mediaStreamInfos.Muxed.WithHighestVideoQuality();
 

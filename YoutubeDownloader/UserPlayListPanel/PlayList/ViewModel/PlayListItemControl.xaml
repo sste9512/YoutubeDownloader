@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="YoutubeDownloader.PlayList.ViewModel.PlayListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Width="360">
+    <Border CornerRadius="2,2,2,2" Background="Transparent" Name="DecoBorder">
+    <StackPanel Orientation="Horizontal">
+        <Label Height="30" Width="30" Name="NumberLabel" Margin="5,5,5,5" Foreground="White" />
+        <Image Height="85" Width="130" Name="VideoThumbnail" Margin="0,0,0,0" Stretch="Fill" />
+        <StackPanel Orientation="Vertical">
+            <Label Foreground="White" Name="VideoTitle" Content="Title" />
+            <Label Foreground="White" Name="VideoAuthor" Content="Author" />
+        </StackPanel>
+        <Label Foreground="Gray" Name="VideoDuration" Content="00:30" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="10" />
+            <Button Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth0" Margin="30,5,5,5" BorderBrush="Transparent">
+            <materialDesign:PackIcon Kind="DotsHorizontal" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+           </Button>
+            </StackPanel>
+    </Border>
+</UserControl>

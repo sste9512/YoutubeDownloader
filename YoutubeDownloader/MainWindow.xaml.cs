@@ -1,52 +1,53 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Autofac.Features.Indexed;
+using MediatR;
+using YoutubeDownloader.Queries;
 using YoutubeDownloader.ViewModels;
-using YoutubeExplode;
-using YoutubeExplode.Models;
-using YoutubeExplode.Models.ClosedCaptions;
 using YoutubeExplode.Models.MediaStreams;
 
 namespace YoutubeDownloader
 {
     public partial class MainWindow : Window
     {
+        private readonly IMediator _mediator;
+        private readonly IIndex<string, Window> _windows;
         private readonly MainWindowViewModel _model;
         
         public MainWindow()
         {
             InitializeComponent();
-            this._model = new MainWindowViewModel();
-            VideoPanel.QueryVideoButton.Click += this.QueryVideoEvent;
-            VideoInfoPanel.DownloadButton.Click += this.Download_Video;
+        }
+
+        public MainWindow(IMediator mediator, IIndex<string, Window> windows)
+        {
+            InitializeComponent();
+            _mediator = mediator;
+            _windows = windows;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void RootWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            DragMove();
         }
 
-        private async void QueryVideoEvent(object sender, RoutedEventArgs e)
+        public async void QueryVideoEvent(object sender, RoutedEventArgs e)
         {
-            try
+            var video = await _mediator.Send(new QueryVideoRequest
             {
-                string url = VideoPanel.UrlInput.Text;
-                _model.Video = await _model.Client.GetVideoAsync(YoutubeClient.ParseVideoId(url));
-                VideoInfoPanel.SyncInfoToPanel(_model.Video, url, _model.Client, _model.MediaStreamInfos);
-                PlayList.InitPlayListFromUrl(url, _model.Client);
-            }
-            catch (Exception ex)
-            {
-                // ignored
-            }
+                Url = VideoPanel.UrlInput.Text
+            });
+            
+           // VideoInfoPanel.SyncInfoToPanel(video, VideoPanel.UrlInput.Text, _model.Client, _model.MediaStreamInfos);
+           // PlayList.InitPlayListFromUrl(url, _model.Client);
         }
 
 
@@ -73,25 +74,25 @@ namespace YoutubeDownloader
                 var filePath = sfd.FileName;
 
                 // Download to file
-                _model.IsBusy = true;
-               _model.Progress = 0;
-
-                var progressHandler = new Progress<double>(p => _model.Progress = p);
-                await _model.Client.DownloadMediaStreamAsync(info, filePath, progressHandler);
-
-                _model.IsBusy = false;
-                _model.Progress = 0;
+               //  _model.IsBusy = true;
+               // _model.Progress = 0;
+               //
+               //  var progressHandler = new Progress<double>(p => _model.Progress = p);
+               //  await _model.Client.DownloadMediaStreamAsync(info, filePath, progressHandler);
+               //
+               //  _model.IsBusy = false;
+               //  _model.Progress = 0;
             }
             catch (Exception ex)
             {
-                // ignored
+                MessageBox.Show(ex.Message);
             }
         }
 
 
-        private async void Download_Video(object sender, RoutedEventArgs e)
+        public async void DownloadVideo(object sender, RoutedEventArgs e)
         {
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 DownloadMediaStream(_model.MediaStreamInfos.Muxed.WithHighestVideoQuality());
             });
@@ -100,8 +101,7 @@ namespace YoutubeDownloader
 
         private void AddPlayList(object sender, RoutedEventArgs e)
         {
-            PlaylistCreationWindow window = new PlaylistCreationWindow();
-            window.Show();
+            _windows[nameof(PlaylistCreationWindow)].Show();
         }
     }
 }

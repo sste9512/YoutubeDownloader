@@ -129,7 +129,6 @@ C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\bin\Debug\Mater
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\bin\Debug\Newtonsoft.Json.xml
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\bin\Debug\YoutubeExplode.xml
-C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.csprojResolveAssemblyReference.cache
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\PlaylistCreationWindow\View\PlaylistCreationWindow.baml
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\PlayList\ViewModel\PlayListItemControl.baml
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\UserPlayListPanel\View\UserPlayListPanel.baml
@@ -160,3 +159,4 @@ C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\Youtu
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.csproj.CopyComplete
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.exe
 C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\YoutubeDownloader\obj\Debug\YoutubeDownloader.csprojAssemblyReference.cache
