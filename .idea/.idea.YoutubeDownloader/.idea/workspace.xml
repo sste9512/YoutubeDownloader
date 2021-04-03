@@ -6,209 +6,201 @@
     <projectFile>YoutubeDownloader.Services/YoutubeDownloader.Services.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304d4892-7042-481d-ac13-9d4aa77a5528" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/NetworkModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/SchedulerModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/WindowModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/Queries/DownloadMediaStreamCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Config/Config.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/AudioConversion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Enums/VideoType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Extend/BitmapExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Extend/UriExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Atomic/Arguments.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/AudioQuality.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Codec.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Speed.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/VideoSize.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Exceptions/FFMpegException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Extend/Extensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFMpeg.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFProbe.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/ffprobe.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-360p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-baseline.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod320.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod640.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-main.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffprobe.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffprobe.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Helpers/FFMpegHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Helpers/FFProbeHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/VideoInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/VideoInfoExtend.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/ffprobe.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-360p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-baseline.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod320.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod640.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-main.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffprobe.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffmpeg.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffprobe.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csprojResolveAssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/View/PlayListControl.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/View/PlayListControl.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Resources.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Resources.resx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Settings.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Settings.settings" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/close_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/minimize_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/resize_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/search_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojAssemblyReference.cache" afterDir="false" />
+    <list default="true" id="304d4892-7042-481d-ac13-9d4aa77a5528" name="Default Changelist" comment="Basic-Refactor (wip)&#10;Added Autofac&#10;Added Mediatr&#10;Added Service Collection for DI&#10;Added Constructor injection for MainWindow">
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/MenuPanel/View/MenuPanel.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/bin/Debug/Data.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Data/bin/Debug/Data.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/bin/Debug/Data.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Data/bin/Debug/Data.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/Debug/Data.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/Debug/Data.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/Debug/Data.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/Debug/Data.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/Debug/Data.csprojResolveAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/Debug/Data.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/Debug/Data.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/Debug/Data.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/Debug/Data.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader.sln" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/App.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Config/Config.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Config/Config.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Conversion/AudioConversion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Conversion/AudioConversion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Conversion/ConversionDialog/ConversionDialog.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Conversion/ConversionDialog/ConversionDialog.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/NetworkModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/DependencyInjection/NetworkModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/SchedulerModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/DependencyInjection/SchedulerModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/WindowModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/DependencyInjection/WindowModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/MenuPanel/View/MenuPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/MenuPanel/View/MenuPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/MenuPanel/View/MenuPanel.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlayList/View/PlayListControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/View/PlayListControl.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlayList/View/PlayListControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/View/PlayListControl.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlayList/ViewModel/PlayListItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/ViewModel/PlayListItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlayList/ViewModel/PlayListItemControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/ViewModel/PlayListItemControl.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlayList/ViewModel/PlayListItemControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/ViewModel/PlayListItemControl.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Queries/DownloadMediaStreamCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/Intents/Queries/DownloadMediaStreamCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Resources/close_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/ApplicationResources/icons/close_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Resources/minimize_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/ApplicationResources/icons/minimize_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Resources/resize_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/ApplicationResources/icons/resize_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/Resources/search_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/ApplicationResources/icons/search_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Config/Config.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/Config/Config.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/AudioConversion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/Conversion/AudioConversion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/Conversion/ConversionDialog/ConversionDialog.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Conversion/ConversionDialog/ConversionDialog.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Domain/Conversion/ConversionDialog/ConversionDialog.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Enums/VideoType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Enums/VideoType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Extend/BitmapExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Extend/BitmapExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Extend/UriExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Extend/UriExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Atomic/Arguments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Atomic/Arguments.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/AudioQuality.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/AudioQuality.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Codec.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Codec.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Speed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/Speed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/VideoSize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Enums/VideoSize.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Exceptions/FFMpegException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Exceptions/FFMpegException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/Extend/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/Extend/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/FFBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFMpeg.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/FFMpeg.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/FFProbe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/FFProbe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/ffprobe.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/ffprobe.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-360p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-360p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-baseline.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-baseline.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod320.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod320.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod640.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ipod640.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-main.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-main.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffmpeg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffmpeg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffprobe.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x64/ffprobe.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffmpeg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffmpeg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffprobe.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMPEG/bin/x86/ffprobe.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/FFMpegSharp.csproj.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Helpers/FFMpegHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Helpers/FFMpegHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Helpers/FFProbeHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Helpers/FFProbeHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/VideoInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/VideoInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/VideoInfoExtend.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/VideoInfoExtend.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/ffprobe.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/ffprobe.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-1080p50_60.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-360p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-360p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-720p50_60.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libvpx-ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-baseline.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-baseline.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-fast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-faster_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod320.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod320.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod640.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ipod640.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_fast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_max.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_medium.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_slower.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-lossless_ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-main.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-main.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-medium_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-placebo_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slow_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-slower_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-superfast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-ultrafast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryfast_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/presets/libx264-veryslow_firstpass.ffpreset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffmpeg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffmpeg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffprobe.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x64/ffprobe.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffmpeg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffmpeg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffprobe.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMPEG/bin/x86/ffprobe.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/bin/Debug/FFMpegSharp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csprojResolveAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.csprojResolveAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/FFMpegSharp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/FFMpegSharp/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/MenuPanel/View/MenuPanel.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/View/PlayListControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlayList/View/PlayListControl.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/View/PlayListControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlayList/View/PlayListControl.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlayList/ViewModel/PlayListItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/PlayList/ViewModel/PlayListItemControl.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Resources.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Properties/Resources.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Resources.resx" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Properties/Resources.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Settings.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Properties/Settings.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Properties/Settings.settings" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Properties/Settings.settings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/close_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Resources/close_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/minimize_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Resources/minimize_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/resize_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Resources/resize_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/Resources/search_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/Resources/search_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/View/UserPlayListPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/VideoPanel/View/VideoPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/VideoPanel/View/VideoPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/VideoPanel/View/VideoPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/Controls/VideoPanel/View/VideoPanel.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/YoutubeDownloader.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/YoutubeDownloader.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe.config" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/App.baml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/App.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/App.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/App.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/App.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.baml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/GeneratedInternalTypeHelper.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/GeneratedInternalTypeHelper.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MainWindow.baml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/Conversion/ConversionDialog/ConversionDialog.g.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MainWindow.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MainWindow.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MainWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MainWindow.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.baml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.g.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/MenuPanel/View/MenuPanel.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.baml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.baml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.baml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.baml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.baml" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.baml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.g.i.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.baml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.g.i.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/View/PlayListControl.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.baml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlayList/ViewModel/PlayListItemControl.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.baml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/PlaylistCreationWindow/View/PlaylistCreationWindow.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.baml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/UserPlayListPanel/View/UserPlayListPanel.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.baml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoInfoPanel/View/VideoInfoPanel.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/VideoPanel/View/VideoPanel.g.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.GenerateResource.Cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojResolveAssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.g.resources" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.g.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader_MarkupCompile.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader_MarkupCompile.i.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader_MarkupCompile.i.lref" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader_MarkupCompile.lref" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/packages.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,27 +226,29 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/UserPlayListPanel/FFMpegSharp/FFMPEG/FFMpeg.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/View/PlayListControl.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/obj/Debug/.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/View/PlayListControl.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/ViewModel/PlayListItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/View/UserPlayListPanel.xaml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5F37459E-F130-4442-BA19-EE268C49D074/f2/e502cadc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Data/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/App.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Config/Config.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/PlayList/View/PlayListControl.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Domain/Config/Config.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0C285EE5-6767-4513-BB6D-88C242FEC00E/d5/b406a4d5/Window.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Controls/PlayList/View/PlayListControl.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Conversion/AudioConversion.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Domain/Conversion/AudioConversion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Properties/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Conversion/ConversionDialog/ConversionDialog.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Domain/Conversion/ConversionDialog/ConversionDialog.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/AudioConversion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/App.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/ConversionDialog/ConversionDialog.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/ConversionDialog/ConversionDialog.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/App.xaml.cs" root0="FORCE_HIGHLIGHTING" />
@@ -264,18 +258,24 @@
       <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/AudioConversion.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/ViewModel/PlayListItem.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/Config/IStorageConfiguration.cs" />
-      <option value="$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/Queries/QueryVideo.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/App.xaml" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/PageModule.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/NetworkModule.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/Injector.cs" />
-      <option value="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/Queries/DownloadMediaStreamCommand.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/SchedulerModule.cs" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/DependencyInjection/WindowModule.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/MenuPanel/View/MenuPanel.xaml" />
       <option value="$PROJECT_DIR$/YoutubeDownloader/App.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/ViewModels/MainWindowViewModel.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/Domain/DependencyInjection/WindowModule.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/Domain/Intents/Queries/DownloadMediaStreamCommand.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/Domain/Intents/Queries/QueryVideo.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" />
     </changedPaths>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -437,8 +437,17 @@
       <workItem from="1540158569278" duration="3365000" />
       <workItem from="1617387738887" duration="1208000" />
       <workItem from="1617388983903" duration="3696000" />
-      <workItem from="1617448798620" duration="7123000" />
+      <workItem from="1617448798620" duration="11272000" />
+      <workItem from="1617473128176" duration="433000" />
     </task>
+    <task id="LOCAL-00001" summary="Basic-Refactor (wip)&#10;Added Autofac&#10;Added Mediatr&#10;Added Service Collection for DI&#10;Added Constructor injection for MainWindow">
+      <created>1617458419499</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1617458419499</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -501,11 +510,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Basic-Refactor (wip)&#10;Added Autofac&#10;Added Mediatr&#10;Added Service Collection for DI&#10;Added Constructor injection for MainWindow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic-Refactor (wip)&#10;Added Autofac&#10;Added Mediatr&#10;Added Service Collection for DI&#10;Added Constructor injection for MainWindow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -12,95 +12,132 @@
         <e p="App.config" t="Include" />
         <e p="App.xaml" t="Include" />
         <e p="App.xaml.cs" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Config" t="Include">
-          <e p="Config.cs" t="Include" />
-          <e p="IStorageConfiguration.cs" t="Include" />
-        </e>
-        <e p="Conversion" t="Include">
-          <e p="AudioConversion.cs" t="Include" />
-          <e p="ConversionDialog" t="Include">
-            <e p="ConversionDialog.xaml" t="Include" />
-            <e p="ConversionDialog.xaml.cs" t="Include" />
+        <e p="ApplicationResources" t="Include">
+          <e p="icons" t="Include">
+            <e p="close_icon.png" t="Include" />
+            <e p="minimize_icon.png" t="Include" />
+            <e p="resize_icon.png" t="Include" />
+            <e p="search_icon.png" t="Include" />
           </e>
         </e>
-        <e p="DependencyInjection" t="Include">
-          <e p="Injector.cs" t="Include" />
-          <e p="NetworkModule.cs" t="Include" />
-          <e p="SchedulerModule.cs" t="Include" />
-          <e p="WindowModule.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controls" t="Include">
+          <e p="MenuPanel" t="Include">
+            <e p="View" t="Include">
+              <e p="MenuPanel.xaml" t="Include" />
+              <e p="MenuPanel.xaml.cs" t="Include" />
+            </e>
+          </e>
+          <e p="PlayList" t="Include">
+            <e p="View" t="Include">
+              <e p="PlayListControl.xaml" t="Include" />
+              <e p="PlayListControl.xaml.cs" t="Include" />
+            </e>
+            <e p="ViewModel" t="Include">
+              <e p="PlayListItem.cs" t="Include" />
+              <e p="PlayListItemControl.xaml" t="Include" />
+              <e p="PlayListItemControl.xaml.cs" t="Include" />
+            </e>
+          </e>
+          <e p="UserPlayListPanel" t="Include">
+            <e p="View" t="Include">
+              <e p="UserPlayListPanel.xaml" t="Include" />
+              <e p="UserPlayListPanel.xaml.cs" t="Include" />
+            </e>
+          </e>
+          <e p="VideoInfoPanel" t="Include">
+            <e p="View" t="Include">
+              <e p="VideoInfoPanel.xaml" t="Include" />
+              <e p="VideoInfoPanel.xaml.cs" t="Include" />
+            </e>
+          </e>
+          <e p="VideoPanel" t="Include">
+            <e p="View" t="Include">
+              <e p="VideoPanel.xaml" t="Include" />
+              <e p="VideoPanel.xaml.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Domain" t="Include">
+          <e p="Config" t="Include">
+            <e p="Config.cs" t="Include" />
+            <e p="IStorageConfiguration.cs" t="Include" />
+          </e>
+          <e p="Conversion" t="Include">
+            <e p="AudioConversion.cs" t="Include" />
+            <e p="ConversionDialog" t="Include">
+              <e p="ConversionDialog.xaml" t="Include" />
+              <e p="ConversionDialog.xaml.cs" t="Include" />
+            </e>
+          </e>
+          <e p="DependencyInjection" t="Include">
+            <e p="Injector.cs" t="Include" />
+            <e p="NetworkModule.cs" t="Include" />
+            <e p="SchedulerModule.cs" t="Include" />
+            <e p="TaskModule.cs" t="Include" />
+            <e p="WindowModule.cs" t="Include" />
+          </e>
+          <e p="Intents" t="Include">
+            <e p="Queries" t="Include">
+              <e p="DownloadMediaStreamCommand.cs" t="Include" />
+              <e p="QueryVideo.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="MainWindow.xaml" t="Include" />
         <e p="MainWindow.xaml.cs" t="Include" />
-        <e p="MenuPanel" t="Include">
-          <e p="View" t="Include">
-            <e p="MenuPanel.xaml" t="Include" />
-            <e p="MenuPanel.xaml.cs" t="Include" />
-          </e>
-        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="App.g.cs" t="Include" />
-            <e p="Conversion" t="Include">
-              <e p="ConversionDialog" t="Include">
-                <e p="ConversionDialog.g.cs" t="Include" />
+            <e p="Controls" t="Include">
+              <e p="MenuPanel" t="Include">
+                <e p="View" t="Include">
+                  <e p="MenuPanel.g.cs" t="Include" />
+                </e>
+              </e>
+              <e p="PlayList" t="Include">
+                <e p="View" t="Include">
+                  <e p="PlayListControl.g.cs" t="Include" />
+                </e>
+                <e p="ViewModel" t="Include">
+                  <e p="PlayListItemControl.g.cs" t="Include" />
+                </e>
+              </e>
+              <e p="UserPlayListPanel" t="Include">
+                <e p="View" t="Include">
+                  <e p="UserPlayListPanel.g.cs" t="Include" />
+                </e>
+              </e>
+              <e p="VideoInfoPanel" t="Include">
+                <e p="View" t="Include">
+                  <e p="VideoInfoPanel.g.cs" t="Include" />
+                </e>
+              </e>
+              <e p="VideoPanel" t="Include">
+                <e p="View" t="Include">
+                  <e p="VideoPanel.g.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Domain" t="Include">
+              <e p="Conversion" t="Include">
+                <e p="ConversionDialog" t="Include">
+                  <e p="ConversionDialog.g.cs" t="Include" />
+                </e>
               </e>
             </e>
             <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
             <e p="MainWindow.g.cs" t="Include" />
-            <e p="MenuPanel" t="Include">
-              <e p="View" t="Include">
-                <e p="MenuPanel.g.cs" t="Include" />
-              </e>
-            </e>
-            <e p="PlayList" t="Include">
-              <e p="View" t="Include">
-                <e p="PlayListControl.g.cs" t="Include" />
-              </e>
-              <e p="ViewModel" t="Include">
-                <e p="PlayListItemControl.g.cs" t="Include" />
-              </e>
-            </e>
-            <e p="PlaylistCreationWindow" t="Include">
-              <e p="View" t="Include">
-                <e p="PlaylistCreationWindow.g.cs" t="Include" />
-              </e>
-            </e>
-            <e p="UserPlayListPanel" t="Include">
-              <e p="View" t="Include">
-                <e p="UserPlayListPanel.g.cs" t="Include" />
-              </e>
-            </e>
-            <e p="VideoInfoPanel" t="Include">
-              <e p="View" t="Include">
-                <e p="VideoInfoPanel.g.cs" t="Include" />
-              </e>
-            </e>
-            <e p="VideoPanel" t="Include">
-              <e p="View" t="Include">
-                <e p="VideoPanel.g.cs" t="Include" />
+            <e p="Windows" t="Include">
+              <e p="PlaylistCreationWindow" t="Include">
+                <e p="View" t="Include">
+                  <e p="PlaylistCreationWindow.g.cs" t="Include" />
+                </e>
               </e>
             </e>
           </e>
         </e>
         <e p="packages.config" t="Include" />
-        <e p="PlayList" t="Include">
-          <e p="View" t="Include">
-            <e p="PlayListControl.xaml" t="Include" />
-            <e p="PlayListControl.xaml.cs" t="Include" />
-          </e>
-          <e p="ViewModel" t="Include">
-            <e p="PlayListItem.cs" t="Include" />
-            <e p="PlayListItemControl.xaml" t="Include" />
-            <e p="PlayListItemControl.xaml.cs" t="Include" />
-          </e>
-        </e>
-        <e p="PlaylistCreationWindow" t="Include">
-          <e p="View" t="Include">
-            <e p="PlaylistCreationWindow.xaml" t="Include" />
-            <e p="PlaylistCreationWindow.xaml.cs" t="Include" />
-          </e>
-        </e>
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
           <e p="Resources.Designer.cs" t="Include" />
@@ -108,36 +145,13 @@
           <e p="Settings.Designer.cs" t="Include" />
           <e p="Settings.settings" t="Include" />
         </e>
-        <e p="Queries" t="Include">
-          <e p="DownloadMediaStreamCommand.cs" t="Include" />
-          <e p="QueryVideo.cs" t="Include" />
-        </e>
-        <e p="Resources" t="Include">
-          <e p="close_icon.png" t="Include" />
-          <e p="minimize_icon.png" t="Include" />
-          <e p="resize_icon.png" t="Include" />
-          <e p="search_icon.png" t="Include" />
-        </e>
-        <e p="UserPlayListPanel" t="Include">
-          <e p="View" t="Include">
-            <e p="UserPlayListPanel.xaml" t="Include" />
-            <e p="UserPlayListPanel.xaml.cs" t="Include" />
+        <e p="Windows" t="Include">
+          <e p="PlaylistCreationWindow" t="Include">
+            <e p="View" t="Include">
+              <e p="PlaylistCreationWindow.xaml" t="Include" />
+              <e p="PlaylistCreationWindow.xaml.cs" t="Include" />
+            </e>
           </e>
-        </e>
-        <e p="VideoInfoPanel" t="Include">
-          <e p="View" t="Include">
-            <e p="VideoInfoPanel.xaml" t="Include" />
-            <e p="VideoInfoPanel.xaml.cs" t="Include" />
-          </e>
-        </e>
-        <e p="VideoPanel" t="Include">
-          <e p="View" t="Include">
-            <e p="VideoPanel.xaml" t="Include" />
-            <e p="VideoPanel.xaml.cs" t="Include" />
-          </e>
-        </e>
-        <e p="ViewModels" t="Include">
-          <e p="MainWindowViewModel.cs" t="Include" />
         </e>
         <e p="YoutubeDownloader.csproj" t="IncludeRecursive" />
       </e>

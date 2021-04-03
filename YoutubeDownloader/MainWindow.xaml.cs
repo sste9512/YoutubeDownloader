@@ -1,13 +1,11 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
 using System.Windows;
-using System.Windows.Input;
 using Autofac.Features.Indexed;
+using Castle.Core.Logging;
 using MediatR;
-using YoutubeDownloader.Queries;
-using YoutubeDownloader.ViewModels;
-using YoutubeExplode.Models.MediaStreams;
+using YoutubeDownloader.Domain.Intents.Queries;
+using YoutubeDownloader.Windows.PlaylistCreationWindow.View;
 
 namespace YoutubeDownloader
 {
@@ -15,87 +13,39 @@ namespace YoutubeDownloader
     {
         private readonly IMediator _mediator;
         private readonly IIndex<string, Window> _windows;
-        private readonly MainWindowViewModel _model;
-        
+        private readonly ILogger _logger;
+        private readonly CancellationTokenSource _cancellationTokenSource;
+
         public MainWindow()
         {
-            InitializeComponent();
         }
-
-        public MainWindow(IMediator mediator, IIndex<string, Window> windows)
+       
+        public MainWindow(IMediator mediator, IIndex<string, Window> windows, ILogger logger, CancellationTokenSource cancellationTokenSource)
         {
-            InitializeComponent();
             _mediator = mediator;
             _windows = windows;
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void RootWindow_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
+            _logger = logger;
+            _cancellationTokenSource = cancellationTokenSource;
         }
 
         public async void QueryVideoEvent(object sender, RoutedEventArgs e)
         {
             var video = await _mediator.Send(new QueryVideoRequest
             {
-                Url = VideoPanel.UrlInput.Text
-            });
-            
-           // VideoInfoPanel.SyncInfoToPanel(video, VideoPanel.UrlInput.Text, _model.Client, _model.MediaStreamInfos);
-           // PlayList.InitPlayListFromUrl(url, _model.Client);
+                Url = VideoPanel.UrlInput.Text,
+                MainWindowReference = new WeakReference<MainWindow>(this)
+            }, _cancellationTokenSource.Token);
         }
 
-
-        private async void DownloadMediaStream(MediaStreamInfo info)
-        {
-            // Create dialog
-            try
-            {
-                var fileExt = info.Container.GetFileExtension();
-                var defaultFileName = _model.Video.Title + "." + fileExt;
-                // .Replace(Path.GetInvalidFileNameChars(), '_');
-                var sfd = new SaveFileDialog
-                {
-                    AddExtension = true,
-                    DefaultExt = fileExt,
-                    FileName = defaultFileName,
-                    Filter = $"{info.Container} Files|*.{fileExt}|All Files|*.*"
-                };
-
-                // Select file path
-                if (sfd.ShowDialog() != true)
-                    return;
-
-                var filePath = sfd.FileName;
-
-                // Download to file
-               //  _model.IsBusy = true;
-               // _model.Progress = 0;
-               //
-               //  var progressHandler = new Progress<double>(p => _model.Progress = p);
-               //  await _model.Client.DownloadMediaStreamAsync(info, filePath, progressHandler);
-               //
-               //  _model.IsBusy = false;
-               //  _model.Progress = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
 
         public async void DownloadVideo(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() =>
+            await _mediator.Publish(new DownloadMediaStreamCommand
             {
-                DownloadMediaStream(_model.MediaStreamInfos.Muxed.WithHighestVideoQuality());
-            });
+                VideoName = "",
+                MainWindowReference = new WeakReference<MainWindow>(this)
+            }, _cancellationTokenSource.Token);
         }
 
 

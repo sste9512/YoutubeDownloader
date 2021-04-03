@@ -173,32 +173,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Config\IStorageConfiguration.cs" />
-    <Compile Include="Conversion\AudioConversion.cs" />
-    <Compile Include="Conversion\ConversionDialog\ConversionDialog.xaml.cs">
-      <DependentUpon>ConversionDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DependencyInjection\Injector.cs" />
-    <Compile Include="DependencyInjection\NetworkModule.cs" />
-    <Compile Include="DependencyInjection\SchedulerModule.cs" />
-    <Compile Include="DependencyInjection\WindowModule.cs" />
-    <Compile Include="MenuPanel\View\MenuPanel.xaml.cs">
+    <Compile Include="Controls\MenuPanel\View\MenuPanel.xaml.cs">
       <DependentUpon>MenuPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Queries\DownloadMediaStreamCommand.cs" />
-    <Compile Include="Queries\QueryVideo.cs" />
-    <Compile Include="UserPlayListPanel\View\UserPlayListPanel.xaml.cs">
+    <Compile Include="Controls\PlayList\ViewModel\PlayListItem.cs" />
+    <Compile Include="Controls\PlayList\ViewModel\PlayListItemControl.xaml.cs">
+      <DependentUpon>PlayListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayList\View\PlayListControl.xaml.cs">
+      <DependentUpon>PlayListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserPlayListPanel\View\UserPlayListPanel.xaml.cs">
       <DependentUpon>UserPlayListPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoInfoPanel\View\VideoInfoPanel.xaml.cs">
+    <Compile Include="Controls\VideoInfoPanel\View\VideoInfoPanel.xaml.cs">
       <DependentUpon>VideoInfoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoPanel\View\VideoPanel.xaml.cs">
+    <Compile Include="Controls\VideoPanel\View\VideoPanel.xaml.cs">
       <DependentUpon>VideoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Page Include="Conversion\ConversionDialog\ConversionDialog.xaml">
-      <SubType>Designer</SubType>
+    <Compile Include="Domain\Config\Config.cs" />
+    <Compile Include="Domain\Config\IStorageConfiguration.cs" />
+    <Compile Include="Domain\Conversion\AudioConversion.cs" />
+    <Compile Include="Domain\Conversion\ConversionDialog\ConversionDialog.xaml.cs">
+      <DependentUpon>ConversionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DependencyInjection\Injector.cs" />
+    <Compile Include="Domain\DependencyInjection\NetworkModule.cs" />
+    <Compile Include="Domain\DependencyInjection\SchedulerModule.cs" />
+    <Compile Include="Domain\DependencyInjection\TaskModule.cs" />
+    <Compile Include="Domain\DependencyInjection\WindowModule.cs" />
+    <Compile Include="Domain\Intents\Queries\DownloadMediaStreamCommand.cs" />
+    <Compile Include="Domain\Intents\Queries\QueryVideo.cs" />
+    <Compile Include="Windows\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml.cs">
+      <DependentUpon>PlaylistCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\MenuPanel\View\MenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayList\ViewModel\PlayListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayList\View\PlayListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserPlayListPanel\View\UserPlayListPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VideoInfoPanel\View\VideoInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VideoPanel\View\VideoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\Conversion\ConversionDialog\ConversionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
@@ -209,51 +237,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\Config.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPanel\View\MenuPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlayList\ViewModel\PlayListItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlayList\View\PlayListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserPlayListPanel\View\UserPlayListPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoInfoPanel\View\VideoInfoPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoPanel\View\VideoPanel.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Windows\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaylistCreationWindow\View\PlaylistCreationWindow.xaml.cs">
-      <DependentUpon>PlaylistCreationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PlayList\ViewModel\PlayListItem.cs" />
-    <Compile Include="PlayList\ViewModel\PlayListItemControl.xaml.cs">
-      <DependentUpon>PlayListItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PlayList\View\PlayListControl.xaml.cs">
-      <DependentUpon>PlayListControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -281,22 +273,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\close_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\resize_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\search_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\FFMpegSharp-master\FFMpegSharp\FFMpegSharp.csproj">
       <Project>{5cec6504-bd25-45d0-830c-a2162f4aad12}</Project>
       <Name>FFMpegSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApplicationResources" />
+    <Folder Include="Controls" />
+    <Folder Include="Domain" />
+    <Folder Include="Windows" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ApplicationResources\icons\close_icon.png" />
+    <Resource Include="ApplicationResources\icons\minimize_icon.png" />
+    <Resource Include="ApplicationResources\icons\resize_icon.png" />
+    <Resource Include="ApplicationResources\icons\search_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
