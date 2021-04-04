@@ -37,6 +37,22 @@
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9.1\lib\net45\AngleSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
+      <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Config.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Config.Net.4.15.0\lib\netstandard2.0\Config.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Config.Net.Yaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520">
+      <HintPath>..\packages\Config.Net.Yaml.4.13.7\lib\net452\Config.Net.Yaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -46,11 +62,92 @@
     <Reference Include="MediaToolkit, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediaToolkit.1.1.0.1\lib\net40\MediaToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="MediatR, Version=9.0.0.0, Culture=neutral, PublicKeyToken=bb9a41a5e8aaa7e2">
+      <HintPath>..\packages\MediatR.9.0.0\lib\net461\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MediatR.Extensions.Autofac.DependencyInjection, Version=7.1.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MediatR.Extensions.Autofac.DependencyInjection.7.1.0\lib\netstandard2.0\MediatR.Extensions.Autofac.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0-preview.2.21154.6\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.6.0.0-preview.2.21154.6\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0-preview.2.21154.6\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.7.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Security.Permissions.4.7.0\lib\net461\System.Security.Permissions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Text.Json.4.7.0\lib\net461\System.Text.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +160,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="YamlDotNet, Version=4.3.1.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e">
+      <HintPath>..\packages\YamlDotNet.Signed.4.3.1\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="YoutubeExplode, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YoutubeExplode.4.2.0\lib\net45\YoutubeExplode.dll</HintPath>
     </Reference>
@@ -72,25 +173,61 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Conversion\AudioConversion.cs" />
-    <Compile Include="Conversion\ConversionDialog\ConversionDialog.xaml.cs">
-      <DependentUpon>ConversionDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MenuPanel\View\MenuPanel.xaml.cs">
+    <Compile Include="Controls\MenuPanel\View\MenuPanel.xaml.cs">
       <DependentUpon>MenuPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPlayListPanel\View\UserPlayListPanel.xaml.cs">
+    <Compile Include="Controls\PlayList\ViewModel\PlayListItem.cs" />
+    <Compile Include="Controls\PlayList\ViewModel\PlayListItemControl.xaml.cs">
+      <DependentUpon>PlayListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayList\View\PlayListControl.xaml.cs">
+      <DependentUpon>PlayListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserPlayListPanel\View\UserPlayListPanel.xaml.cs">
       <DependentUpon>UserPlayListPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoInfoPanel\View\VideoInfoPanel.xaml.cs">
+    <Compile Include="Controls\VideoInfoPanel\View\VideoInfoPanel.xaml.cs">
       <DependentUpon>VideoInfoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoPanel\View\VideoPanel.xaml.cs">
+    <Compile Include="Controls\VideoPanel\View\VideoPanel.xaml.cs">
       <DependentUpon>VideoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Page Include="Conversion\ConversionDialog\ConversionDialog.xaml">
-      <SubType>Designer</SubType>
+    <Compile Include="Domain\Config\IStorageConfiguration.cs" />
+    <Compile Include="Domain\Conversion\AudioConversion.cs" />
+    <Compile Include="Domain\Conversion\ConversionDialog\ConversionDialog.xaml.cs">
+      <DependentUpon>ConversionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DependencyInjection\Injector.cs" />
+    <Compile Include="Domain\DependencyInjection\NetworkModule.cs" />
+    <Compile Include="Domain\DependencyInjection\SchedulerModule.cs" />
+    <Compile Include="Domain\DependencyInjection\TaskModule.cs" />
+    <Compile Include="Domain\DependencyInjection\WindowModule.cs" />
+    <Compile Include="Domain\Intents\Queries\DownloadMediaStreamCommand.cs" />
+    <Compile Include="Domain\Intents\Queries\QueryVideo.cs" />
+    <Compile Include="OpenPathsWindowCommand.cs" />
+    <Compile Include="OpenPathsWindowCommandHandler.cs" />
+    <Compile Include="Windows\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml.cs">
+      <DependentUpon>PlaylistCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\MenuPanel\View\MenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayList\ViewModel\PlayListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PlayList\View\PlayListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserPlayListPanel\View\UserPlayListPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VideoInfoPanel\View\VideoInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VideoPanel\View\VideoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\Conversion\ConversionDialog\ConversionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
@@ -101,51 +238,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\Config.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPanel\View\MenuPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlayList\ViewModel\PlayListItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PlayList\View\PlayListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserPlayListPanel\View\UserPlayListPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoInfoPanel\View\VideoInfoPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoPanel\View\VideoPanel.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Windows\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaylistCreationWindow\View\PlaylistCreationWindow.xaml.cs">
-      <DependentUpon>PlaylistCreationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PlayList\ViewModel\PlayListItem.cs" />
-    <Compile Include="PlayList\ViewModel\PlayListItemControl.xaml.cs">
-      <DependentUpon>PlayListItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PlayList\View\PlayListControl.xaml.cs">
-      <DependentUpon>PlayListControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -173,22 +274,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\close_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\resize_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\search_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\FFMpegSharp-master\FFMpegSharp\FFMpegSharp.csproj">
       <Project>{5cec6504-bd25-45d0-830c-a2162f4aad12}</Project>
       <Name>FFMpegSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApplicationResources" />
+    <Folder Include="Controls" />
+    <Folder Include="Domain" />
+    <Folder Include="Windows" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ApplicationResources\icons\close_icon.png" />
+    <Resource Include="ApplicationResources\icons\minimize_icon.png" />
+    <Resource Include="ApplicationResources\icons\resize_icon.png" />
+    <Resource Include="ApplicationResources\icons\search_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

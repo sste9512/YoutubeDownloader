@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloader", "Youtub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFMpegSharp", "..\FFMpegSharp-master\FFMpegSharp\FFMpegSharp.csproj", "{5CEC6504-BD25-45D0-830C-A2162F4AAD12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{267C5B87-A423-48E9-AC0C-9098CEC5C1D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloader.Services", "YoutubeDownloader.Services\YoutubeDownloader.Services.csproj", "{C9984B4F-7105-4FEC-B284-E34C5863A3D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{5CEC6504-BD25-45D0-830C-A2162F4AAD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CEC6504-BD25-45D0-830C-A2162F4AAD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CEC6504-BD25-45D0-830C-A2162F4AAD12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{267C5B87-A423-48E9-AC0C-9098CEC5C1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{267C5B87-A423-48E9-AC0C-9098CEC5C1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{267C5B87-A423-48E9-AC0C-9098CEC5C1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{267C5B87-A423-48E9-AC0C-9098CEC5C1D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9984B4F-7105-4FEC-B284-E34C5863A3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9984B4F-7105-4FEC-B284-E34C5863A3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9984B4F-7105-4FEC-B284-E34C5863A3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9984B4F-7105-4FEC-B284-E34C5863A3D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

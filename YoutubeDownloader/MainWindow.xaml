@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:custom="clr-namespace:YoutubeDownloader.PlayList.View"
-        xmlns:custom1="clr-namespace:YoutubeDownloader.VideoInfoPanel.View"
-        xmlns:custom2="clr-namespace:YoutubeDownloader.VideoPanel.View"
-        xmlns:custom3="clr-namespace:YoutubeDownloader.MenuPanel.View"
-        xmlns:custom4="clr-namespace:YoutubeDownloader.UserPlayListPanel.View"
+        xmlns:view="clr-namespace:YoutubeDownloader.Controls.MenuPanel.View"
+        xmlns:view1="clr-namespace:YoutubeDownloader.Controls.PlayList.View"
+        xmlns:view2="clr-namespace:YoutubeDownloader.Controls.VideoInfoPanel.View"
+        xmlns:view3="clr-namespace:YoutubeDownloader.Controls.VideoPanel.View"
+        xmlns:view4="clr-namespace:YoutubeDownloader.Controls.UserPlayListPanel.View"
         mc:Ignorable="d"
         Width="1400"
         Height="1100"
@@ -35,8 +35,7 @@
                            DockPanel.Dock="Top"
                            Height="40"
                            Background="#ff0000"
-                           VerticalAlignment="Top"
-                           MouseDown="RootWindow_MouseDown">
+                           VerticalAlignment="Top">
                     <DockPanel x:Name="TitleBar"
                                DockPanel.Dock="Right">
 
@@ -46,11 +45,10 @@
                                 Height="auto"
                                 Width="auto"
                                 Background="Transparent"
-                                BorderBrush="Transparent"
-                                Click="CloseButton_Click">
+                                BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal"
                                         Margin="0">
-                                <Image Source="/Resources/close_icon.png"
+                                <Image Source="/ApplicationResources/icons/close_icon.png"
                                        Width="14"
                                        Height="14" />
                             </StackPanel>
@@ -67,7 +65,7 @@
 
                             <StackPanel Orientation="Horizontal"
                                         Margin="0">
-                                <Image Source="/Resources/resize_icon.png"
+                                <Image Source="/ApplicationResources/icons/resize_icon.png"
                                        Width="14"
                                        Height="14" />
                             </StackPanel>
@@ -82,7 +80,7 @@
                                 BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal"
                                         Margin="0">
-                                <Image Source="/Resources/minimize_icon.png"
+                                <Image Source="/ApplicationResources/icons/minimize_icon.png"
                                        Width="14"
                                        Height="14" />
                             </StackPanel>
@@ -98,24 +96,24 @@
             </DockPanel>
 
             <!-- Basic Menu, Abstracted Away for tidieness -->
-            <custom3:MenuPanel x:Name="MenuPanel"></custom3:MenuPanel>
+            <view:MenuPanel x:Name="MenuPanel"></view:MenuPanel>
 
             <DockPanel LastChildFill="True">
 
                 <!-- Video Playlist Control (Contains the youtube playlist for corresponding video) -->
                 <Border BorderBrush="White" BorderThickness="0,0,0,0" DockPanel.Dock="Left">
-                    <custom:PlayListControl x:Name="PlayList"></custom:PlayListControl>
+                    <view1:PlayListControl x:Name="PlayList"></view1:PlayListControl>
                 </Border>
 
                 <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
-                <custom1:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"></custom1:VideoInfoPanel>
+                <view2:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"></view2:VideoInfoPanel>
 
                 <!-- Video Panel (Contains search function and video player) -->
-                <custom2:VideoPanel x:Name="VideoPanel" DockPanel.Dock="Right"></custom2:VideoPanel>
+                <view3:VideoPanel x:Name="VideoPanel" DockPanel.Dock="Right"></view3:VideoPanel>
             </DockPanel>
 
             <!-- UserPlayListPanel (Contains ) -->
-            <custom4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"></custom4:UserPlayListPanel>
+            <view4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"></view4:UserPlayListPanel>
         </StackPanel>
     </Border>
 </Window>

@@ -1,41 +1,40 @@
-﻿
-
-using System;
+﻿using System;
 using System.Windows;
-using YoutubeDownloader.Config;
+using Microsoft.Extensions.DependencyInjection;
+using YoutubeDownloader.Domain.DependencyInjection;
 
 namespace YoutubeDownloader
 {
     public partial class App : Application
     {
+        private ServiceProvider serviceProvider;
+
+
+        public App()
+        {
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            serviceProvider = services.BuildServiceProvider();
+        }
+
+        private void ConfigureServices(ServiceCollection services)
+        {
+        }
+
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            if (YtConfig.GetInstance.AppPath != null) return;
-            
-            YtConfig.GetInstance.AppPath =
-                System.AppDomain.CurrentDomain.BaseDirectory.Replace(@"\", @"/") + "config.txt";
-            YtConfig.GetInstance.RetrieveAllSettingsFromConfig();
-        }
+            var mainWindow = Injector.Resolve<MainWindow>();
 
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-
-            MessageBox.Show("This is the activated lifecycle");
-        }
-
-        protected override void OnSessionEnding(SessionEndingCancelEventArgs e)
-        {
-            base.OnSessionEnding(e);
-            YtConfig.GetInstance.SaveAllToConfigFile();
+            mainWindow.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Injector.DisposeOf();
             base.OnExit(e);
-            YtConfig.GetInstance.SaveAllToConfigFile();
         }
     }
 }

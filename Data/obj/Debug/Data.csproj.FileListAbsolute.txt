@@ -1,6 +1,6 @@
 C:\Users\steve\RiderProjects\YoutubeDownloader\Data\bin\Debug\Data.exe
 C:\Users\steve\RiderProjects\YoutubeDownloader\Data\bin\Debug\Data.pdb
-C:\Users\steve\RiderProjects\YoutubeDownloader\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 C:\Users\steve\RiderProjects\YoutubeDownloader\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
 C:\Users\steve\RiderProjects\YoutubeDownloader\Data\obj\Debug\Data.exe
 C:\Users\steve\RiderProjects\YoutubeDownloader\Data\obj\Debug\Data.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Data\obj\Debug\Data.csprojAssemblyReference.cache
