@@ -1,0 +1,620 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MediatR</name>
+    </assembly>
+    <members>
+        <member name="T:MediatR.IMediator">
+            <summary>
+            Defines a mediator to encapsulate request/response and publishing interaction patterns
+            </summary>
+        </member>
+        <member name="T:MediatR.INotification">
+            <summary>
+            Marker interface to represent a notification
+            </summary>
+        </member>
+        <member name="T:MediatR.INotificationHandler`1">
+            <summary>
+            Defines a handler for a notification
+            </summary>
+            <typeparam name="TNotification">The type of notification being handled</typeparam>
+        </member>
+        <member name="M:MediatR.INotificationHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handles a notification
+            </summary>
+            <param name="notification">The notification</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="T:MediatR.NotificationHandler`1">
+            <summary>
+            Wrapper class for a synchronous notification handler
+            </summary>
+            <typeparam name="TNotification">The notification type</typeparam>
+        </member>
+        <member name="M:MediatR.NotificationHandler`1.Handle(`0)">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="notification">Notification</param>
+        </member>
+        <member name="M:MediatR.Internal.ObjectDetails.CompareByAssembly(MediatR.Internal.ObjectDetails,MediatR.Internal.ObjectDetails)">
+            <summary>
+            Compare two objects according to current assembly
+            </summary>
+            <param name="x">First object to compare</param>
+            <param name="y">Second object to compare</param>
+            <returns>
+            An object has a higher priority if it belongs to the current assembly and the other is not;
+            If none of the objects belong to the current assembly, they can be considered equal;
+            If both objects belong to the current assembly, they can't be compared only by this criterion.
+            </returns>
+        </member>
+        <member name="M:MediatR.Internal.ObjectDetails.CompareByNamespace(MediatR.Internal.ObjectDetails,MediatR.Internal.ObjectDetails)">
+            <summary>
+            Compare two objects according to current namespace
+            </summary>
+            <param name="x">First object to compare</param>
+            <param name="y">Second object to compare</param>
+            <returns>
+            An object has a higher priority if it belongs to the current/child namespace and the other is not;
+            If both objects belong to the current/child namespace, they can be considered equal;
+            If none of the objects belong to the current/child namespace, they can't be compared by this criterion.
+            </returns>
+        </member>
+        <member name="M:MediatR.Internal.ObjectDetails.CompareByLocation(MediatR.Internal.ObjectDetails,MediatR.Internal.ObjectDetails)">
+            <summary>
+            Compare two objects according to location in the assembly
+            </summary>
+            <param name="x">First object to compare</param>
+            <param name="y">Second object to compare</param>
+            <returns>
+            An object has a higher priority if it location is part of the current location and the other is not;
+            If both objects are part of the current location, the closest has higher priority;
+            If none of the objects are part of the current location, they can be considered equal.
+            </returns>
+        </member>
+        <member name="T:MediatR.RequestHandlerDelegate`1">
+            <summary>
+            Represents an async continuation for the next task to execute in the pipeline
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+            <returns>Awaitable task returning a <typeparamref name="TResponse"/></returns>
+        </member>
+        <member name="T:MediatR.IPipelineBehavior`2">
+            <summary>
+            Pipeline behavior to surround the inner handler.
+            Implementations add additional behavior and await the next delegate.
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="M:MediatR.IPipelineBehavior`2.Handle(`0,System.Threading.CancellationToken,MediatR.RequestHandlerDelegate{`1})">
+            <summary>
+            Pipeline handler. Perform any additional behavior and await the <paramref name="next"/> delegate as necessary
+            </summary>
+            <param name="request">Incoming request</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <param name="next">Awaitable delegate for the next action in the pipeline. Eventually this delegate represents the handler.</param>
+            <returns>Awaitable task returning the <typeparamref name="TResponse"/></returns>
+        </member>
+        <member name="T:MediatR.IPublisher">
+            <summary>
+            Publish a notification or event through the mediator pipeline to be handled by multiple handlers.
+            </summary>
+        </member>
+        <member name="M:MediatR.IPublisher.Publish(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send a notification to multiple handlers
+            </summary>
+            <param name="notification">Notification object</param>
+            <param name="cancellationToken">Optional cancellation token</param>
+            <returns>A task that represents the publish operation.</returns>
+        </member>
+        <member name="M:MediatR.IPublisher.Publish``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send a notification to multiple handlers
+            </summary>
+            <param name="notification">Notification object</param>
+            <param name="cancellationToken">Optional cancellation token</param>
+            <returns>A task that represents the publish operation.</returns>
+        </member>
+        <member name="T:MediatR.IRequest">
+            <summary>
+            Marker interface to represent a request with a void response
+            </summary>
+        </member>
+        <member name="T:MediatR.IRequest`1">
+            <summary>
+            Marker interface to represent a request with a response
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.IBaseRequest">
+            <summary>
+            Allows for generic type constraints of objects implementing IRequest or IRequest{TResponse}
+            </summary>
+        </member>
+        <member name="T:MediatR.IRequestHandler`2">
+            <summary>
+            Defines a handler for a request
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+            <typeparam name="TResponse">The type of response from the handler</typeparam>
+        </member>
+        <member name="M:MediatR.IRequestHandler`2.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handles a request
+            </summary>
+            <param name="request">The request</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Response from the request</returns>
+        </member>
+        <member name="T:MediatR.IRequestHandler`1">
+            <summary>
+            Defines a handler for a request with a void (<see cref="T:MediatR.Unit" />) response.
+            You do not need to register this interface explicitly with a container as it inherits from the base <see cref="T:MediatR.IRequestHandler`2" /> interface.
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+        </member>
+        <member name="T:MediatR.AsyncRequestHandler`1">
+            <summary>
+            Wrapper class for a handler that asynchronously handles a request and does not return a response
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+        </member>
+        <member name="M:MediatR.AsyncRequestHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="request">Request</param>
+            <param name="cancellationToken"></param>
+            <returns>Response</returns>
+        </member>
+        <member name="T:MediatR.RequestHandler`2">
+            <summary>
+            Wrapper class for a handler that synchronously handles a request and returns a response
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+            <typeparam name="TResponse">The type of response from the handler</typeparam>
+        </member>
+        <member name="M:MediatR.RequestHandler`2.Handle(`0)">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="request">Request</param>
+            <returns>Response</returns>
+        </member>
+        <member name="T:MediatR.RequestHandler`1">
+            <summary>
+            Wrapper class for a handler that synchronously handles a request does not return a response
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+        </member>
+        <member name="T:MediatR.ISender">
+            <summary>
+            Send a request through the mediator pipeline to be handled by a single handler.
+            </summary>
+        </member>
+        <member name="M:MediatR.ISender.Send``1(MediatR.IRequest{``0},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send a request to a single handler
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+            <param name="request">Request object</param>
+            <param name="cancellationToken">Optional cancellation token</param>
+            <returns>A task that represents the send operation. The task result contains the handler response</returns>
+        </member>
+        <member name="M:MediatR.ISender.Send(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send an object request to a single handler via dynamic dispatch
+            </summary>
+            <param name="request">Request object</param>
+            <param name="cancellationToken">Optional cancellation token</param>
+            <returns>A task that represents the send operation. The task result contains the type erased handler response</returns>
+        </member>
+        <member name="T:MediatR.Mediator">
+            <summary>
+            Default mediator implementation relying on single- and multi instance delegates for resolving handlers.
+            </summary>
+        </member>
+        <member name="M:MediatR.Mediator.#ctor(MediatR.ServiceFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MediatR.Mediator"/> class.
+            </summary>
+            <param name="serviceFactory">The single instance factory.</param>
+        </member>
+        <member name="M:MediatR.Mediator.PublishCore(System.Collections.Generic.IEnumerable{System.Func{MediatR.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task}},MediatR.INotification,System.Threading.CancellationToken)">
+            <summary>
+            Override in a derived class to control how the tasks are awaited. By default the implementation is a foreach and await of each handler
+            </summary>
+            <param name="allHandlers">Enumerable of tasks representing invoking each notification handler</param>
+            <param name="notification">The notification being published</param>
+            <param name="cancellationToken">The cancellation token</param>
+            <returns>A task representing invoking all handlers</returns>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestExceptionAction`2">
+            <summary>
+            Defines an exception action for a request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TException">Exception type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.IRequestExceptionAction`2.Execute(`0,`1,System.Threading.CancellationToken)">
+            <summary>
+            Called when the request handler throws an exception
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="exception">The thrown exception</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>An awaitable task</returns>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestExceptionAction`1">
+            <summary>
+            Defines the base exception action for a request.
+                You do not need to register this interface explicitly
+                with a container as it inherits from the base
+                <see cref="T:MediatR.Pipeline.IRequestExceptionAction`2" /> interface.
+            </summary>
+            <typeparam name="TRequest">The type of failed request</typeparam>
+        </member>
+        <member name="T:MediatR.Pipeline.AsyncRequestExceptionAction`1">
+            <summary>
+            Wrapper class that asynchronously performs an action on a request for base exception
+            </summary>
+            <typeparam name="TRequest">The type of failed request</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.AsyncRequestExceptionAction`1.Execute(`0,System.Exception,System.Threading.CancellationToken)">
+            <summary>
+            Override in a derived class for the action logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">Original exception from request handler</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionAction`2">
+            <summary>
+            Wrapper class that synchronously performs an action on a request for specific exception
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TException">Exception type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.RequestExceptionAction`2.Execute(`0,`1)">
+            <summary>
+            Override in a derived class for the action logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">Original exception from request handler</param>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionAction`1">
+            <summary>
+            Wrapper class that synchronously performs an action on a request for base exception
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.RequestExceptionAction`1.Execute(`0,System.Exception)">
+            <summary>
+            Override in a derived class for the action logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">Original exception from request handler</param>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestExceptionHandler`3">
+            <summary>
+            Defines an exception handler for a request and response
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+            <typeparam name="TException">Exception type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.IRequestExceptionHandler`3.Handle(`0,`2,MediatR.Pipeline.RequestExceptionHandlerState{`1},System.Threading.CancellationToken)">
+            <summary>
+            Called when the request handler throws an exception
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="exception">The thrown exception</param>
+            <param name="state">The current state of handling the exception</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>An awaitable task</returns>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestExceptionHandler`2">
+            <summary>
+            Defines the base exception handler for a request and response
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.Pipeline.AsyncRequestExceptionHandler`2">
+            <summary>
+            Wrapper class that asynchronously handles a base exception from request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.AsyncRequestExceptionHandler`2.Handle(`0,System.Exception,MediatR.Pipeline.RequestExceptionHandlerState{`1},System.Threading.CancellationToken)">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">The thrown exception</param>
+            <param name="state">The current state of handling the exception</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionHandler`3">
+            <summary>
+            Wrapper class that synchronously handles an exception from request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+            <typeparam name="TException">Exception type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.RequestExceptionHandler`3.Handle(`0,`2,MediatR.Pipeline.RequestExceptionHandlerState{`1})">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">The thrown exception</param>
+            <param name="state">The current state of handling the exception</param>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionHandler`2">
+            <summary>
+            Wrapper class that synchronously handles a base exception from request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.RequestExceptionHandler`2.Handle(`0,System.Exception,MediatR.Pipeline.RequestExceptionHandlerState{`1})">
+            <summary>
+            Override in a derived class for the handler logic
+            </summary>
+            <param name="request">Failed request</param>
+            <param name="exception">The thrown exception</param>
+            <param name="state">The current state of handling the exception</param>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestPostProcessor`2">
+            <summary>
+            Defines a request post-processor for a request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.IRequestPostProcessor`2.Process(`0,`1,System.Threading.CancellationToken)">
+            <summary>
+            Process method executes after the Handle method on your handler
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="response">Response instance</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>An awaitable task</returns>
+        </member>
+        <member name="T:MediatR.Pipeline.IRequestPreProcessor`1">
+            <summary>
+            Defined a request pre-processor for a handler
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+        </member>
+        <member name="M:MediatR.Pipeline.IRequestPreProcessor`1.Process(`0,System.Threading.CancellationToken)">
+            <summary>
+            Process method executes before calling the Handle method on your handler
+            </summary>
+            <param name="request">Incoming request</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>An awaitable task</returns>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2">
+            <summary>
+            Behavior for executing all <see cref="T:MediatR.Pipeline.IRequestExceptionHandler`3"/>
+                or <see cref="T:MediatR.Pipeline.RequestExceptionHandler`2"/> instances
+                after an exception is thrown by the following pipeline steps
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionHandlerState`1">
+            <summary>
+            Represents the result of handling an exception thrown by a request handler
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="P:MediatR.Pipeline.RequestExceptionHandlerState`1.Handled">
+            <summary>
+            Indicates whether the current exception has been handled and the response should be returned.
+            </summary>
+        </member>
+        <member name="P:MediatR.Pipeline.RequestExceptionHandlerState`1.Response">
+            <summary>
+            The response that is returned if <see cref="P:MediatR.Pipeline.RequestExceptionHandlerState`1.Handled"/> is  <code>true</code>.
+            </summary>
+        </member>
+        <member name="M:MediatR.Pipeline.RequestExceptionHandlerState`1.SetHandled(`0)">
+            <summary>
+            Call to indicate whether the current exception should be considered handled and the specified response should be returned.
+            </summary>
+            <param name="response">Set the response that will be returned.</param>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestExceptionProcessorBehavior`2">
+            <summary>
+            Behavior for executing all <see cref="T:MediatR.Pipeline.IRequestExceptionHandler`3"/>
+                or <see cref="T:MediatR.Pipeline.RequestExceptionHandler`2"/> instances
+                after an exception is thrown by the following pipeline steps
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestPostProcessorBehavior`2">
+            <summary>
+            Behavior for executing all <see cref="T:MediatR.Pipeline.IRequestPostProcessor`2"/> instances after handling the request
+            </summary>
+            <typeparam name="TRequest">Request type</typeparam>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.Pipeline.RequestPreProcessorBehavior`2">
+            <summary>
+            Behavior for executing all <see cref="T:MediatR.Pipeline.IRequestPreProcessor`1"/> instances before handling a request
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+        </member>
+        <member name="T:MediatR.ServiceFactory">
+            <summary>
+            Factory method used to resolve all services. For multiple instances, it will resolve against <see cref="T:System.Collections.Generic.IEnumerable`1" />
+            </summary>
+            <param name="serviceType">Type of service to resolve</param>
+            <returns>An instance of type <paramref name="serviceType" /></returns>
+        </member>
+        <member name="T:MediatR.Unit">
+            <summary>
+            Represents a void type, since <see cref="T:System.Void"/> is not a valid return type in C#.
+            </summary>
+        </member>
+        <member name="F:MediatR.Unit.Value">
+            <summary>
+            Default and only value of the <see cref="T:MediatR.Unit"/> type.
+            </summary>
+        </member>
+        <member name="F:MediatR.Unit.Task">
+            <summary>
+            Task from a <see cref="T:MediatR.Unit"/> type.
+            </summary>
+        </member>
+        <member name="M:MediatR.Unit.CompareTo(MediatR.Unit)">
+            <summary>
+            Compares the current object with another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared.
+            The return value has the following meanings:
+             - Less than zero: This object is less than the <paramref name="other" /> parameter.
+             - Zero: This object is equal to <paramref name="other" />.
+             - Greater than zero: This object is greater than <paramref name="other" />.
+            </returns>
+        </member>
+        <member name="M:MediatR.Unit.System#IComparable#CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="obj">An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared.
+            The return value has these meanings:
+             - Less than zero: This instance precedes <paramref name="obj" /> in the sort order.
+             - Zero: This instance occurs in the same position in the sort order as <paramref name="obj" />.
+             - Greater than zero: This instance follows <paramref name="obj" /> in the sort order.
+            </returns>
+        </member>
+        <member name="M:MediatR.Unit.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:MediatR.Unit.Equals(MediatR.Unit)">
+            <summary>
+            Determines whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <c>true</c> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MediatR.Unit.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MediatR.Unit.op_Equality(MediatR.Unit,MediatR.Unit)">
+            <summary>
+            Determines whether the <paramref name="first"/> object is equal to the <paramref name="second"/> object.
+            </summary>
+            <param name="first">The first object.</param>
+            <param name="second">The second object.</param>
+            <c>true</c> if the <paramref name="first"/> object is equal to the <paramref name="second" /> object; otherwise, <c>false</c>.
+        </member>
+        <member name="M:MediatR.Unit.op_Inequality(MediatR.Unit,MediatR.Unit)">
+            <summary>
+            Determines whether the <paramref name="first"/> object is not equal to the <paramref name="second"/> object.
+            </summary>
+            <param name="first">The first object.</param>
+            <param name="second">The second object.</param>
+            <c>true</c> if the <paramref name="first"/> object is not equal to the <paramref name="second" /> object; otherwise, <c>false</c>.
+        </member>
+        <member name="M:MediatR.Unit.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue"/>, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+    </members>
+</doc>
