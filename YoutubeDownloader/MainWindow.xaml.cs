@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Autofac.Features.Indexed;
 using Castle.Core.Logging;
@@ -19,8 +20,9 @@ namespace YoutubeDownloader
         public MainWindow()
         {
         }
-       
-        public MainWindow(IMediator mediator, IIndex<string, Window> windows, ILogger logger, CancellationTokenSource cancellationTokenSource)
+
+        public MainWindow(IMediator mediator, IIndex<string, Window> windows, ILogger logger,
+            CancellationTokenSource cancellationTokenSource)
         {
             _mediator = mediator;
             _windows = windows;
@@ -30,28 +32,26 @@ namespace YoutubeDownloader
 
         public async void QueryVideoEvent(object sender, RoutedEventArgs e)
         {
-            var video = await _mediator.Send(new QueryVideoRequest
-            {
-                Url = VideoPanel.UrlInput.Text,
-                MainWindowReference = new WeakReference<MainWindow>(this)
-            }, _cancellationTokenSource.Token);
+            var video = await _mediator.Send(
+                new QueryVideoRequest {MainWindowReference = new WeakReference<MainWindow>(this)},
+                _cancellationTokenSource.Token);
         }
-
-
 
         public async void DownloadVideo(object sender, RoutedEventArgs e)
         {
-            await _mediator.Publish(new DownloadMediaStreamCommand
-            {
-                VideoName = "",
-                MainWindowReference = new WeakReference<MainWindow>(this)
-            }, _cancellationTokenSource.Token);
+            await _mediator.Publish(
+                new DownloadMediaStreamCommand {MainWindowReference = new WeakReference<MainWindow>(this)},
+                _cancellationTokenSource.Token);
         }
-
 
         private void AddPlayList(object sender, RoutedEventArgs e)
         {
             _windows[nameof(PlaylistCreationWindow)].Show();
+        }
+
+        public async void OpenProjectsPath_Click(object sender, RoutedEventArgs e)
+        {
+            await _mediator.Publish(new OpenPathsWindowCommand());
         }
     }
 }

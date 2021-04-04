@@ -14,6 +14,7 @@
 
                 Background="White"
                 Foreground="#282828"
+                Name="ProjectPathsMenuItem"
                 Margin="0,0,0,0"
                 BorderThickness="0">
 
@@ -31,6 +32,7 @@
             <MenuItem Background="White"
                       Foreground="#282828"
                       Margin="0,0,0,0"
+                      Name="ManageProjectsMenuItem"
                       BorderThickness="0">
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">

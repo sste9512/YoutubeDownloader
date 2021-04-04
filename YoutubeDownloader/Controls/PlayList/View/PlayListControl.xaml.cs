@@ -47,7 +47,7 @@ namespace YoutubeDownloader.Controls.PlayList.View
             }
             catch (Exception ex)
             {
-                // ignored
+                Console.Out.WriteLine(ex.InnerException);
             }
         }
     }

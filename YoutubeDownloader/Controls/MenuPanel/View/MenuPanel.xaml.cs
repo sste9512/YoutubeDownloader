@@ -1,4 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using Autofac.Features.Indexed;
+using MediatR;
+using YoutubeDownloader.Windows.PlaylistCreationWindow.View;
 
 namespace YoutubeDownloader.Controls.MenuPanel.View
 {
@@ -11,5 +16,6 @@ namespace YoutubeDownloader.Controls.MenuPanel.View
         {
             InitializeComponent();
         }
+        
     }
 }

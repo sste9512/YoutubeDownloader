@@ -47,11 +47,12 @@ namespace YoutubeDownloader.Domain.Intents.Queries
                 var filePath = saveFileDialog.FileName;
 
                 // Download to file
-                var isBusy = true;
+                // var isBusy = true;
                 var progress = 0.0;
 
                 var progressHandler = new Progress<double>(p => progress = p);
-                await _youtubeClient.DownloadMediaStreamAsync(notification.MediaStreamInfo, filePath, progressHandler, cancellationToken);
+                await _youtubeClient.DownloadMediaStreamAsync(notification.MediaStreamInfo, filePath, progressHandler,
+                    cancellationToken);
             }
             catch (Exception ex)
             {

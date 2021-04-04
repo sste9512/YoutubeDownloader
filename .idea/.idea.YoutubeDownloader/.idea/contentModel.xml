@@ -137,6 +137,8 @@
             </e>
           </e>
         </e>
+        <e p="OpenPathsWindowCommand.cs" t="Include" />
+        <e p="OpenPathsWindowCommandHandler.cs" t="Include" />
         <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />

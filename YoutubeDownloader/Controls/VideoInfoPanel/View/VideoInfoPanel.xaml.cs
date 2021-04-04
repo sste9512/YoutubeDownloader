@@ -43,6 +43,7 @@ namespace YoutubeDownloader.Controls.VideoInfoPanel.View
             }
             catch (Exception ex)
             {
+                Console.Out.WriteLine(ex.InnerException);
                 // ignored
             }
         }

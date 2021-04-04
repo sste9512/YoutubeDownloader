@@ -205,6 +205,8 @@
     <Compile Include="Domain\DependencyInjection\WindowModule.cs" />
     <Compile Include="Domain\Intents\Queries\DownloadMediaStreamCommand.cs" />
     <Compile Include="Domain\Intents\Queries\QueryVideo.cs" />
+    <Compile Include="OpenPathsWindowCommand.cs" />
+    <Compile Include="OpenPathsWindowCommandHandler.cs" />
     <Compile Include="Windows\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml.cs">
       <DependentUpon>PlaylistCreationWindow.xaml</DependentUpon>
     </Compile>
