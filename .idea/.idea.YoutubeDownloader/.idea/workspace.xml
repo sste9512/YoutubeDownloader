@@ -4,12 +4,105 @@
     <projectFile>Data/Data.csproj</projectFile>
     <projectFile>YoutubeDownloader.Wpf.App/YoutubeDownloader.Wpf.App.csproj</projectFile>
     <projectFile>YoutubeDownloader.Services/YoutubeDownloader.Services.csproj</projectFile>
+    <projectFile>YoutubeDownloader.Wpf.Application/YoutubeDownloader.Wpf.Application.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="304d4892-7042-481d-ac13-9d4aa77a5528" name="Default Changelist" comment="[]">
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/App.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/App.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/ApplicationResources/icons/close_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/ApplicationResources/icons/minimize_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/ApplicationResources/icons/resize_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/ApplicationResources/icons/search_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/MenuPanel/View/MenuPanel.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/MenuPanel/View/MenuPanel.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/View/PlayListControl.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/View/PlayListControl.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/ViewModel/PlayListItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/ViewModel/PlayListItemControl.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/ViewModel/PlayListItemControl.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/VideoPanel/View/VideoPanel.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/VideoPanel/View/VideoPanel.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Config/IStorageConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Conversion/AudioConversion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Conversion/ConversionDialog/ConversionDialog.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Conversion/ConversionDialog/ConversionDialog.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/Injector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/NetworkModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/SchedulerModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/TaskModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/WindowModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Intents/Queries/DownloadMediaStreamCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Intents/Queries/QueryVideo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/MainWindow.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/MainWindow.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/OpenPathsWindowCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/OpenPathsWindowCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Windows/PlaylistCreationWindow/View/PlaylistCreationWindow.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/YoutubeDownloader.Wpf.Application.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/AngleSharp.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Autofac.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Castle.Core.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Config.Net.Yaml.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Config.Net.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MaterialDesignColors.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MaterialDesignThemes.Wpf.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MediaToolkit.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MediatR.Extensions.Autofac.DependencyInjection.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MediatR.Extensions.Microsoft.DependencyInjection.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/MediatR.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Microsoft.CodeAnalysis.CSharp.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Microsoft.CodeAnalysis.VisualBasic.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Microsoft.CodeAnalysis.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Microsoft.Extensions.DependencyInjection.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/Newtonsoft.Json.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YamlDotNet.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.deps.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.runtimeconfig.dev.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.runtimeconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/YoutubeExplode.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/ref/YoutubeDownloader.Wpf.Application.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/debian-x64/native/libuv.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/fedora-x64/native/libuv.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/opensuse-x64/native/libuv.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/osx/native/libuv.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/rhel-x64/native/libuv.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/win7-arm/native/libuv.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/win7-x64/native/libuv.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/bin/Debug/net5.0-windows/runtimes/win7-x86/native/libuv.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.csproj.CopyComplete" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.g.resources" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.genruntimeconfig.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application_MarkupCompile.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/YoutubeDownloader.Wpf.Application_MarkupCompile.lref" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/apphost.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/obj/Debug/net5.0-windows/ref/YoutubeDownloader.Wpf.Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YoutubeDownloader/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader.Services/obj/Debug/net5.0/YoutubeDownloader.Services.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader.Services/obj/Debug/net5.0/YoutubeDownloader.Services.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader.Services/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader.Services/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader.sln" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/GeneratedInternalTypeHelper.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/GeneratedInternalTypeHelper.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YoutubeDownloader/obj/Debug/YoutubeDownloader.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,29 +113,51 @@
     <option name="BRANCH" value="Clean-up" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/UserPlayListPanel/FFMpegSharp/FFMPEG/FFMpeg.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/App.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/View/PlayListControl.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/View/PlayListControl.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/PlayList/ViewModel/PlayListItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5F37459E-F130-4442-BA19-EE268C49D074/f2/e502cadc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Data/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/App.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0C285EE5-6767-4513-BB6D-88C242FEC00E/d5/b406a4d5/Window.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/steve/RiderProjects/YoutubeDownloader/YoutubeDownloader/Domain/Conversion/AudioConversion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/Properties/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5F37459E-F130-4442-BA19-EE268C49D074/f2/e502cadc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/AudioConversion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/App.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Services/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/MainWindow.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/ConversionDialog/ConversionDialog.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader.Wpf.App/Conversion/ConversionDialog/ConversionDialog.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Data/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YoutubeDownloader/App.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F5DC2E4F-D74B-4E81-B9ED-3A744F93B033/8D/ResolveOperation.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/MenuPanel/View/MenuPanel.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/View/PlayListControl.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/UserPlayListPanel/View/UserPlayListPanel.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/PlayList/ViewModel/PlayListItem.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Conversion/AudioConversion.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/Injector.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/DependencyInjection/WindowModule.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/MainWindow.xaml" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/OpenPathsWindowCommand.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/App.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/App.xaml" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Domain/Intents/Queries/QueryVideo.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/Controls/VideoInfoPanel/View/VideoInfoPanel.xaml.cs" />
+      <option value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/MainWindow.xaml.cs" />
+    </changedPaths>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -55,6 +170,7 @@
     <option name="width" value="1297" />
     <option name="height" value="1398" />
   </component>
+  <component name="ProjectId" id="1qhyO2FTZxKsiyVOLCD2QUbewgd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -106,13 +222,23 @@
       <pane id="FileSystemExplorer" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34987745" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="RiderCSharpLiveTemplatesSettingsId" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.YoutubeDownloader.Wpf.Application">
     <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/YoutubeDownloader/bin/Debug/YoutubeDownloader.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -131,7 +257,26 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="YoutubeDownloader.Wpf.Application" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/YoutubeDownloader.Wpf.Application/YoutubeDownloader.Wpf.Application.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -143,6 +288,8 @@
       <option name="presentableId" value="Default" />
       <updated>1540158567976</updated>
       <workItem from="1540158569278" duration="3365000" />
+      <workItem from="1617546103262" duration="7079000" />
+      <workItem from="1617622571897" duration="948000" />
     </task>
     <task id="LOCAL-00001" summary="[]">
       <created>1617536043329</created>
@@ -158,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617536103890</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[]">
+      <created>1617536423603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617536423603</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -205,7 +359,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
@@ -225,6 +379,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="[]" />
     <option name="LAST_COMMIT_MESSAGE" value="[]" />
   </component>

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="6.1.0" />
+      <PackageReference Include="Config.Net" Version="4.15.0" />
+      <PackageReference Include="Config.Net.Yaml" Version="4.13.7" />
+      <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+      <PackageReference Include="MediaToolkit" Version="1.1.0.1" />
+      <PackageReference Include="MediatR" Version="9.0.0" />
+      <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="7.1.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0-preview.2.21154.6" />
+      <PackageReference Include="YoutubeExplode" Version="4.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="ApplicationResources\icons\close_icon.png" />
+      <Resource Include="ApplicationResources\icons\minimize_icon.png" />
+      <Resource Include="ApplicationResources\icons\resize_icon.png" />
+      <Resource Include="ApplicationResources\icons\search_icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="MainWindow.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="MainWindow.xaml.cs">
+        <DependentUpon>MainWindow.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+</Project>
