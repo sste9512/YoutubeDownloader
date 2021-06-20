@@ -33,7 +33,7 @@ namespace YoutubeDownloader.Domain.Intents.Queries
             try
             {
                 var video = await _youtubeClient.GetVideoAsync(YoutubeClient.ParseVideoId(request.Url));
-               // request.MainWindowReference.VideoInfoPanel.SyncInfoToPanel(video, VideoPanel.UrlInput.Text, _model.Client, _model.MediaStreamInfos));
+                // request.MainWindowReference.VideoInfoPanel.SyncInfoToPanel(video, VideoPanel.UrlInput.Text, _model.Client, _model.MediaStreamInfos));
                 // PlayList.InitPlayListFromUrl(url, _model.Client);
                 return video;
             }

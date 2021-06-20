@@ -18,6 +18,7 @@ namespace YoutubeDownloader.Domain.Intents.Queries
 
     public class DownloadMediaStreamCommandHandler : INotificationHandler<DownloadMediaStreamCommand>
     {
+        
         private readonly YoutubeClient _youtubeClient;
 
         public DownloadMediaStreamCommandHandler(YoutubeClient youtubeClient)
