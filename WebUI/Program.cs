@@ -1,13 +1,18 @@
 using CleanArchitecture.Infrastructure.Persistence;
+using WebUI.Graphql.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration); 
 builder.Services.AddWebUIServices();
 
-builder.Services.AddGraphQLServer();
+builder.Services.AddGraphQLServer()
+    .AddFiltering()
+    .AddProjections()
+    .AddSorting()
+    .AddQueryType<Query>();
 
 var app = builder.Build();
 
@@ -32,7 +37,7 @@ else
 }
 
 app.UseHealthChecks("/health");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseSwaggerUi3(settings =>
@@ -54,5 +59,7 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
+
+app.MapGraphQL();
 
 app.Run();
