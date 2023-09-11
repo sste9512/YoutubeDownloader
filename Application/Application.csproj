@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <RootNamespace>CleanArchitecture.Application</RootNamespace>
         <AssemblyName>CleanArchitecture.Application</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -13,17 +13,14 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
-        <PackageReference Include="HotChocolate.Server" Version="10.5.5" />
+        <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+        <PackageReference Include="YoutubeExplode" Version="6.3.4" />
+        <PackageReference Include="YoutubeExplode.Converter" Version="6.3.4" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Domain\Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="YoutubeVideoLists\" />
-      <Folder Include="YoutubeVideos\" />
     </ItemGroup>
 
 </Project>
