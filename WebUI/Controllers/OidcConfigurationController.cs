@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+﻿
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.WebUI.Controllers;
@@ -8,7 +8,7 @@ public class OidcConfigurationController : Controller
 {
     private readonly ILogger<OidcConfigurationController> _logger;
 
-    public OidcConfigurationController(
+    /*public OidcConfigurationController(
         IClientRequestParametersProvider clientRequestParametersProvider,
         ILogger<OidcConfigurationController> logger)
     {
@@ -23,5 +23,5 @@ public class OidcConfigurationController : Controller
     {
         var parameters = ClientRequestParametersProvider.GetClientParameters(HttpContext, clientId);
         return Ok(parameters);
-    }
+    }*/
 }
