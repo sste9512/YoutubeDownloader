@@ -15,6 +15,8 @@
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
         <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+        <PackageReference Include="YoutubeExplode" Version="6.3.4" />
+        <PackageReference Include="YoutubeExplode.Converter" Version="6.3.4" />
     </ItemGroup>
 
     <ItemGroup>
