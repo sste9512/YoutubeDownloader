@@ -1,0 +1,13 @@
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\bin\Debug\net8.0\CleanArchitecture.Domain.deps.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\bin\Debug\net8.0\CleanArchitecture.Domain.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\bin\Debug\net8.0\CleanArchitecture.Domain.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\CleanArchitecture.Domain.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\refint\CleanArchitecture.Domain.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\CleanArchitecture.Domain.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Domain\obj\Debug\net8.0\ref\CleanArchitecture.Domain.dll

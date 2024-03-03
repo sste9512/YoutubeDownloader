@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "d/4jhWvINyzXm6o1/gyjElpitbrIoWXbnC696TH1SkN7t3Yb2CxiOjjAIw+2AQQWohctBLer8GNkNcJotmDULw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\steve\\RiderProjects\\YoutubeDownloader\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\steve\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

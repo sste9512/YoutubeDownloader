@@ -1,0 +1,16 @@
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\bin\Debug\net8.0\CleanArchitecture.Application.deps.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\bin\Debug\net8.0\CleanArchitecture.Application.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\bin\Debug\net8.0\CleanArchitecture.Application.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\bin\Debug\net8.0\CleanArchitecture.Domain.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\bin\Debug\net8.0\CleanArchitecture.Domain.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.sourcelink.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\Application.csproj.CopyComplete
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\CleanArchitecture.Application.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\refint\CleanArchitecture.Application.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\CleanArchitecture.Application.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Application\obj\Debug\net8.0\ref\CleanArchitecture.Application.dll
