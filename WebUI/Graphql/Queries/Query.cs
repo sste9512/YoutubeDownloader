@@ -3,7 +3,7 @@ using CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebUI.Graphql.Queries;
 
-public class Query
+/*public class Query
 {
     [UsePaging]
     [UseProjection]
@@ -12,4 +12,4 @@ public class Query
     public IQueryable<TodoItem> GetFoo(
         [Service(ServiceKind.Synchronized)] ApplicationDbContext dbContext)
         => dbContext.TodoItems;
-}
+}*/
