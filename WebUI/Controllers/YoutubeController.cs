@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using YoutubeExplode;
 using YoutubeExplode.Channels;
 using YoutubeExplode.Common;
@@ -8,17 +7,6 @@ using YoutubeExplode.Search;
 using YoutubeExplode.Videos;
 
 namespace WebUI.Controllers;
-
-
-public sealed class ApiFilter : IAsyncActionFilter
-{
-    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-    {
-        Console.WriteLine("Calling Endpoint : ");
-        Console.WriteLine(context.HttpContext.Request.Path);
-        await next();
-    }
-}
 
 //TODO : Add proper async enumerable method handling in the endpoints, for streaming
 
@@ -30,9 +18,9 @@ public sealed class YoutubeController(YoutubeClient youtubeClient) : ApiControll
     private SearchClient Search => youtubeClient.Search;
 
     [HttpGet("[action]")]
-    public ValueTask<Video> GetAsync(VideoId videoId, CancellationToken cancellationToken)
+    public async ValueTask<Video> GetAsync(VideoId videoId, CancellationToken cancellationToken)
     {
-        return Videos.GetAsync(videoId, cancellationToken);
+        return await Videos.GetAsync(videoId, cancellationToken);
     }
 
     [HttpGet("[action]")]

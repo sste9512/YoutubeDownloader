@@ -317,6 +317,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DotNext": {
+              "target": "Package",
+              "version": "[4.15.1, )"
+            },
+            "DotNext.IO": {
+              "target": "Package",
+              "version": "[4.15.0, )"
+            },
+            "DotNext.Unsafe": {
+              "target": "Package",
+              "version": "[4.14.0, )"
+            },
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.2.2, )"
@@ -371,15 +383,23 @@
               "target": "Package",
               "version": "[7.0.3, )"
             },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "NSwag.AspNetCore": {
               "target": "Package",
-              "version": "[13.18.2, )"
+              "version": "[14.0.0-preview010, )"
             },
             "NSwag.MSBuild": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[13.18.2, )"
+              "version": "[14.0.0-preview010, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "ZymLabs.NSwag.FluentValidation.AspNetCore": {
               "target": "Package",
