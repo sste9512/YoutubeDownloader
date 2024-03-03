@@ -1,8 +1,7 @@
 ﻿using System.Security.Claims;
-
 using CleanArchitecture.Application.Common.Interfaces;
 
-namespace CleanArchitecture.WebUI.Services;
+namespace WebUI.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

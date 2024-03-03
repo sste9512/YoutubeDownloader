@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.WebUI.Controllers;
+namespace WebUI.Controllers;
 
 [ApiExplorerSettings(IgnoreApi = true)]
 public class OidcConfigurationController : Controller

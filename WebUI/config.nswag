@@ -1,5 +1,5 @@
 {
-  "runtime": "Net70",
+  "runtime": "Net80",
   "defaultVariables": null,
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
@@ -122,6 +122,16 @@
       "serviceSchemes": null,
       "output": "ClientApp/src/app/web-api-client.ts",
       "newLineBehavior": "Auto"
+    },
+    "openApiToCSharpClient": {
+      "clientBaseClass":null,
+      "generateClientClasses": true,
+      "clientBaseInterface":null,
+      "injectHttpClient": true,
+      "namespace": "YoutubeDownloaderBaseApiClient",
+      "disposeHttpClient": false,
+      "output": "GeneratedClients/Client/YoutubeDownloaderApiClient.g.cs",
+      "contractsOutputFilePath": "GeneratedClients/Client/Contract.g.cs"
     }
   }
 }
