@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="YoutubeDownloader_WPFCore.Controls.VideoPanel.View.VideoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="5,5,5,5">
+
+        <Border CornerRadius="3,3,3,3" Background="LightGray" Margin="0,5,0,5" Padding="3,3,3,3">
+            <StackPanel Orientation="Horizontal">
+
+                <TextBox Name="UrlInput" Margin="10,10,10,10" Width="425" />
+
+                <Button     Margin="5,5,5,5"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            materialDesign:ElevationAssist.Elevation="Dp0"
+                            Name="QueryVideoButton">
+
+                    <StackPanel>
+                        <Image Source="/Resources/search_icon.png"
+                               Width="25"
+                               Height="25"
+                               Margin="0,0,0,0" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+        <MediaElement Source="C:/Users/steve/Desktop/Private world (Vaporwave mix).Mp4"
+                      Width="500"
+                      Height="500"
+                      LoadedBehavior="Manual"
+                      Name="YoutubePlayer" />
+
+        <StackPanel Orientation="Horizontal" Background="LightGray">
+            <DockPanel>
+                <!-- Play Video Button -->
+                <Button   DockPanel.Dock="Left" Margin="5,5,5,5"
+                          BorderBrush="Transparent"
+                          Background="Transparent"
+                          materialDesign:ElevationAssist.Elevation="Dp3">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Play"
+                                                 Opacity="1"
+                                                 Foreground="White"
+                                                 Width="25"
+                                                 Height="25"
+                                                 VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <!-- Play Next Button -->
+                <Button DockPanel.Dock="Left"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ElevationAssist.Elevation="Dp0">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="SkipNext"
+                                                 Opacity="1"
+                                                 Foreground="White"
+                                                 Width="25"
+                                                 Height="25"
+                                                 VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <!-- Undo Button -->
+                <Button    
+                    DockPanel.Dock="Left"
+                    Margin="5,5,5,5"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ElevationAssist.Elevation="Dp0">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+             
+                 <!-- Closed Caption Button -->
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ElevationAssist.Elevation="Dp0"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                    
+                
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ElevationAssist.Elevation="Dp1"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                   
+                <!--Settings Button -->
+                <Button
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    materialDesign:ElevationAssist.Elevation="Dp1"
+                    DockPanel.Dock="Right">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </DockPanel>
+          
+        </StackPanel>
+    </StackPanel>
+</UserControl>

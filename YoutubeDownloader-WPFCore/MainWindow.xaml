@@ -1,0 +1,120 @@
+﻿<wpfEnhancement:AppWindow x:Class="YoutubeDownloader_WPFCore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:YoutubeDownloader_WPFCore.Controls.MenuPanel.View"
+        xmlns:view1="clr-namespace:YoutubeDownloader_WPFCore.Controls.PlayList.View"
+        xmlns:view2="clr-namespace:YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.View"
+        xmlns:view3="clr-namespace:YoutubeDownloader_WPFCore.Controls.VideoPanel.View"
+        xmlns:view4="clr-namespace:YoutubeDownloader_WPFCore.Controls.UserPlayListPanel.View"
+        xmlns:wpfEnhancement="clr-namespace:YoutubeDownloader_WPFCore.Core.WpfEnhancement"
+        mc:Ignorable="d"
+        Width="1400"
+        Height="1100"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResize">
+    <wpfEnhancement:AppWindow.Resources>
+        <LinearGradientBrush x:Key="WindowFrameBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Color="White" Offset="0.4" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+    </wpfEnhancement:AppWindow.Resources>
+
+    <Border Background="#ffffff"
+            CornerRadius="0"
+            BorderBrush="{StaticResource WindowFrameBrush}"
+            BorderThickness="1,1,1,1">
+
+        <StackPanel Orientation="Vertical">
+
+            <!-- Custom Window Control Panel -->
+            <DockPanel>
+                <DockPanel x:Name="RootWindow"
+                           DockPanel.Dock="Top"
+                           Height="40"
+                           Background="#ff0000"
+                           VerticalAlignment="Top">
+                    <DockPanel x:Name="TitleBar"
+                               DockPanel.Dock="Right">
+
+                        <!-- Close Button -->
+                        <Button x:Name="CloseButton"
+                                DockPanel.Dock="Right"
+                                Height="auto"
+                                Width="auto"
+                                Background="Transparent"
+                                BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0">
+                                <Image Source="/ApplicationResources/icons/close_icon.png"
+                                       Width="14"
+                                       Height="14" />
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Maximize Button -->
+                        <Button x:Name="MaxButton"
+                                DockPanel.Dock="Right"
+                                Margin="5,5,5,5"
+                                Height="auto"
+                                Width="auto"
+                                Background="Transparent"
+                                BorderBrush="Transparent">
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0">
+                                <Image Source="/ApplicationResources/icons/resize_icon.png"
+                                       Width="14"
+                                       Height="14" />
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Minimize Button -->
+                        <Button x:Name="MinButton"
+                                DockPanel.Dock="Right"
+                                Height="auto"
+                                Width="auto"
+                                Background="Transparent"
+                                BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0">
+                                <Image Source="/ApplicationResources/icons/minimize_icon.png"
+                                       Width="14"
+                                       Height="14" />
+                            </StackPanel>
+                        </Button>
+                        <Label Content="Youtube Downloader"
+                               FontSize="14"
+                               Foreground="White"
+                               VerticalContentAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="30,0,0,0" />
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+
+            <!-- Basic Menu, Abstracted Away for tidieness -->
+            <view:MenuPanel x:Name="MenuPanel"></view:MenuPanel>
+
+            <DockPanel LastChildFill="True">
+
+                <!-- Video Playlist Control (Contains the youtube playlist for corresponding video) -->
+                <Border BorderBrush="White" BorderThickness="0,0,0,0" DockPanel.Dock="Left">
+                    <view1:PlayListControl x:Name="PlayList"></view1:PlayListControl>
+                </Border>
+
+                <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
+                <view2:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"></view2:VideoInfoPanel>
+
+                <!-- Video Panel (Contains search function and video player) -->
+                <view3:VideoPanel x:Name="VideoPanel" DockPanel.Dock="Right"></view3:VideoPanel>
+            </DockPanel>
+
+            <!-- UserPlayListPanel (Contains ) -->
+            <view4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"></view4:UserPlayListPanel>
+        </StackPanel>
+    </Border>
+</wpfEnhancement:AppWindow>
