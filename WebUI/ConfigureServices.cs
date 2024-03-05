@@ -1,12 +1,12 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.WebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using WebUI.Services;
 using ZymLabs.NSwag.FluentValidation;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace WebUI;
 
 public static class ConfigureServices
 {
@@ -42,7 +42,7 @@ public static class ConfigureServices
             var fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
 
             // Add the fluent validations schema processor
-            configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+            //configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
             configure.Title = "CleanArchitecture API";
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme

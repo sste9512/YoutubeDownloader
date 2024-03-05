@@ -346,7 +346,6 @@
   <ItemGroup>
     <Folder Include="ApplicationResources" />
     <Folder Include="Controls" />
-    <Folder Include="Domain" />
     <Folder Include="Windows" />
   </ItemGroup>
   <ItemGroup>

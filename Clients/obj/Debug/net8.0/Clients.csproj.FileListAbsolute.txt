@@ -1,0 +1,12 @@
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\bin\Debug\net8.0\Clients.deps.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\bin\Debug\net8.0\Clients.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\bin\Debug\net8.0\Clients.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.AssemblyInfoInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.AssemblyInfo.cs
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.csproj.CoreCompileInputs.cache
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.sourcelink.json
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\refint\Clients.dll
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\Clients.pdb
+C:\Users\steve\RiderProjects\YoutubeDownloader\Clients\obj\Debug\net8.0\ref\Clients.dll

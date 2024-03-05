@@ -6,16 +6,25 @@ using CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using CleanArchitecture.Application.TodoItems.Queries.GetTodoItemsWithPagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+using YoutubeExplode;
+using YoutubeExplode.Channels;
+using YoutubeExplode.Common;
+using YoutubeExplode.Playlists;
+using YoutubeExplode.Search;
+using YoutubeExplode.Videos;
 
-namespace CleanArchitecture.WebUI.Controllers;
+namespace WebUI.Controllers;
 
 [Authorize]
 public class TodoItemsController : ApiControllerBase
 {
+    
+    
+
     [HttpGet]
     public async Task<ActionResult<PaginatedList<TodoItemBriefDto>>> GetTodoItemsWithPagination([FromQuery] GetTodoItemsWithPaginationQuery query)
     {
+       
         return await Mediator.Send(query);
     }
 

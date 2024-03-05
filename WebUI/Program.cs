@@ -1,13 +1,16 @@
+using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
+using WebUI;
+using WebUI.Graphql.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration); 
 builder.Services.AddWebUIServices();
 
-builder.Services.AddGraphQLServer();
+
 
 var app = builder.Build();
 
@@ -32,19 +35,19 @@ else
 }
 
 app.UseHealthChecks("/health");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
+/*app.UseSwaggerUi3(settings =>
 {
     settings.Path = "/api";
     settings.DocumentPath = "/api/specification.json";
-});
+});*/
 
 app.UseRouting();
 
 app.UseAuthentication();
-app.UseIdentityServer();
+/*app.UseIdentityServer();*/
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -53,6 +56,10 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+
+
 app.MapFallbackToFile("index.html");
+
+app.MapGraphQL();
 
 app.Run();

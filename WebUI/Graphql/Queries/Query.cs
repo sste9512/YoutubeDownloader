@@ -1,6 +1,15 @@
-namespace Microsoft.Extensions.DependencyInjection.Graphql.Queries;
+using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.Persistence;
 
-public class Query
+namespace WebUI.Graphql.Queries;
+
+/*public class Query
 {
-    
-}
+    [UsePaging]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public IQueryable<TodoItem> GetFoo(
+        [Service(ServiceKind.Synchronized)] ApplicationDbContext dbContext)
+        => dbContext.TodoItems;
+}*/

@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{7B95C3D8-B179-4297-A9E7-214D2ACE3D95}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global", "Global", "{64E11B48-8AEF-49DB-84C9-BB61F01A6134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clients", "Clients\Clients.csproj", "{CB76951B-51AA-4BB4-8056-B858A9E99DD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloader-WPFCore", "YoutubeDownloader-WPFCore\YoutubeDownloader-WPFCore.csproj", "{C05C068A-B86E-4288-8FE4-6AD0FA2E706E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,11 +45,22 @@ Global
 		{7B95C3D8-B179-4297-A9E7-214D2ACE3D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B95C3D8-B179-4297-A9E7-214D2ACE3D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B95C3D8-B179-4297-A9E7-214D2ACE3D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB76951B-51AA-4BB4-8056-B858A9E99DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB76951B-51AA-4BB4-8056-B858A9E99DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB76951B-51AA-4BB4-8056-B858A9E99DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB76951B-51AA-4BB4-8056-B858A9E99DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05C068A-B86E-4288-8FE4-6AD0FA2E706E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05C068A-B86E-4288-8FE4-6AD0FA2E706E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05C068A-B86E-4288-8FE4-6AD0FA2E706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05C068A-B86E-4288-8FE4-6AD0FA2E706E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F86525D-4550-4326-9BD2-C8555C04562E}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB76951B-51AA-4BB4-8056-B858A9E99DD5} = {64E11B48-8AEF-49DB-84C9-BB61F01A6134}
 	EndGlobalSection
 EndGlobal

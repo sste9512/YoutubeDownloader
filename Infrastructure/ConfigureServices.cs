@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace CleanArchitecture.Infrastructure;
 
 public static class ConfigureServices
 {
@@ -36,7 +37,8 @@ public static class ConfigureServices
         services
             .AddDefaultIdentity<ApplicationUser>()
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
         services.AddIdentityServer()
             .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();

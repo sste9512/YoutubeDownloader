@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <RootNamespace>YoutubeDownloader_WPFCore</RootNamespace>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Core\Creational\" />
+      <Folder Include="Core\Structural\" />
+      <Folder Include="Data\" />
+      <Folder Include="Features\MainWindow\" />
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="8.0.0" />
+      <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+      <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
+      <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="12.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+      <PackageReference Include="YoutubeExplode" Version="4.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Controls\PlayList\ViewModel\PlayListItemControl.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Controls\PlayList\View\PlayListControl.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Controls\MenuPanel\View\MenuPanel.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Controls\UserPlayListPanel\View\UserPlayListPanel.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Controls\VideoInfoPanel\View\VideoInfoPanel.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Controls\VideoPanel\View\VideoPanel.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="MainWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Features\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="MainWindow.xaml.cs">
+        <DependentUpon>MainWindow.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+</Project>

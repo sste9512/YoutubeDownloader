@@ -4,4 +4,5 @@ namespace CleanArchitecture.Domain.Common;
 
 public abstract class BaseEvent : INotification
 {
+    public int zero { get; set; }
 }
