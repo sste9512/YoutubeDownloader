@@ -9,8 +9,7 @@ public class NetworkModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        var client = new HttpClient(new YoutubeDelegate());
-        builder.Register(x => new YoutubeClient(client));
+        builder.Register(x => new YoutubeClient());
         base.Load(builder);
     }
 }

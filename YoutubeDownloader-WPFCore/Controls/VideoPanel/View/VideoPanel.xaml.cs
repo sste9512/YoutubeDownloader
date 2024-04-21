@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace YoutubeDownloader_WPFCore.Controls.VideoPanel.View;
 
@@ -11,4 +12,9 @@ public partial class VideoPanel : UserControl
     {
             InitializeComponent();
         }
+
+    private void UrlInput_OnLostFocus(object sender, RoutedEventArgs e)
+    {
+         
+    }
 }

@@ -11,14 +11,14 @@
 
                 <TextBox Name="UrlInput" Margin="10,10,10,10" Width="425" />
 
-                <Button     Margin="5,5,5,5"
-                            BorderBrush="Transparent"
-                            Background="Transparent"
-                            materialDesign:ElevationAssist.Elevation="Dp0"
-                            Name="QueryVideoButton">
+                <Button Margin="5,5,5,5"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ElevationAssist.Elevation="Dp0"
+                        Name="QueryVideoButton">
 
                     <StackPanel>
-                        <Image Source="/Resources/search_icon.png"
+                        <Image Source="/ApplicationResources/icons/search_icon.png"
                                Width="25"
                                Height="25"
                                Margin="0,0,0,0" />
@@ -35,10 +35,10 @@
         <StackPanel Orientation="Horizontal" Background="LightGray">
             <DockPanel>
                 <!-- Play Video Button -->
-                <Button   DockPanel.Dock="Left" Margin="5,5,5,5"
-                          BorderBrush="Transparent"
-                          Background="Transparent"
-                          materialDesign:ElevationAssist.Elevation="Dp3">
+                <Button DockPanel.Dock="Left" Margin="5,5,5,5"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ElevationAssist.Elevation="Dp3">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Play"
                                                  Opacity="1"
@@ -63,40 +63,43 @@
                     </StackPanel>
                 </Button>
                 <!-- Undo Button -->
-                <Button    
+                <Button
                     DockPanel.Dock="Left"
                     Margin="5,5,5,5"
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp0">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25"
+                                                 Height="25" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
 
-             
-                 <!-- Closed Caption Button -->
+
+                <!-- Closed Caption Button -->
                 <Button
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp0"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25"
+                                                 Height="25" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-                    
-                
+
+
                 <Button
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp1"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25"
+                                                 VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-                   
+
                 <!--Settings Button -->
                 <Button
                     BorderBrush="Transparent"
@@ -104,11 +107,12 @@
                     materialDesign:ElevationAssist.Elevation="Dp1"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25"
+                                                 VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
             </DockPanel>
-          
+
         </StackPanel>
     </StackPanel>
 </UserControl>

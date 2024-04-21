@@ -12,7 +12,6 @@
     <ItemGroup>
       <Folder Include="Core\Creational\" />
       <Folder Include="Core\Structural\" />
-      <Folder Include="Data\" />
       <Folder Include="Features\MainWindow\" />
       <Folder Include="Resources\" />
     </ItemGroup>
@@ -20,13 +19,14 @@
     <ItemGroup>
       <PackageReference Include="Autofac" Version="8.0.0" />
       <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="Google.Apis.Drive.v3" Version="1.67.0.3309" />
       <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
       <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
       <PackageReference Include="MediatR" Version="12.2.0" />
       <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="12.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-      <PackageReference Include="YoutubeExplode" Version="4.2.0" />
+      <PackageReference Include="YoutubeExplode" Version="6.3.13" />
     </ItemGroup>
 
     <ItemGroup>
@@ -62,6 +62,13 @@
         <DependentUpon>MainWindow.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="ApplicationResources\icons\close_icon.png" />
+      <Resource Include="ApplicationResources\icons\minimize_icon.png" />
+      <Resource Include="ApplicationResources\icons\resize_icon.png" />
+      <Resource Include="ApplicationResources\icons\search_icon.png" />
     </ItemGroup>
 
 </Project>

@@ -43,6 +43,7 @@
                         <!-- Close Button -->
                         <Button x:Name="CloseButton"
                                 DockPanel.Dock="Right"
+                                Click="CloseButton_OnClick"
                                 Height="auto"
                                 Width="auto"
                                 Background="Transparent"
@@ -58,6 +59,7 @@
                         <!-- Maximize Button -->
                         <Button x:Name="MaxButton"
                                 DockPanel.Dock="Right"
+                                Click="MaxButton_OnClick"
                                 Margin="5,5,5,5"
                                 Height="auto"
                                 Width="auto"
@@ -75,6 +77,7 @@
                         <!-- Minimize Button -->
                         <Button x:Name="MinButton"
                                 DockPanel.Dock="Right"
+                                Click="MinButton_OnClick"
                                 Height="auto"
                                 Width="auto"
                                 Background="Transparent"

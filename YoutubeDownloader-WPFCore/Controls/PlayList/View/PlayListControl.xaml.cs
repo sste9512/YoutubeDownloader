@@ -17,7 +17,7 @@ public partial class PlayListControl : UserControl
         try
         {
                 
-            var playlist = await client.GetPlaylistAsync(YoutubeClient.ParsePlaylistId(playListUrl));
+            /*var playlist = await client.GetPlaylistAsync(YoutubeClient.ParsePlaylistId(playListUrl));
             this.PlaylistAuthor.Content = playlist.Author;
             this.PlaylistTitle.Content = playlist.Title;
             for (int i = 0; i < playlist.Videos.Count; i++)
@@ -42,8 +42,8 @@ public partial class PlayListControl : UserControl
                 }
                 playItem.VideoDuration.Content = playlist.Videos[i].Duration;
                 item.Content = playItem;
-                PlayListBox.Items.Add(item);
-            }
+                PlayListBox.Items.Add(item);*/
+           // }
         }
         catch (Exception ex)
         {
