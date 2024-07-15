@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Configuration\" />
+      <Folder Include="HttpClients\" />
+      <Folder Include="Injection\" />
+      <Folder Include="SignalRClients\" />
     </ItemGroup>
 
 </Project>

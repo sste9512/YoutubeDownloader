@@ -1,7 +1,6 @@
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using WebUI;
-using WebUI.Graphql.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +18,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
-
+            
     // Initialise and seed database
     using (var scope = app.Services.CreateScope())
     {
@@ -60,6 +59,6 @@ app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
 
-app.MapGraphQL();
+/*app.MapGraphQL();*/
 
 app.Run();

@@ -6,19 +6,11 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
-public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
+public sealed class AuditableEntitySaveChangesInterceptor(
+    ICurrentUserService currentUserService,
+    IDateTime dateTime)
+    : SaveChangesInterceptor
 {
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IDateTime _dateTime;
-
-    public AuditableEntitySaveChangesInterceptor(
-        ICurrentUserService currentUserService,
-        IDateTime dateTime)
-    {
-        _currentUserService = currentUserService;
-        _dateTime = dateTime;
-    }
-
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
         UpdateEntities(eventData.Context);
@@ -41,14 +33,14 @@ public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreatedBy = _currentUserService.UserId;
-                entry.Entity.Created = _dateTime.Now;
+                entry.Entity.CreatedBy = currentUserService.UserId;
+                entry.Entity.Created = dateTime.Now;
             } 
 
             if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
             {
-                entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                entry.Entity.LastModified = _dateTime.Now;
+                entry.Entity.LastModifiedBy = currentUserService.UserId;
+                entry.Entity.LastModified = dateTime.Now;
             }
         }
     }

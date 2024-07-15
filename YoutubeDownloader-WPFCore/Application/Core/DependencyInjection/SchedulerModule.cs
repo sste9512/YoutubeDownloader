@@ -1,0 +1,2 @@
+namespace YoutubeDownloader_WPFCore.Application.Core.DependencyInjection;
+

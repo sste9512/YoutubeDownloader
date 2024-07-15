@@ -18,19 +18,19 @@ public sealed class YoutubeController(YoutubeClient youtubeClient) : ApiControll
     private SearchClient Search => youtubeClient.Search;
 
     [HttpGet("[action]")]
-    public async ValueTask<Video> GetAsync(VideoId videoId, CancellationToken cancellationToken)
+    public async ValueTask<Video> GetByVideoIdAsync(VideoId videoId, CancellationToken cancellationToken)
     {
         return await Videos.GetAsync(videoId, cancellationToken);
     }
 
     [HttpGet("[action]")]
-    public async ValueTask<Playlist> GetAsync(PlaylistId playlistId, CancellationToken cancellationToken)
+    public async ValueTask<Playlist> GetByPlayListIdAsync(PlaylistId playlistId, CancellationToken cancellationToken)
     {
         return await Playlists.GetAsync(playlistId, cancellationToken);
     }
 
     [HttpGet("[action]")]
-    public IAsyncEnumerable<PlaylistVideo> GetVideosAsync(PlaylistId playlistId, CancellationToken cancellationToken)
+    public IAsyncEnumerable<PlaylistVideo> GetVideosByPlayListIdAsync(PlaylistId playlistId, CancellationToken cancellationToken)
     {
         return Playlists.GetVideosAsync(playlistId, cancellationToken);
     }
@@ -43,7 +43,7 @@ public sealed class YoutubeController(YoutubeClient youtubeClient) : ApiControll
     }
 
     [HttpGet("[action]")]
-    public async ValueTask<Channel> GetAsync(ChannelId channelId, CancellationToken cancellationToken)
+    public async ValueTask<Channel> GetByChannelIdAsync(ChannelId channelId, CancellationToken cancellationToken)
     {
         return await Channels.GetAsync(channelId, cancellationToken);
     }
@@ -106,8 +106,8 @@ public sealed class YoutubeController(YoutubeClient youtubeClient) : ApiControll
     }
 
     [HttpGet("[action]")]
-    public IAsyncEnumerable<Batch<ISearchResult>> GetResultBatchesAsync(string searchQuery,
-        CancellationToken cancellationToken)
+    public IAsyncEnumerable<Batch<ISearchResult>> GetResultBatchesWithFilterAsync(string searchQuery,
+        CancellationToken cancellationToken)   
     {
         return Search.GetResultBatchesAsync(searchQuery, cancellationToken);
     }
