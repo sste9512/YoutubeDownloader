@@ -50,7 +50,9 @@ public sealed class GoogleDriveService(DriveService driveService) : IDriveServic
         {
             request = Files.Create(fileMetadata, stream, "application/octet-stream");
             request.Fields = "id";
-            await request.UploadAsync();
+            // TODO: Put this in a while loop and test?
+            var result = await request.UploadAsync();
+            Console.WriteLine(result.Status);
         }
 
         return request.ResponseBody != null;

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects;
+using YoutubeExplode;
 
 namespace YoutubeDownloader_WPFCore.Application;
 
@@ -15,9 +16,16 @@ public partial class MainWindow : Window
 
     protected override void OnActivated(EventArgs e)
     {
-        VideoPanel.UrlInput.LostFocus += UrlInput_OnLostFocus;
-        VideoPanel.QueryVideoButton.Click += QueryVideoEvent;
+        //VideoPanel.UrlInput.LostFocus += UrlInput_OnLostFocus;
+        //VideoPanel.QueryVideoButton.Click += QueryVideoEvent;
+       
         base.OnActivated(e);
+    }
+
+    protected override void OnContentRendered(EventArgs e)
+    {
+        base.OnContentRendered(e);
+        PlayList.InitPlayListFromUrl();
     }
 
     private async void UrlInput_OnLostFocus(object sender, RoutedEventArgs e)
@@ -38,7 +46,7 @@ public partial class MainWindow : Window
         try
         {
             Console.WriteLine("Query Video Event");
-            var text = VideoPanel.UrlInput.GetLineText(0);
+            //var text = VideoPanel.UrlInput.GetLineText(0);
             /*await Send(
                 new QueryVideoRequest
                 {

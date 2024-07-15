@@ -10,11 +10,12 @@ public partial class VideoPanel : UserControl
 {
     public VideoPanel()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     private void UrlInput_OnLostFocus(object sender, RoutedEventArgs e)
     {
          
+             
     }
 }

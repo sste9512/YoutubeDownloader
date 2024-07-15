@@ -10,10 +10,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Features\MainWindow\**" />
+      <EmbeddedResource Remove="Features\MainWindow\**" />
+      <None Remove="Features\MainWindow\**" />
+      <Page Remove="Features\MainWindow\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Application\Aspects\MethodAspects\" />
       <Folder Include="Application\Aspects\PropertyAspects\" />
       <Folder Include="Domain\" />
-      <Folder Include="Features\MainWindow\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -28,6 +34,7 @@
       <PackageReference Include="Metalama.Framework" Version="2024.2.15-rc" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0-preview.1.24080.9" />
+      <PackageReference Include="OneOf" Version="3.0.271" />
       <PackageReference Include="YoutubeExplode" Version="6.3.13" />
     </ItemGroup>
 

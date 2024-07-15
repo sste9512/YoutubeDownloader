@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using Microsoft.Win32;
 
 namespace YoutubeDownloader_WPFCore.Application.Controls.MenuPanel.View;
 
@@ -11,5 +13,13 @@ public partial class MenuPanel : UserControl
     {
         InitializeComponent();
     }
-        
+
+    private void OpenFolder_OnClick(object sender, RoutedEventArgs e)
+    {
+        var openFileDialog = new OpenFileDialog();
+        if (openFileDialog.ShowDialog() == true)
+        {
+            
+        }
+    }
 }

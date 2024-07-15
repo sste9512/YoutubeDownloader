@@ -1,4 +1,4 @@
-﻿<Window x:Class="YoutubeDownloader_WPFCore.Application.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,7 @@
         xmlns:view2="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.VideoInfoPanel.View"
         xmlns:view3="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.VideoPanel.View"
         xmlns:view4="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.UserPlayListPanel.View"
+        xmlns:WebViewControl="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.WebViewControl" x:Class="YoutubeDownloader_WPFCore.Application.MainWindow"
         mc:Ignorable="d"
         Width="1400"
         Height="1100"
@@ -99,24 +100,23 @@
             </DockPanel>
 
             <!-- Basic Menu, Abstracted Away for tidieness -->
-            <view:MenuPanel x:Name="MenuPanel"></view:MenuPanel>
+            <view:MenuPanel x:Name="MenuPanel"/>
 
             <DockPanel LastChildFill="True">
 
                 <!-- Video Playlist Control (Contains the youtube playlist for corresponding video) -->
                 <Border BorderBrush="White" BorderThickness="0,0,0,0" DockPanel.Dock="Left">
-                    <view1:PlayListControl x:Name="PlayList"></view1:PlayListControl>
+                    <view1:PlayListControl x:Name="PlayList"/>
                 </Border>
 
-                <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
-                <view2:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"></view2:VideoInfoPanel>
-
                 <!-- Video Panel (Contains search function and video player) -->
-                <view3:VideoPanel x:Name="VideoPanel" DockPanel.Dock="Right"></view3:VideoPanel>
+                <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
+                <view2:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"/>
+                <view3:VideoPanel Width="500"/>
             </DockPanel>
 
             <!-- UserPlayListPanel (Contains ) -->
-            <view4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"></view4:UserPlayListPanel>
+            <view4:UserPlayListPanel x:Name="UserPlayList" DockPanel.Dock="Bottom"/>
         </StackPanel>
     </Border>
 </Window>

@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using YoutubeDownloader_WPFCore.Application.Core.Behavioural.CQRS.Pipelines;
 using YoutubeDownloader_WPFCore.Application.Interfaces;
+using YoutubeDownloader_WPFCore.Infrastructure;
+using YoutubeDownloader_WPFCore.Infrastructure.Data.Services;
 using YoutubeDownloader_WPFCore.Infrastructure.Stores;
 using YoutubeExplode;
 
@@ -55,9 +57,11 @@ public partial class App
                     };
                     return Channel.CreateBounded<Exception>(options);
                 });
-                services.AddScoped<ILiteDatabase, LiteDatabase>(x => new LiteDatabase(@"Persistence.db"));
+                services.AddScoped<LiteDatabase>(x => new LiteDatabase(@"Persistence.db"));
                 services.AddScoped<CancellationTokenSource>(x => new CancellationTokenSource());
                 services.AddScoped<IDocumentStore, DocumentStore>();
+                services.AddScoped<GoogleDriveService>();
+                services.AddScoped<IUser, User>();
                 services.AddMediatR(cfg =>
                 {
                     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());

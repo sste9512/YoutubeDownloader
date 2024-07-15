@@ -18,15 +18,17 @@
                         Name="QueryVideoButton">
 
                     <StackPanel>
-                        <Image Source="/ApplicationResources/icons/search_icon.png"
-                               Width="25"
-                               Height="25"
-                               Margin="0,0,0,0" />
+                        <materialDesign:PackIcon Kind="Search"
+                                                 Opacity="1"
+                                                 Foreground="White"
+                                                 Width="25"
+                                                 Height="25"
+                                                 VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
             </StackPanel>
         </Border>
-        <MediaElement Source="C:/Users/steve/Desktop/Private world (Vaporwave mix).Mp4"
+        <MediaElement
                       Width="500"
                       Height="500"
                       LoadedBehavior="Manual"
