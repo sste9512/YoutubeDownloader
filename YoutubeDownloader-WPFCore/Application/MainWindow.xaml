@@ -8,7 +8,7 @@
         xmlns:view2="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.VideoInfoPanel.View"
         xmlns:view3="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.VideoPanel.View"
         xmlns:view4="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.UserPlayListPanel.View"
-        xmlns:WebViewControl="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.WebViewControl" x:Class="YoutubeDownloader_WPFCore.Application.MainWindow"
+        xmlns:WebViewControl="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls.WebViewControl" xmlns:Controls="clr-namespace:YoutubeDownloader_WPFCore.Application.Controls" x:Class="YoutubeDownloader_WPFCore.Application.MainWindow"
         mc:Ignorable="d"
         Width="1400"
         Height="1100"
@@ -112,7 +112,7 @@
                 <!-- Video Panel (Contains search function and video player) -->
                 <!-- Video Info Panel (Contains all of the analytical and demographic data about the video) -->
                 <view2:VideoInfoPanel x:Name="VideoInfoPanel" DockPanel.Dock="Right"/>
-                <view3:VideoPanel Width="500"/>
+                <Controls:SearchPanel x:Name="SearchPanel" Width="500" />
             </DockPanel>
 
             <!-- UserPlayListPanel (Contains ) -->

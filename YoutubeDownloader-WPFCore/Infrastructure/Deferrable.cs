@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeDownloader_WPFCore.Application.Interfaces;
 
 namespace YoutubeDownloader_WPFCore.Infrastructure
 {
-    public class User : IUser
+    public class Deferrable : IDisposable
     {
-        public string Id { get; }
+        private Action Action { get; set; }
 
      
+        public void Dispose()
+        {
+              Action.Invoke();
+        }
     }
 }

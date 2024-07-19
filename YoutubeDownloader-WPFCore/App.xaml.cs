@@ -1,16 +1,26 @@
-﻿
+﻿using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Channels;
 using System.Windows;
-
+using Config.Net;
 using LiteDB;
+using MassTransit;
+using MassTransit.SignalR;
 using MediatR;
 using Metalama.Extensions.DependencyInjection.ServiceLocator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.CircuitBreaker;
+using Polly.Timeout;
+using YoutubeDownloader_WPFCore.Application;
+using YoutubeDownloader_WPFCore.Application.Configuration;
+using YoutubeDownloader_WPFCore.Application.Controls.PlayList.Commands;
+using YoutubeDownloader_WPFCore.Application.Controls.PlayList.View;
 using YoutubeDownloader_WPFCore.Application.Core.Behavioural.CQRS.Pipelines;
 using YoutubeDownloader_WPFCore.Application.Interfaces;
 using YoutubeDownloader_WPFCore.Infrastructure;
@@ -23,7 +33,7 @@ namespace YoutubeDownloader_WPFCore;
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App 
+public partial class App
 {
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -47,21 +57,52 @@ public partial class App
             })
             .ConfigureServices((hostContext, services) =>
             {
+                services.AddHttpClient("youtubeclient")
+                    .AddHttpMessageHandler<YoutubeMessageHandler>();
+                services.AddKeyedScoped<HttpClient>("youtubeclient",
+                    (services, factory) => new HttpClient(services.GetRequiredService<YoutubeMessageHandler>()));
+                
                 services.AddLogging();
-                services.AddScoped<YoutubeClient>();
-                services.AddSingleton<Channel<Exception>>(x =>
+                services.AddScoped<YoutubeClient>(x =>
                 {
-                    BoundedChannelOptions options = new(100)
-                    {
-                        FullMode = BoundedChannelFullMode.Wait
-                    };
-                    return Channel.CreateBounded<Exception>(options);
+                    var factory = x.GetRequiredService<IHttpClientFactory>();
+                    return new YoutubeClient(factory.CreateClient("youtubeclient"));
                 });
+
+                services.AddScoped<IFileSystemConfiguration>(x => new ConfigurationBuilder<IFileSystemConfiguration>()
+                    .UseJsonFile("/filesystemsettings.json")
+                    .Build());
+
                 services.AddScoped<LiteDatabase>(x => new LiteDatabase(@"Persistence.db"));
                 services.AddScoped<CancellationTokenSource>(x => new CancellationTokenSource());
                 services.AddScoped<IDocumentStore, DocumentStore>();
                 services.AddScoped<GoogleDriveService>();
                 services.AddScoped<IUser, User>();
+                services.AddScoped<ChannelFactory>();
+                services.AddMemoryCache();
+                services.AddSignalRCore();
+                services.AddScoped<YoutubeMessageHandler>();
+                services.AddScoped<ImageStore>();
+
+
+                services.AddResiliencePipeline("youtube-download-strategy", pipelineBuilder =>
+                {
+                    pipelineBuilder.AddRetry(new()
+                        {
+                            MaxRetryAttempts = 3,
+                            Delay = TimeSpan.FromSeconds(3),
+                            ShouldHandle = args => args.Outcome switch
+                            {
+                                { Exception: HttpRequestException } => PredicateResult.True(),
+                                { Exception: TimeoutRejectedException } => PredicateResult.True(), // You can handle multiple exceptions
+                                { Result: HttpResponseMessage response } when !response.IsSuccessStatusCode => PredicateResult.True(),
+                                _ => PredicateResult.False()
+                            }
+                        })
+                        .AddTimeout(TimeSpan.FromSeconds(10));
+                });
+
+
                 services.AddMediatR(cfg =>
                 {
                     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
@@ -80,14 +121,15 @@ public partial class App
                     };
                     return Channel.CreateBounded<Func<CancellationToken, ValueTask>>(options);
                 });
-                
             });
 
         var application = builder.Build();
 
+
         ServiceProviderProvider.ServiceProvider = () => application.Services;
-        
-        
+
+
+
         base.OnStartup(e);
     }
 }

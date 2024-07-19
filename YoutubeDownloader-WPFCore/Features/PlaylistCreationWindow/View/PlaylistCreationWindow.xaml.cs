@@ -23,7 +23,7 @@ public partial class PlaylistCreationWindow : Window
     /// <param name="e">The <see cref="MouseButtonEventArgs"/></param>
     private void RootWindow_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        this.DragMove();
+        DragMove();
     }
 
     /// <summary>
@@ -33,6 +33,6 @@ public partial class PlaylistCreationWindow : Window
     /// <param name="e">The <see cref="RoutedEventArgs"/></param>
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
-        this.Close();
+        Close();
     }
 }

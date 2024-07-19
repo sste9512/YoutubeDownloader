@@ -6,8 +6,25 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              Width="420">
     <StackPanel Name="Wrapper" DockPanel.Dock="Left" Width="420" Background="#262626">
-        <Label Content="Current Playlist Title" Foreground="White" Margin="5,5,5,5" FontSize="22" Name="PlaylistTitle" />
-        <Label Content="Author" Foreground="White" Margin="5,5,5,5" FontSize="15" Name="PlaylistAuthor" Opacity="0.6" />
+        <StackPanel Orientation="Horizontal">
+             <Border Background="Aqua" CornerRadius="6">
+                 <Image Name="playlistThumbnailImage" Width="130"  Height="100" Margin="0,0,0,0" Stretch="Fill"/>
+            </Border>
+            
+            <StackPanel Orientation="Vertical">
+                <Label Content="Current Playlist Title" Foreground="White" Margin="5,5,5,5" FontSize="22" Name="PlaylistTitle" />
+                <Label Content="Author" Foreground="White" Margin="5,5,5,5" FontSize="15" Name="PlaylistAuthor" Opacity="0.6" />
+            </StackPanel>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Background="Transparent" Height="39" Foreground="White" MinWidth="350" MaxWidth="350" Name="SearchInput"
+                     TextWrapping="Wrap">
+            </TextBox>
+            <Button Click="ButtonBase_OnClick" Width="72">Search</Button>
+        </StackPanel>
+
         <Separator Height="0.5" Background="White" Opacity="0.6" />
         <StackPanel Orientation="Horizontal">
             <Button VerticalAlignment="Top"
@@ -36,7 +53,6 @@
                             <Border BorderBrush="White"
                                     BorderThickness="0,0.6,0,0" Margin="0,8" />
                             <WrapPanel>
-
                                 <TextBlock FontStyle="Italic">Press F1 for more help</TextBlock>
                             </WrapPanel>
                         </StackPanel>
@@ -61,7 +77,7 @@
             <ComboBox
                 Name="LocaleCombo"
 
-                Foreground="White">
+                Foreground="White" Width="135" Height="26" Background="Black" HorizontalAlignment="Center">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -74,7 +90,18 @@
                 <ComboBoxItem IsSelected="True" Foreground="White">Oebm</ComboBoxItem>
                 <ComboBoxItem Foreground="White">Something</ComboBoxItem>
             </ComboBox>
+
         </StackPanel>
+        <ProgressBar IsIndeterminate="True"  Height="20" Name="ProgressBar"  Visibility="Hidden"/>
         <ListBox Name="PlayListBox" Height="670" MaxHeight="670" />
+        <materialDesign:Snackbar
+            x:Name="SnackBar"
+            IsActive="False">
+            <materialDesign:SnackbarMessage
+                ActionContent="UNDO"
+                Content="Hello 2" />
+        </materialDesign:Snackbar>
     </StackPanel>
+    <!-- long hand form for setting the message -->
+
 </UserControl>

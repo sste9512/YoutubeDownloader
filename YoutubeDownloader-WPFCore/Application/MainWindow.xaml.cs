@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects;
+using YoutubeDownloader_WPFCore.Application.Core;
 using YoutubeExplode;
+using OneOf;
 
 namespace YoutubeDownloader_WPFCore.Application;
 
@@ -8,75 +10,72 @@ namespace YoutubeDownloader_WPFCore.Application;
 public partial class MainWindow : Window
 {
 
+    private Signaler<string> Signaler;
+    private Signaler<OneOf<string, bool>> ValueSignaler;
+    
     public MainWindow()
     {
-        /*VideoPanel.UrlInput.LostFocus += UrlInput_OnLostFocus;
-        VideoPanel.QueryVideoButton.Click += QueryVideoEvent;*/
+        Signaler = new Signaler<string>(Inject<ChannelFactory>());
+        ValueSignaler = new Signaler<OneOf<string, bool>>(Inject<ChannelFactory>());
+        
+        Signaler.OnSignal(async x =>
+        {
+            Console.WriteLine("I am the activating Call" + x);
+            await Task.Delay(TimeSpan.FromSeconds(2));
+        });
+        
+        ValueSignaler.OnSignal(x =>
+        {
+            x.Switch(@string =>
+                {
+                    Console.WriteLine(@string);
+                },
+
+                y =>
+                {
+                    Console.WriteLine(y);
+                });
+        });
     }
 
-    protected override void OnActivated(EventArgs e)
+    protected override async void OnActivated(EventArgs e)
     {
-        //VideoPanel.UrlInput.LostFocus += UrlInput_OnLostFocus;
-        //VideoPanel.QueryVideoButton.Click += QueryVideoEvent;
-       
         base.OnActivated(e);
+
+        await Signaler.Signal("I am the payload", CancellationToken.None);
     }
 
-    protected override void OnContentRendered(EventArgs e)
+    protected override async void OnContentRendered(EventArgs e)
     {
         base.OnContentRendered(e);
-        PlayList.InitPlayListFromUrl();
+        
+        await ValueSignaler.Signal("I am the oneof string", CancellationToken.None);
     }
 
     private async void UrlInput_OnLostFocus(object sender, RoutedEventArgs e)
     {
-        /*Console.WriteLine("Lost Focus");
-        var text = (TextBox) sender;
-        await Send(
-            new QueryVideoRequest
-            {
-                Url = text.Text,
-                MainWindowReference = new WeakReference<MainWindow>(this)
-            },
-            _cancellationTokenSource.Token);*/
+       
     }
 
     public async void QueryVideoEvent(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            Console.WriteLine("Query Video Event");
-            //var text = VideoPanel.UrlInput.GetLineText(0);
-            /*await Send(
-                new QueryVideoRequest
-                {
-                    Url = text,
-                    MainWindowReference = new WeakReference<MainWindow>(this)
-                },
-                CancellationToken.None);*/
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception);
-        }
+     
 
     }
 
     public async void DownloadVideo(object sender, RoutedEventArgs e)
     {
-        /*await Publish(
-            new DownloadMediaStreamCommand {MainWindowReference = new WeakReference<MainWindow>(this)},
-            _cancellationTokenSource.Token);*/
+      
     }
 
     private void AddPlayList(object sender, RoutedEventArgs e)
     {
-        //_windows[nameof(PlaylistCreationWindow)].Show();
+       
     }
 
     public async void OpenProjectsPath_Click(object sender, RoutedEventArgs e)
     {
-        //await _mediator.Publish(new OpenPathsWindowCommand());
+        
     }
 
     private void CloseButton_OnClick(object sender, RoutedEventArgs e)
@@ -84,8 +83,9 @@ public partial class MainWindow : Window
         Close();
     }
 
-    private void MinButton_OnClick(object sender, RoutedEventArgs e)
+    private async void MinButton_OnClick(object sender, RoutedEventArgs e)
     {
+        await Signaler.Signal("I am the button click", CancellationToken.None);
         WindowState = WindowState.Minimized;
     }
 
