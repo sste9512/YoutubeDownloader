@@ -32,17 +32,10 @@ public partial class VideoInfoPanel : UserControl
             VideoDesciption.Content = video.Description;
             VideoAuthor.Content = video.Author;
             VideoDuration.Content = video.Duration;
-            /*var mediaStreamInfos = await client.GetVideoMediaStreamInfosAsync(YoutubeClient.ParseVideoId(url));
-            var streaminfo = mediaStreamInfos.Muxed.WithHighestVideoQuality();
-
-            VideoAvailable.Content = streaminfo.Container.GetFileExtension();
-            SoundAvailable.Content = mediaStreamInfos.GetAll();
-            VideoUrl.Content = url;*/
         }
         catch (Exception ex)
         {
             Console.Out.WriteLine(ex.InnerException);
-            // ignored
         }
     }
 }

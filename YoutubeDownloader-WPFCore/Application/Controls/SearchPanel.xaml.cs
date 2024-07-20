@@ -39,13 +39,13 @@ namespace YoutubeDownloader_WPFCore.Application.Controls
         {
             var input = UrlInput.Text.Trim();
 
-            await foreach (var search in  _youtubeClient.Search.GetResultBatchesAsync(input, CancellationToken.None))
-            {
-                foreach (var searchResult in search.Items)
-                {
-                    searchResult.
-                }
-            }
+            // await foreach (var search in  _youtubeClient.Search.GetResultBatchesAsync(input, CancellationToken.None))
+            // {
+            //     foreach (var searchResult in search.Items)
+            //     {
+            //         searchResult.
+            //     }
+            // }
 
             var author = await _youtubeClient.Search.GetChannelsAsync(input);
 

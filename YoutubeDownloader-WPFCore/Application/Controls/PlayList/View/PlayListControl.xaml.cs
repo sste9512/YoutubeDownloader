@@ -15,7 +15,7 @@ public partial class PlayListControl : UserControl
     
     [Dependency] private YoutubeClient _client;
 
-    [Dependency] private ILogger<PlayListControl> _logger;
+    [Dependency] private ILogger _logger;
     
     private Playlist playList { get; set; }
 
@@ -27,9 +27,11 @@ public partial class PlayListControl : UserControl
         InitializeComponent();
     }
 
+   
+
 
     /// <summary>
-    /// TODO: Make this parallel
+    /// 
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

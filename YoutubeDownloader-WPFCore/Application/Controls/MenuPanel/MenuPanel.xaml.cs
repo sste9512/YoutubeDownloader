@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Microsoft.Win32;
 
-namespace YoutubeDownloader_WPFCore.Application.Controls.MenuPanel.View;
+namespace YoutubeDownloader_WPFCore.Application.Controls.MenuPanel;
 
 /// <summary>
 /// Interaction logic for MenuPanel.xaml

@@ -6,6 +6,7 @@ using OneOf;
 
 namespace YoutubeDownloader_WPFCore.Application;
 
+//[GraphConstructorAspect]
 [ComponentBehaviors]
 public partial class MainWindow : Window
 {

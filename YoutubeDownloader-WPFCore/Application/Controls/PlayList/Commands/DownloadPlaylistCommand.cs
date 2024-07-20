@@ -1,7 +1,9 @@
+using System.Configuration;
 using System.IO;
 using System.Windows;
 using MediatR;
 using Metalama.Extensions.DependencyInjection;
+using Metalama.Framework.Aspects;
 using Microsoft.Extensions.Logging;
 using YoutubeDownloader_WPFCore.Application.Controls.PlayList.View;
 using YoutubeDownloader_WPFCore.Application.Core.Behavioural.CQRS.Pipelines;
@@ -27,9 +29,11 @@ public class DownloadPlaylistCommand : ViewRequest<string, PlayListControl>
 
 public class DownloadPlaylistCommandHandler : IRequestHandler<DownloadPlaylistCommand, string>
 {
+
+
     [Dependency] private YoutubeClient _client;
 
-    [Dependency] private ILogger<PlayListControl> _logger;
+    [Dependency()] private ILogger _logger;
 
     IEnumerable<PlayListItemControl> _listItemControl;
 

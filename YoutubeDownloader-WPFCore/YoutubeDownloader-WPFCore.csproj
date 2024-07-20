@@ -7,6 +7,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +25,7 @@
     <ItemGroup>
       <Folder Include="Application\Aspects\MethodAspects\" />
       <Folder Include="Application\Aspects\PropertyAspects\" />
+      <Folder Include="Application\Controls\MenuPanel\View\" />
       <Folder Include="Application\Controls\PlayList\Queries\" />
     </ItemGroup>
 
@@ -62,7 +64,7 @@
       <Page Update="Features\PlaylistCreationWindow\View\PlaylistCreationWindow.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
-      <Page Update="Application\Controls\MenuPanel\View\MenuPanel.xaml">
+      <Page Update="Application\Controls\MenuPanel\MenuPanel.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
       <Page Update="Application\Controls\PlayList\View\PlayListControl.xaml">

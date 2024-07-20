@@ -15,6 +15,7 @@ using YoutubeDownloader_WPFCore.Application.Interfaces;
 using YoutubeDownloader_WPFCore.Infrastructure.Stores;
 using YoutubeExplode;
 using YoutubeExplode.Playlists;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 #pragma warning disable IDE0301
 
@@ -34,7 +35,7 @@ namespace YoutubeDownloader_WPFCore.Application.Controls.PlayList.Commands
         
         [Dependency] private YoutubeClient _client;
         [Dependency] private IDocumentStore _documentStore;
-        [Dependency] private ILogger<UpdatePlaylistCommandHandler> _logger;
+        [Dependency] private ILogger _logger;
         [Dependency] private ImageStore _imageStore;
 
 
@@ -62,7 +63,6 @@ namespace YoutubeDownloader_WPFCore.Application.Controls.PlayList.Commands
 
                         var bitmap = video.Thumbnails[video.Thumbnails.Count - 1].Url.BitmapFromUrl();
 
-                       
 
                         if (bitmap.StreamSource is not null)
                         {

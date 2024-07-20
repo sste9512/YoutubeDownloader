@@ -23,6 +23,18 @@ namespace YoutubeDownloader_WPFCore.Application.Controls
         public TabContainer()
         {
             InitializeComponent();
+            Do();
+
+
+        }
+
+        public void Do()
+        {
+            Tabs.Items.Add(new TabItem
+            {
+                Header = "Tab",
+                Content = new SearchPanel()
+            });
         }
     }
 }
