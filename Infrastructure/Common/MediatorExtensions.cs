@@ -1,7 +1,8 @@
 ﻿using CleanArchitecture.Domain.Common;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace MediatR;
+namespace CleanArchitecture.Infrastructure.Common;
 
 public static class MediatorExtensions
 {

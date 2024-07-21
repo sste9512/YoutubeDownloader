@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{5DC3FE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeDownloaderBackingService", "YoutubeDownloaderBackingService\YoutubeDownloaderBackingService.csproj", "{AB9E54A9-20A5-4239-9290-1867857F9C51}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{485177F1-E6CA-4914-A0EE-A75181ECCA6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloaderMaui", "YoutubeDownloaderMaui\YoutubeDownloaderMaui.csproj", "{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +137,24 @@ Global
 		{AB9E54A9-20A5-4239-9290-1867857F9C51}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB9E54A9-20A5-4239-9290-1867857F9C51}.Release|x64.ActiveCfg = Release|x64
 		{AB9E54A9-20A5-4239-9290-1867857F9C51}.Release|x64.Build.0 = Release|x64
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|x64.Build.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|x64.ActiveCfg = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|x64.Build.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.LamaDebug|x64.Deploy.0 = Debug|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|x64.ActiveCfg = Release|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|x64.Build.0 = Release|Any CPU
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C}.Release|x64.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +165,7 @@ Global
 		{CB76951B-51AA-4BB4-8056-B858A9E99DD5} = {64E11B48-8AEF-49DB-84C9-BB61F01A6134}
 		{C05C068A-B86E-4288-8FE4-6AD0FA2E706E} = {891DD37B-521A-4187-87E2-722A05CBFD59}
 		{AB9E54A9-20A5-4239-9290-1867857F9C51} = {891DD37B-521A-4187-87E2-722A05CBFD59}
+		{F9A7B13C-EF1F-4C2D-8660-CD5461868B6C} = {485177F1-E6CA-4914-A0EE-A75181ECCA6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F86525D-4550-4326-9BD2-C8555C04562E}
