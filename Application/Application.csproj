@@ -8,11 +8,13 @@
         <Nullable>enable</Nullable>
         <GenerateResourceMSBuildArchitecture>CurrentArchitecture</GenerateResourceMSBuildArchitecture>
         <GenerateResourceMSBuildRuntime>CurrentRuntime</GenerateResourceMSBuildRuntime>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+        <PackageReference Include="LiteDB" Version="5.0.21" />
         <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
         <PackageReference Include="YoutubeExplode" Version="6.3.4" />
@@ -21,6 +23,13 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Channels\" />
+      <Folder Include="Search\" />
+      <Folder Include="Playlists\" />
+      <Folder Include="Videos\" />
     </ItemGroup>
 
 </Project>

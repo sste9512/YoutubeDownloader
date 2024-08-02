@@ -1,4 +1,5 @@
-﻿using Metalama.Extensions.DependencyInjection;
+﻿using System.Diagnostics;
+using Metalama.Extensions.DependencyInjection;
 using Metalama.Framework.Aspects;
 using Metalama.Framework.Code;
 
@@ -16,14 +17,15 @@ namespace YoutubeDownloaderMaui.Core.Aspects.TypeAspects
                 builder.Advice.Override(constructor, nameof(OverrideConstructorTemplate));
             }
 
-            var finalizer = builder.Target.Finalizer;
-            builder.Advice.Override(finalizer, nameof(OverrideFinalizerTemplate));
+            /*var finalizer = builder.Target.Finalizer;
+            builder.Advice.Override(finalizer, nameof(OverrideFinalizerTemplate));*/
         }
 
         [Template]
         private void OverrideConstructorTemplate()
         {
-            Console.WriteLine($"Executing constructor {meta.Target.Constructor}: started");
+            Debug.Print($"Executing constructor {meta.Target.Constructor}: started");
+            //WriteLine($"Executing constructor {meta.Target.Constructor}: started");
             meta.Proceed();
             _graph.Add(meta.This.GetHashCode(), meta.This);
         }
@@ -32,7 +34,7 @@ namespace YoutubeDownloaderMaui.Core.Aspects.TypeAspects
         private void OverrideFinalizerTemplate()
         {
             _graph.Add(meta.This.GetHashCode(), meta.This);
-            Console.WriteLine($"Executing finalizer {meta.Target.Type}: started");
+            WriteLine($"Executing finalizer {meta.Target.Type}: started");
             meta.Proceed();
         }
     }

@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
+using YoutubeDownloaderMaui.Core.Aspects.TypeAspects;
 
 namespace YoutubeDownloaderMaui
 {
+    [GraphConstructorAspect]
+    [ComponentBehaviors]
     public partial class MainPage : ContentPage
     {
         int count = 0;
-
-        [Meta.Dependency] private ILogger _logger;
-
 
         public MainPage()
         {
@@ -23,7 +23,13 @@ namespace YoutubeDownloaderMaui
             else
                 CounterBtn.Text = $"Clicked {count} times";
 
-            _logger.LogInformation(CounterBtn.Text);
+            var graph = Inject<Dictionary<int, object>>();
+
+            foreach (var item in graph)
+            {
+                CounterBtn.Text += item.Key + " " + item.Value.GetType().Name + Environment.NewLine;
+            }
+            
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }

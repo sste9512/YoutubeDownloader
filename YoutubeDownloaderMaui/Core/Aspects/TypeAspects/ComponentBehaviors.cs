@@ -16,7 +16,7 @@ public sealed class ComponentBehaviors : TypeAspect
 
     [IntroduceDependency] private readonly IServiceProvider _serviceProvider;
 
-    [Introduce] public Guid Id { get; } = Guid.NewGuid();
+    /*[Introduce] public Guid Id { get; } = Guid.NewGuid();*/
     [Introduce] public int ParentId { get; set; }
 
 
@@ -28,8 +28,8 @@ public sealed class ComponentBehaviors : TypeAspect
     [Introduce(Name = "Launch")]
     public async Task Launch(Action action)
     {
-        await Task.Factory.StartNew(x => { action.Invoke(); }, _cancellationTokenSource.Token,
-            _cancellationTokenSource.Token);
+        /*await Task.Factory.StartNew(x => { action.Invoke(); }, _cancellationTokenSource.Token,
+            _cancellationTokenSource.Token);*/
     }
 
 

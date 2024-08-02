@@ -1,3 +1,4 @@
+using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using WebUI;

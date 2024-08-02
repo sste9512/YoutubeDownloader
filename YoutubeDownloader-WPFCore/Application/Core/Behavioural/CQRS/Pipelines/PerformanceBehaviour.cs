@@ -6,7 +6,6 @@ using YoutubeDownloader_WPFCore.Application.Interfaces;
 namespace YoutubeDownloader_WPFCore.Application.Core.Behavioural.CQRS.Pipelines;
 
 public sealed class PerformanceBehaviour<TRequest, TResponse>(
-    ILogger<TRequest> logger,
     IUser user) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
@@ -29,8 +28,8 @@ public sealed class PerformanceBehaviour<TRequest, TResponse>(
         var userId = user.Id ?? string.Empty;
         var userName = string.Empty;
 
-        logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
-            requestName, elapsedMilliseconds, userId, userName, request);
+        /*logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
+            requestName, elapsedMilliseconds, userId, userName, request);*/
 
         return response;
     }

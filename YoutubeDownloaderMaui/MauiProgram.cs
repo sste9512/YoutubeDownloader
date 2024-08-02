@@ -1,4 +1,5 @@
-﻿using Metalama.Extensions.DependencyInjection.ServiceLocator;
+﻿using CleanArchitecture.Application;
+using Metalama.Extensions.DependencyInjection.ServiceLocator;
 using Microsoft.Extensions.Logging;
 
 namespace YoutubeDownloaderMaui
@@ -15,10 +16,11 @@ namespace YoutubeDownloaderMaui
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddLogging();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddApplicationServices();
             var app = builder.Build();
 
             ServiceProviderProvider.ServiceProvider = () => app.Services;

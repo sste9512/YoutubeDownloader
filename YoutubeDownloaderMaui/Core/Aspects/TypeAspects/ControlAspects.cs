@@ -35,7 +35,7 @@ namespace YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects
     }
 
 
-    public class ControlAspect : TypeAspect
+    /*public class ControlAspect : TypeAspect
     {
 
         [IntroduceDependency]
@@ -66,7 +66,7 @@ namespace YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects
                         m.Name = "Set" + CamelCase(field.Name);
                         m.ReturnType = builder.Target;
                     });
-            }*/
+            }#1#
         }
 
         private static string CamelCase(string s)
@@ -82,5 +82,5 @@ namespace YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects
             field.Value = value;
             return meta.This;
         }
-    }
+    }*/
 }

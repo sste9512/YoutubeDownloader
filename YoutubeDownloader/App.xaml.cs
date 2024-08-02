@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using YoutubeDownloader.Domain.DependencyInjection;
 

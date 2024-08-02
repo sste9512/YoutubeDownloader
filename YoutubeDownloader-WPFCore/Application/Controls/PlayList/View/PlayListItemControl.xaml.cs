@@ -4,25 +4,16 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
 using YoutubeExplode.Playlists;
 using OneOf;
+using YoutubeDownloader_WPFCore.Application.Aspects.TypeAspects;
 
 namespace YoutubeDownloader_WPFCore.Application.Controls.PlayList.View;
 
-public sealed class NotificationHub : Hub
-{
-    
-    public Task NotifyAll(OneOf<bool, string> notification) =>
-        Clients.All.SendAsync("NotificationReceived", notification);
-}
 
-public sealed class NotificationService(IHubContext<NotificationHub> hubContext)
-{
-    public Task SendNotificationAsync(OneOf<bool, string> notification) =>
-        hubContext.Clients.All.SendAsync("NotificationReceived", notification);
-}
 
 /// <summary>
 /// Interaction logic for PlayListItemControl.xaml
 /// </summary>
+[Signaler]
 public partial class PlayListItemControl : UserControl
 {
     
@@ -33,6 +24,12 @@ public partial class PlayListItemControl : UserControl
     {
         InitializeComponent();
 
+        /*_ = Id<int>(_playlistVideo.Id) >> (x =>
+        {
+
+        });*/
+        
+        
         MouseEnter += (s, e) =>
         {
             //decoBorder.Background = Brushes.DarkGray;

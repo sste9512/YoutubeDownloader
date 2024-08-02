@@ -7,8 +7,8 @@ public class LogFabric : ProjectFabric
 {
     public override void AmendProject(IProjectAmender amender)
     {
-        amender.ConfigureDependencyInjection(dependencyInjection =>
-            dependencyInjection.RegisterFramework<Metalama.Extensions.DependencyInjection.Implementation.LoggerDependencyInjectionFramework>());
+        /*amender.ConfigureDependencyInjection(dependencyInjection =>
+            dependencyInjection.RegisterFramework<Metalama.Extensions.DependencyInjection.Implementation.LoggerDependencyInjectionFramework>());*/
         
     }
 }

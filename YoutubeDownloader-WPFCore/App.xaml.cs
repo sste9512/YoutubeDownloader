@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Channels;
 using System.Windows;
 using System.Windows.Controls;
+using CleanArchitecture.Infrastructure.Persistence.Network;
 using Config.Net;
 using LiteDB;
 using MassTransit;
@@ -35,54 +36,6 @@ using MemoryCache = Microsoft.Extensions.Caching.Memory.MemoryCache;
 
 namespace YoutubeDownloader_WPFCore;
 
-public class ControlStore
-{
-    public IMemoryCache _memoryCache;
-
-    public ControlStore(IMemoryCache memoryCache)
-    {
-        _memoryCache = memoryCache;
-    }
-
-    public void Register<T>(T instance)
-    {
-        var key = typeof(T) + @"\Views";
-        if (_memoryCache.TryGetValue(key, out List<T> instances))
-        {
-            instances.Add(instance);
-            _memoryCache.Set(key, instances);
-        }
-
-        _memoryCache.Set(key, new List<T>()
-        {
-            instance
-        });
-    }
-
-    public IEnumerable<T> FindByType<T>()
-    {
-        var key = typeof(T) + @"\Views";
-        if(_memoryCache.TryGetValue(key, out List<T> instances))
-        {
-            return instances;
-        }
-        return Enumerable.Empty<T>();
-    }
-
-
-    public void Remove<T>(T instance)
-    {
-         var key = typeof(T) + @"\Views";
-         if (_memoryCache.TryGetValue(key, out List<T> instances))
-         {
-             if (instances.Contains(instance))
-             {
-                 instances.Remove(instance);
-             }
-             _memoryCache.Set(key, instances);
-         }
-    }
-}
 
 /// <summary>
 /// Interaction logic for App.xaml
@@ -112,6 +65,7 @@ public partial class App
             })
             .ConfigureServices((hostContext, services) =>
             {
+                
                 services.AddHttpClient("youtubeclient")
                     .AddHttpMessageHandler<YoutubeMessageHandler>();
                 services.AddKeyedScoped<HttpClient>("youtubeclient",

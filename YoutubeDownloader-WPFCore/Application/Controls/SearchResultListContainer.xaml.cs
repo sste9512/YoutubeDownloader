@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Metalama.Extensions.DependencyInjection;
+using YoutubeDownloader_WPFCore.Application.Controls.PlayList.Commands;
 using YoutubeExplode;
 using YoutubeExplode.Channels;
 using YoutubeExplode.Search;
