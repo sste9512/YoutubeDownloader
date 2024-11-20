@@ -1,0 +1,6 @@
+@youtubedownloader_vue.Server_HostAddress = http://localhost:5276
+
+GET {{youtubedownloader_vue.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using LiteDB;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeExplode;
@@ -7,7 +8,7 @@ using YoutubeExplode.Playlists;
 using YoutubeExplode.Search;
 using YoutubeExplode.Videos;
 
-namespace WebUI.Controllers;
+namespace youtubedownloader_vue.Server.Controllers;
 
 //TODO : Add proper async enumerable method handling in the endpoints, for streaming
 
@@ -96,7 +97,7 @@ public sealed class YoutubeController(YoutubeClient youtubeClient) : ApiControll
 
     [HttpGet("[action]")]
     public async IAsyncEnumerable<ChannelSearchResult> GetChannelsAsync(string searchQuery,
-        CancellationToken cancellationToken)
+        [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         var results = Search.GetChannelsAsync(searchQuery, cancellationToken);
         await foreach (var result in results.WithCancellation(cancellationToken))

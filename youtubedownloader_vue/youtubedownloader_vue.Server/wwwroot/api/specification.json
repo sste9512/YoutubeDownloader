@@ -1,0 +1,1520 @@
+{
+  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/Channel/Get": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "Channel_Get",
+        "requestBody": {
+          "x-name": "channelId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Channel/GetByUser": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "Channel_GetByUser",
+        "requestBody": {
+          "x-name": "userName",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserName"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Channel/GetBySlug": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "Channel_GetBySlug",
+        "requestBody": {
+          "x-name": "channelSlug",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelSlug"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Channel/GetByHandle": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "Channel_GetByHandle",
+        "requestBody": {
+          "x-name": "channelHandle",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelHandle"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Channel/GetUploads": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "Channel_GetUploads",
+        "requestBody": {
+          "x-name": "channelId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Playlist/Get": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "operationId": "Playlist_Get",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Playlist/GetVideos": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "operationId": "Playlist_GetVideos",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Playlist/GetVideoBatches": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "operationId": "Playlist_GetVideoBatches",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchOfPlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Search/GetResults": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetResults",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ISearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Search/GetVideos": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetVideos",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VideoSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Search/GetPlaylists": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetPlaylists",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Search/GetChannels": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetChannels",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChannelSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Search/GetResultBatches": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetResultBatches",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "searchFilter",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SearchFilter"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchOfISearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Video/Get": {
+      "get": {
+        "tags": [
+          "Video"
+        ],
+        "operationId": "Video_Get",
+        "parameters": [
+          {
+            "name": "videoId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Video"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetByVideoId": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetByVideoId",
+        "requestBody": {
+          "x-name": "videoId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VideoId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Video"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetByPlayListId": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetByPlayListId",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetVideosByPlayListId": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetVideosByPlayListId",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetVideoBatches": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetVideoBatches",
+        "requestBody": {
+          "x-name": "playlistId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchOfPlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetByChannelId": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetByChannelId",
+        "requestBody": {
+          "x-name": "channelId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetByUser": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetByUser",
+        "requestBody": {
+          "x-name": "userName",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserName"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetBySlug": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetBySlug",
+        "requestBody": {
+          "x-name": "channelSlug",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelSlug"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetByHandle": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetByHandle",
+        "requestBody": {
+          "x-name": "channelHandle",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelHandle"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Channel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetUploads": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetUploads",
+        "requestBody": {
+          "x-name": "channelId",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistVideo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetResults": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetResults",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ISearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetVideos": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetVideos",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VideoSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetPlaylists": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetPlaylists",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetChannels": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetChannels",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChannelSearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetResultBatches": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetResultBatches",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "searchFilter",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SearchFilter"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchOfISearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Youtube/GetResultBatchesWithFilter": {
+      "get": {
+        "tags": [
+          "Youtube"
+        ],
+        "operationId": "Youtube_GetResultBatchesWithFilter",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchOfISearchResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Channel": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube channel.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Channel ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Channel URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Channel title."
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Channel thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "ChannelId": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube channel ID.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw ID value."
+          }
+        }
+      },
+      "Thumbnail": {
+        "type": "object",
+        "description": "Thumbnail image.",
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Thumbnail URL."
+          },
+          "resolution": {
+            "description": "Thumbnail resolution.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Resolution"
+              }
+            ]
+          }
+        }
+      },
+      "Resolution": {
+        "type": "object",
+        "description": "Resolution of an image or a video.",
+        "additionalProperties": false,
+        "properties": {
+          "width": {
+            "type": "integer",
+            "description": "Viewport width, measured in pixels.",
+            "format": "int32"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Viewport height, measured in pixels.",
+            "format": "int32"
+          },
+          "area": {
+            "type": "integer",
+            "description": "Viewport area (i.e. width multiplied by height).",
+            "format": "int32"
+          }
+        }
+      },
+      "UserName": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube user name.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw user name value."
+          }
+        }
+      },
+      "ChannelSlug": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube channel slug.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw slug value."
+          }
+        }
+      },
+      "ChannelHandle": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube channel handle.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw handle value."
+          }
+        }
+      },
+      "PlaylistVideo": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube video included in a playlist.",
+        "additionalProperties": false,
+        "properties": {
+          "playlistId": {
+            "description": "ID of the playlist that contains this video.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            ]
+          },
+          "id": {
+            "description": "Video ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/VideoId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Video URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Video title."
+          },
+          "author": {
+            "description": "Video author.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Author"
+              }
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "description": "Video duration.",
+            "format": "duration",
+            "nullable": true
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Video thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "PlaylistId": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube playlist ID.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw ID value."
+          }
+        }
+      },
+      "VideoId": {
+        "type": "object",
+        "description": "Represents a syntactically valid YouTube video ID.",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Raw ID value."
+          }
+        }
+      },
+      "Author": {
+        "type": "object",
+        "description": "Reference to a channel that owns a specific YouTube video or playlist.",
+        "additionalProperties": false,
+        "properties": {
+          "channelId": {
+            "description": "Channel ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            ]
+          },
+          "channelUrl": {
+            "type": "string",
+            "description": "Channel URL."
+          },
+          "channelTitle": {
+            "type": "string",
+            "description": "Channel title."
+          },
+          "title": {
+            "type": "string",
+            "description": "Channel title.",
+            "deprecated": true,
+            "x-deprecatedMessage": "Use ChannelTitle instead."
+          }
+        }
+      },
+      "Playlist": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube playlist.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Playlist ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Playlist URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Playlist title."
+          },
+          "author": {
+            "description": "Playlist author.",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Author"
+              }
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Playlist description."
+          },
+          "count": {
+            "type": "integer",
+            "description": "Total count of videos included in the playlist.",
+            "format": "int32",
+            "nullable": true
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Playlist thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "BatchOfPlaylistVideo": {
+        "type": "object",
+        "description": "Generic collection of items returned by a single request.",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Items included in the batch.",
+            "items": {
+              "$ref": "#/components/schemas/PlaylistVideo"
+            }
+          }
+        }
+      },
+      "ISearchResult": {
+        "type": "object",
+        "description": "    Abstract result returned by a search query.\n    Use pattern matching to handle specific instances of this type.\n\n\n    Can be either one of the following:\n    \n        \n        \n        \n    ",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Result URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Result title."
+          }
+        }
+      },
+      "VideoSearchResult": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube video returned by a search query.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Video ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/VideoId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Video URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Video title."
+          },
+          "author": {
+            "description": "Video author.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Author"
+              }
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "description": "Video duration.",
+            "format": "duration",
+            "nullable": true
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Video thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "PlaylistSearchResult": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube playlist returned by a search query.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Playlist ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PlaylistId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Playlist URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Playlist title."
+          },
+          "author": {
+            "description": "Playlist author.",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Author"
+              }
+            ]
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Playlist thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "ChannelSearchResult": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube channel returned by a search query.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Channel ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ChannelId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Channel URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Channel title."
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Channel thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          }
+        }
+      },
+      "BatchOfISearchResult": {
+        "type": "object",
+        "description": "Generic collection of items returned by a single request.",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Items included in the batch.",
+            "items": {
+              "$ref": "#/components/schemas/ISearchResult"
+            }
+          }
+        }
+      },
+      "SearchFilter": {
+        "type": "integer",
+        "description": "Filter applied to a YouTube search query.",
+        "x-enumNames": [
+          "None",
+          "Video",
+          "Playlist",
+          "Channel"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "Video": {
+        "type": "object",
+        "description": "Metadata associated with a YouTube video.",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Video ID.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/VideoId"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "Video URL."
+          },
+          "title": {
+            "type": "string",
+            "description": "Video title."
+          },
+          "author": {
+            "description": "Video author.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Author"
+              }
+            ]
+          },
+          "uploadDate": {
+            "type": "string",
+            "description": "Video upload date.",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string",
+            "description": "Video description."
+          },
+          "duration": {
+            "type": "string",
+            "description": "Video duration.",
+            "format": "duration",
+            "nullable": true
+          },
+          "thumbnails": {
+            "type": "array",
+            "description": "Video thumbnails.",
+            "items": {
+              "$ref": "#/components/schemas/Thumbnail"
+            }
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Available search keywords for the video.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "engagement": {
+            "description": "Engagement statistics for the video.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Engagement"
+              }
+            ]
+          }
+        }
+      },
+      "Engagement": {
+        "type": "object",
+        "description": "Engagement statistics.",
+        "additionalProperties": false,
+        "properties": {
+          "viewCount": {
+            "type": "integer",
+            "description": "View count.",
+            "format": "int64"
+          },
+          "likeCount": {
+            "type": "integer",
+            "description": "Like count.",
+            "format": "int64"
+          },
+          "dislikeCount": {
+            "type": "integer",
+            "description": "Dislike count.",
+            "format": "int64"
+          },
+          "averageRating": {
+            "type": "number",
+            "description": "Average rating.",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

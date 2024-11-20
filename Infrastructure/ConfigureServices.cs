@@ -20,20 +20,12 @@ public static class ConfigureServices
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
-        /*if (configuration.GetValue<bool>("UseInMemoryDatabase"))
-        {*/
+      
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(connectionString,
                 builder => builder.MigrationsAssembly(Assembly.GetAssembly(typeof(ApplicationDbContext))?.FullName)));
     
-    //options.UseInMemoryDatabase("CleanArchitectureDb"));
-        //}
-        /*else
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-        }*/
+   
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
@@ -42,27 +34,10 @@ public static class ConfigureServices
         services.AddTransient<IEmailSender<ApplicationUser>, MyEmailSender>();
 
 
-        /*services
-            .AddDefaultIdentity<ApplicationUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();*/
-        //.AddDefaultTokenProviders();
-
-        /*services.AddIdentityServer()
-            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();*/
-
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
-        /*services.AddAuthentication()
-            .AddIdentityServerJwt();*/
-
-        /*services.AddAuthorization(options =>
-            options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));*/
-
-        
-        
         services.AddAuthentication()
             .AddBearerToken(IdentityConstants.BearerScheme);
 
@@ -73,12 +48,7 @@ public static class ConfigureServices
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddApiEndpoints();
-/*#else
-        services
-            .AddDefaultIdentity<ApplicationUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-#endif*/
+
 
         services.AddSingleton(TimeProvider.System);
         services.AddTransient<IIdentityService, IdentityService>();

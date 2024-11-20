@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.Common;
 using CleanArchitecture.Infrastructure.Identity;
 using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
@@ -21,6 +22,10 @@ public sealed class ApplicationDbContext(
     public DbSet<TodoList> TodoLists => Set<TodoList>();
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+
+    public DbSet<UserPlaylist> UserPlaylists => Set<UserPlaylist>();
+
+    public DbSet<YoutubeVideo> YoutubeVideos => Set<YoutubeVideo>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

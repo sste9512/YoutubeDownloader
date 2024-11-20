@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CleanArchitecture.Domain.Entities;
 
 public sealed class YoutubeVideo : BaseAuditableEntity
 {
-    string VideoUrl { get; set; } 
-    string VideoFormat { get; set; }
-    byte[] Data { get; set; }
+    [MaxLength(50)] public string? VideoUrl { get; set; } 
+    [MaxLength(50)] public string? VideoFormat { get; set; }
+    public byte[]? Data { get; set; }
 }
