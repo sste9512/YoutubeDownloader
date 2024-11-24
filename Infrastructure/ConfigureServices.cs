@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using YoutubeExplode;
 
 namespace CleanArchitecture.Infrastructure;
 
@@ -17,22 +18,25 @@ public static class ConfigureServices
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddScoped<YoutubeClient>(x => new YoutubeClient());
+
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
-      
+
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(connectionString,
                 builder => builder.MigrationsAssembly(Assembly.GetAssembly(typeof(ApplicationDbContext))?.FullName)));
-    
-   
+
+        services.AddDbContext<ApplicationIdentityDbContext>(options =>
+            options.UseSqlite(connectionString,
+                builder => builder.MigrationsAssembly(Assembly.GetAssembly(typeof(ApplicationIdentityDbContext))?.FullName)));
+
+
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-
         services.AddScoped<ApplicationDbContextInitialiser>();
-
         services.AddTransient<IEmailSender<ApplicationUser>, MyEmailSender>();
-
 
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
@@ -46,7 +50,7 @@ public static class ConfigureServices
         services
             .AddIdentityCore<ApplicationUser>()
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
             .AddApiEndpoints();
 
 

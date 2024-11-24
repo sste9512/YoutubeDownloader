@@ -8,283 +8,280 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
-import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
-
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
+import axios, { AxiosError } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
 
 export interface IChannelClient {
-    get(channelId: ChannelId): Observable<Channel>;
-    getByUser(userName: UserName): Observable<Channel>;
-    getBySlug(channelSlug: ChannelSlug): Observable<Channel>;
-    getByHandle(channelHandle: ChannelHandle): Observable<Channel>;
-    getUploads(channelId: ChannelId): Observable<PlaylistVideo[]>;
+    get(channelId: ChannelId): Promise<Channel>;
+    getByUser(userName: UserName): Promise<Channel>;
+    getBySlug(channelSlug: ChannelSlug): Promise<Channel>;
+    getByHandle(channelHandle: ChannelHandle): Promise<Channel>;
+    getUploads(channelId: ChannelId): Promise<PlaylistVideo[]>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
 export class ChannelClient implements IChannelClient {
-    private http: HttpClient;
-    private baseUrl: string;
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
-    get(channelId: ChannelId): Observable<Channel> {
+    get(channelId: ChannelId, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Channel/Get";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGet(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGet(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGet(_response);
+        });
     }
 
-    protected processGet(response: HttpResponseBase): Observable<Channel> {
+    protected processGet(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getByUser(userName: UserName): Observable<Channel> {
+    getByUser(userName: UserName, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Channel/GetByUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(userName);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByUser(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByUser(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByUser(_response);
+        });
     }
 
-    protected processGetByUser(response: HttpResponseBase): Observable<Channel> {
+    protected processGetByUser(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getBySlug(channelSlug: ChannelSlug): Observable<Channel> {
+    getBySlug(channelSlug: ChannelSlug, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Channel/GetBySlug";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelSlug);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetBySlug(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetBySlug(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetBySlug(_response);
+        });
     }
 
-    protected processGetBySlug(response: HttpResponseBase): Observable<Channel> {
+    protected processGetBySlug(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getByHandle(channelHandle: ChannelHandle): Observable<Channel> {
+    getByHandle(channelHandle: ChannelHandle, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Channel/GetByHandle";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelHandle);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByHandle(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByHandle(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByHandle(_response);
+        });
     }
 
-    protected processGetByHandle(response: HttpResponseBase): Observable<Channel> {
+    protected processGetByHandle(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getUploads(channelId: ChannelId): Observable<PlaylistVideo[]> {
+    getUploads(channelId: ChannelId, cancelToken?: CancelToken): Promise<PlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Channel/GetUploads";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetUploads(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetUploads(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetUploads(_response);
+        });
     }
 
-    protected processGetUploads(response: HttpResponseBase): Observable<PlaylistVideo[]> {
+    protected processGetUploads(response: AxiosResponse): Promise<PlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -293,129 +290,129 @@ export class ChannelClient implements IChannelClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistVideo[]>(null as any);
     }
 }
 
 export interface IPlaylistClient {
-    get(playlistId: PlaylistId): Observable<Playlist>;
-    getVideos(playlistId: PlaylistId): Observable<PlaylistVideo[]>;
-    getVideoBatches(playlistId: PlaylistId): Observable<BatchOfPlaylistVideo[]>;
+    get(playlistId: PlaylistId): Promise<Playlist>;
+    getVideos(playlistId: PlaylistId): Promise<PlaylistVideo[]>;
+    getVideoBatches(playlistId: PlaylistId): Promise<BatchOfPlaylistVideo[]>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
 export class PlaylistClient implements IPlaylistClient {
-    private http: HttpClient;
-    private baseUrl: string;
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
-    get(playlistId: PlaylistId): Observable<Playlist> {
+    get(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<Playlist> {
         let url_ = this.baseUrl + "/api/Playlist/Get";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGet(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGet(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Playlist>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Playlist>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGet(_response);
+        });
     }
 
-    protected processGet(response: HttpResponseBase): Observable<Playlist> {
+    protected processGet(response: AxiosResponse): Promise<Playlist> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Playlist.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Playlist.fromJS(resultData200);
+            return Promise.resolve<Playlist>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Playlist>(null as any);
     }
 
-    getVideos(playlistId: PlaylistId): Observable<PlaylistVideo[]> {
+    getVideos(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<PlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Playlist/GetVideos";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideos(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideos(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideos(_response);
+        });
     }
 
-    protected processGetVideos(response: HttpResponseBase): Observable<PlaylistVideo[]> {
+    protected processGetVideos(response: AxiosResponse): Promise<PlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -424,57 +421,57 @@ export class PlaylistClient implements IPlaylistClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistVideo[]>(null as any);
     }
 
-    getVideoBatches(playlistId: PlaylistId): Observable<BatchOfPlaylistVideo[]> {
+    getVideoBatches(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<BatchOfPlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Playlist/GetVideoBatches";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideoBatches(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideoBatches(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<BatchOfPlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<BatchOfPlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideoBatches(_response);
+        });
     }
 
-    protected processGetVideoBatches(response: HttpResponseBase): Observable<BatchOfPlaylistVideo[]> {
+    protected processGetVideoBatches(response: AxiosResponse): Promise<BatchOfPlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -483,39 +480,38 @@ export class PlaylistClient implements IPlaylistClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<BatchOfPlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<BatchOfPlaylistVideo[]>(null as any);
     }
 }
 
 export interface ISearchClient {
-    getResults(searchQuery: string | undefined): Observable<ISearchResult[]>;
-    getVideos(searchQuery: string | undefined): Observable<VideoSearchResult[]>;
-    getPlaylists(searchQuery: string | undefined): Observable<PlaylistSearchResult[]>;
-    getChannels(searchQuery: string | undefined): Observable<ChannelSearchResult[]>;
-    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Observable<BatchOfISearchResult[]>;
+    getResults(searchQuery: string | undefined): Promise<ISearchResult[]>;
+    getVideos(searchQuery: string | undefined): Promise<VideoSearchResult[]>;
+    getPlaylists(searchQuery: string | undefined): Promise<PlaylistSearchResult[]>;
+    getChannels(searchQuery: string | undefined): Promise<ChannelSearchResult[]>;
+    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Promise<BatchOfISearchResult[]>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
 export class SearchClient implements ISearchClient {
-    private http: HttpClient;
-    private baseUrl: string;
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
-    getResults(searchQuery: string | undefined): Observable<ISearchResult[]> {
+    getResults(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<ISearchResult[]> {
         let url_ = this.baseUrl + "/api/Search/GetResults?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -523,39 +519,40 @@ export class SearchClient implements ISearchClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetResults(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetResults(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ISearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ISearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetResults(_response);
+        });
     }
 
-    protected processGetResults(response: HttpResponseBase): Observable<ISearchResult[]> {
+    protected processGetResults(response: AxiosResponse): Promise<ISearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -564,17 +561,16 @@ export class SearchClient implements ISearchClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<ISearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<ISearchResult[]>(null as any);
     }
 
-    getVideos(searchQuery: string | undefined): Observable<VideoSearchResult[]> {
+    getVideos(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<VideoSearchResult[]> {
         let url_ = this.baseUrl + "/api/Search/GetVideos?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -582,39 +578,40 @@ export class SearchClient implements ISearchClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideos(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideos(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<VideoSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<VideoSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideos(_response);
+        });
     }
 
-    protected processGetVideos(response: HttpResponseBase): Observable<VideoSearchResult[]> {
+    protected processGetVideos(response: AxiosResponse): Promise<VideoSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -623,17 +620,16 @@ export class SearchClient implements ISearchClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<VideoSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<VideoSearchResult[]>(null as any);
     }
 
-    getPlaylists(searchQuery: string | undefined): Observable<PlaylistSearchResult[]> {
+    getPlaylists(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<PlaylistSearchResult[]> {
         let url_ = this.baseUrl + "/api/Search/GetPlaylists?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -641,39 +637,40 @@ export class SearchClient implements ISearchClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetPlaylists(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetPlaylists(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetPlaylists(_response);
+        });
     }
 
-    protected processGetPlaylists(response: HttpResponseBase): Observable<PlaylistSearchResult[]> {
+    protected processGetPlaylists(response: AxiosResponse): Promise<PlaylistSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -682,17 +679,16 @@ export class SearchClient implements ISearchClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistSearchResult[]>(null as any);
     }
 
-    getChannels(searchQuery: string | undefined): Observable<ChannelSearchResult[]> {
+    getChannels(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<ChannelSearchResult[]> {
         let url_ = this.baseUrl + "/api/Search/GetChannels?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -700,39 +696,40 @@ export class SearchClient implements ISearchClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetChannels(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetChannels(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ChannelSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ChannelSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetChannels(_response);
+        });
     }
 
-    protected processGetChannels(response: HttpResponseBase): Observable<ChannelSearchResult[]> {
+    protected processGetChannels(response: AxiosResponse): Promise<ChannelSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -741,17 +738,16 @@ export class SearchClient implements ISearchClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<ChannelSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<ChannelSearchResult[]>(null as any);
     }
 
-    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Observable<BatchOfISearchResult[]> {
+    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined, cancelToken?: CancelToken): Promise<BatchOfISearchResult[]> {
         let url_ = this.baseUrl + "/api/Search/GetResultBatches?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -763,39 +759,40 @@ export class SearchClient implements ISearchClient {
             url_ += "searchFilter=" + encodeURIComponent("" + searchFilter) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetResultBatches(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetResultBatches(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<BatchOfISearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<BatchOfISearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetResultBatches(_response);
+        });
     }
 
-    protected processGetResultBatches(response: HttpResponseBase): Observable<BatchOfISearchResult[]> {
+    protected processGetResultBatches(response: AxiosResponse): Promise<BatchOfISearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -804,35 +801,34 @@ export class SearchClient implements ISearchClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<BatchOfISearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<BatchOfISearchResult[]>(null as any);
     }
 }
 
 export interface IVideoClient {
-    get(videoId: string | undefined): Observable<Video>;
+    get(videoId: string | undefined): Promise<Video>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
 export class VideoClient implements IVideoClient {
-    private http: HttpClient;
-    private baseUrl: string;
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
-    get(videoId: string | undefined): Observable<Video> {
+    get(videoId: string | undefined, cancelToken?: CancelToken): Promise<Video> {
         let url_ = this.baseUrl + "/api/Video/Get?";
         if (videoId === null)
             throw new Error("The parameter 'videoId' cannot be null.");
@@ -840,227 +836,228 @@ export class VideoClient implements IVideoClient {
             url_ += "videoId=" + encodeURIComponent("" + videoId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGet(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGet(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Video>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Video>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGet(_response);
+        });
     }
 
-    protected processGet(response: HttpResponseBase): Observable<Video> {
+    protected processGet(response: AxiosResponse): Promise<Video> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Video.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Video.fromJS(resultData200);
+            return Promise.resolve<Video>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Video>(null as any);
     }
 }
 
 export interface IYoutubeClient {
-    getByVideoId(videoId: VideoId): Observable<Video>;
-    getByPlayListId(playlistId: PlaylistId): Observable<Playlist>;
-    getVideosByPlayListId(playlistId: PlaylistId): Observable<PlaylistVideo[]>;
-    getVideoBatches(playlistId: PlaylistId): Observable<BatchOfPlaylistVideo[]>;
-    getByChannelId(channelId: ChannelId): Observable<Channel>;
-    getByUser(userName: UserName): Observable<Channel>;
-    getBySlug(channelSlug: ChannelSlug): Observable<Channel>;
-    getByHandle(channelHandle: ChannelHandle): Observable<Channel>;
-    getUploads(channelId: ChannelId): Observable<PlaylistVideo[]>;
-    getResults(searchQuery: string | undefined): Observable<ISearchResult[]>;
-    getVideos(searchQuery: string | undefined): Observable<VideoSearchResult[]>;
-    getPlaylists(searchQuery: string | undefined): Observable<PlaylistSearchResult[]>;
-    getChannels(searchQuery: string | undefined): Observable<ChannelSearchResult[]>;
-    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Observable<BatchOfISearchResult[]>;
-    getResultBatchesWithFilter(searchQuery: string | undefined): Observable<BatchOfISearchResult[]>;
+    getByVideoId(videoId: VideoId): Promise<Video>;
+    getByPlayListId(playlistId: PlaylistId): Promise<Playlist>;
+    getVideosByPlayListId(playlistId: PlaylistId): Promise<PlaylistVideo[]>;
+    getVideoBatches(playlistId: PlaylistId): Promise<BatchOfPlaylistVideo[]>;
+    getByChannelId(channelId: ChannelId): Promise<Channel>;
+    getByUser(userName: UserName): Promise<Channel>;
+    getBySlug(channelSlug: ChannelSlug): Promise<Channel>;
+    getByHandle(channelHandle: ChannelHandle): Promise<Channel>;
+    getUploads(channelId: ChannelId): Promise<PlaylistVideo[]>;
+    getResults(searchQuery: string | undefined): Promise<ISearchResult[]>;
+    getVideos(searchQuery: string | undefined): Promise<VideoSearchResult[]>;
+    getPlaylists(searchQuery: string | undefined): Promise<PlaylistSearchResult[]>;
+    getChannels(searchQuery: string | undefined): Promise<ChannelSearchResult[]>;
+    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Promise<BatchOfISearchResult[]>;
+    getResultBatchesWithFilter(searchQuery: string | undefined): Promise<BatchOfISearchResult[]>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
 export class YoutubeClient implements IYoutubeClient {
-    private http: HttpClient;
-    private baseUrl: string;
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
-    getByVideoId(videoId: VideoId): Observable<Video> {
+    getByVideoId(videoId: VideoId, cancelToken?: CancelToken): Promise<Video> {
         let url_ = this.baseUrl + "/api/Youtube/GetByVideoId";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(videoId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByVideoId(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByVideoId(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Video>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Video>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByVideoId(_response);
+        });
     }
 
-    protected processGetByVideoId(response: HttpResponseBase): Observable<Video> {
+    protected processGetByVideoId(response: AxiosResponse): Promise<Video> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Video.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Video.fromJS(resultData200);
+            return Promise.resolve<Video>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Video>(null as any);
     }
 
-    getByPlayListId(playlistId: PlaylistId): Observable<Playlist> {
+    getByPlayListId(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<Playlist> {
         let url_ = this.baseUrl + "/api/Youtube/GetByPlayListId";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByPlayListId(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByPlayListId(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Playlist>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Playlist>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByPlayListId(_response);
+        });
     }
 
-    protected processGetByPlayListId(response: HttpResponseBase): Observable<Playlist> {
+    protected processGetByPlayListId(response: AxiosResponse): Promise<Playlist> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Playlist.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Playlist.fromJS(resultData200);
+            return Promise.resolve<Playlist>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Playlist>(null as any);
     }
 
-    getVideosByPlayListId(playlistId: PlaylistId): Observable<PlaylistVideo[]> {
+    getVideosByPlayListId(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<PlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetVideosByPlayListId";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideosByPlayListId(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideosByPlayListId(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideosByPlayListId(_response);
+        });
     }
 
-    protected processGetVideosByPlayListId(response: HttpResponseBase): Observable<PlaylistVideo[]> {
+    protected processGetVideosByPlayListId(response: AxiosResponse): Promise<PlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1069,57 +1066,57 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistVideo[]>(null as any);
     }
 
-    getVideoBatches(playlistId: PlaylistId): Observable<BatchOfPlaylistVideo[]> {
+    getVideoBatches(playlistId: PlaylistId, cancelToken?: CancelToken): Promise<BatchOfPlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetVideoBatches";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(playlistId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideoBatches(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideoBatches(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<BatchOfPlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<BatchOfPlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideoBatches(_response);
+        });
     }
 
-    protected processGetVideoBatches(response: HttpResponseBase): Observable<BatchOfPlaylistVideo[]> {
+    protected processGetVideoBatches(response: AxiosResponse): Promise<BatchOfPlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1128,265 +1125,265 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<BatchOfPlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<BatchOfPlaylistVideo[]>(null as any);
     }
 
-    getByChannelId(channelId: ChannelId): Observable<Channel> {
+    getByChannelId(channelId: ChannelId, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Youtube/GetByChannelId";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByChannelId(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByChannelId(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByChannelId(_response);
+        });
     }
 
-    protected processGetByChannelId(response: HttpResponseBase): Observable<Channel> {
+    protected processGetByChannelId(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getByUser(userName: UserName): Observable<Channel> {
+    getByUser(userName: UserName, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Youtube/GetByUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(userName);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByUser(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByUser(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByUser(_response);
+        });
     }
 
-    protected processGetByUser(response: HttpResponseBase): Observable<Channel> {
+    protected processGetByUser(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getBySlug(channelSlug: ChannelSlug): Observable<Channel> {
+    getBySlug(channelSlug: ChannelSlug, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Youtube/GetBySlug";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelSlug);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetBySlug(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetBySlug(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetBySlug(_response);
+        });
     }
 
-    protected processGetBySlug(response: HttpResponseBase): Observable<Channel> {
+    protected processGetBySlug(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getByHandle(channelHandle: ChannelHandle): Observable<Channel> {
+    getByHandle(channelHandle: ChannelHandle, cancelToken?: CancelToken): Promise<Channel> {
         let url_ = this.baseUrl + "/api/Youtube/GetByHandle";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelHandle);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetByHandle(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetByHandle(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<Channel>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<Channel>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetByHandle(_response);
+        });
     }
 
-    protected processGetByHandle(response: HttpResponseBase): Observable<Channel> {
+    protected processGetByHandle(response: AxiosResponse): Promise<Channel> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Channel.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
         }
-        return _observableOf(null as any);
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = Channel.fromJS(resultData200);
+            return Promise.resolve<Channel>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Channel>(null as any);
     }
 
-    getUploads(channelId: ChannelId): Observable<PlaylistVideo[]> {
+    getUploads(channelId: ChannelId, cancelToken?: CancelToken): Promise<PlaylistVideo[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetUploads";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(channelId);
 
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "GET",
+            url: url_,
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetUploads(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetUploads(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistVideo[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistVideo[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetUploads(_response);
+        });
     }
 
-    protected processGetUploads(response: HttpResponseBase): Observable<PlaylistVideo[]> {
+    protected processGetUploads(response: AxiosResponse): Promise<PlaylistVideo[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1395,17 +1392,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistVideo[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistVideo[]>(null as any);
     }
 
-    getResults(searchQuery: string | undefined): Observable<ISearchResult[]> {
+    getResults(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<ISearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetResults?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1413,39 +1409,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetResults(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetResults(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ISearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ISearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetResults(_response);
+        });
     }
 
-    protected processGetResults(response: HttpResponseBase): Observable<ISearchResult[]> {
+    protected processGetResults(response: AxiosResponse): Promise<ISearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1454,17 +1451,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<ISearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<ISearchResult[]>(null as any);
     }
 
-    getVideos(searchQuery: string | undefined): Observable<VideoSearchResult[]> {
+    getVideos(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<VideoSearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetVideos?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1472,39 +1468,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetVideos(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetVideos(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<VideoSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<VideoSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetVideos(_response);
+        });
     }
 
-    protected processGetVideos(response: HttpResponseBase): Observable<VideoSearchResult[]> {
+    protected processGetVideos(response: AxiosResponse): Promise<VideoSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1513,17 +1510,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<VideoSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<VideoSearchResult[]>(null as any);
     }
 
-    getPlaylists(searchQuery: string | undefined): Observable<PlaylistSearchResult[]> {
+    getPlaylists(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<PlaylistSearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetPlaylists?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1531,39 +1527,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetPlaylists(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetPlaylists(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<PlaylistSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<PlaylistSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetPlaylists(_response);
+        });
     }
 
-    protected processGetPlaylists(response: HttpResponseBase): Observable<PlaylistSearchResult[]> {
+    protected processGetPlaylists(response: AxiosResponse): Promise<PlaylistSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1572,17 +1569,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<PlaylistSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<PlaylistSearchResult[]>(null as any);
     }
 
-    getChannels(searchQuery: string | undefined): Observable<ChannelSearchResult[]> {
+    getChannels(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<ChannelSearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetChannels?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1590,39 +1586,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetChannels(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetChannels(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ChannelSearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ChannelSearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetChannels(_response);
+        });
     }
 
-    protected processGetChannels(response: HttpResponseBase): Observable<ChannelSearchResult[]> {
+    protected processGetChannels(response: AxiosResponse): Promise<ChannelSearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1631,17 +1628,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<ChannelSearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<ChannelSearchResult[]>(null as any);
     }
 
-    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined): Observable<BatchOfISearchResult[]> {
+    getResultBatches(searchQuery: string | undefined, searchFilter: SearchFilter | undefined, cancelToken?: CancelToken): Promise<BatchOfISearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetResultBatches?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1653,39 +1649,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchFilter=" + encodeURIComponent("" + searchFilter) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetResultBatches(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetResultBatches(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<BatchOfISearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<BatchOfISearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetResultBatches(_response);
+        });
     }
 
-    protected processGetResultBatches(response: HttpResponseBase): Observable<BatchOfISearchResult[]> {
+    protected processGetResultBatches(response: AxiosResponse): Promise<BatchOfISearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1694,17 +1691,16 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<BatchOfISearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<BatchOfISearchResult[]>(null as any);
     }
 
-    getResultBatchesWithFilter(searchQuery: string | undefined): Observable<BatchOfISearchResult[]> {
+    getResultBatchesWithFilter(searchQuery: string | undefined, cancelToken?: CancelToken): Promise<BatchOfISearchResult[]> {
         let url_ = this.baseUrl + "/api/Youtube/GetResultBatchesWithFilter?";
         if (searchQuery === null)
             throw new Error("The parameter 'searchQuery' cannot be null.");
@@ -1712,39 +1708,40 @@ export class YoutubeClient implements IYoutubeClient {
             url_ += "searchQuery=" + encodeURIComponent("" + searchQuery) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
                 "Accept": "application/json"
-            })
+            },
+            cancelToken
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetResultBatchesWithFilter(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetResultBatchesWithFilter(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<BatchOfISearchResult[]>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<BatchOfISearchResult[]>;
-        }));
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetResultBatchesWithFilter(_response);
+        });
     }
 
-    protected processGetResultBatchesWithFilter(response: HttpResponseBase): Observable<BatchOfISearchResult[]> {
+    protected processGetResultBatchesWithFilter(response: AxiosResponse): Promise<BatchOfISearchResult[]> {
         const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200  = _responseText;
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
@@ -1753,14 +1750,13 @@ export class YoutubeClient implements IYoutubeClient {
             else {
                 result200 = <any>null;
             }
-            return _observableOf(result200);
-            }));
+            return Promise.resolve<BatchOfISearchResult[]>(result200);
+
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
         }
-        return _observableOf(null as any);
+        return Promise.resolve<BatchOfISearchResult[]>(null as any);
     }
 }
 
@@ -2950,25 +2946,13 @@ export class SwaggerException extends Error {
     }
 }
 
-function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
+function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): any {
     if (result !== null && result !== undefined)
-        return _observableThrow(result);
+        throw result;
     else
-        return _observableThrow(new SwaggerException(message, status, response, headers, null));
+        throw new SwaggerException(message, status, response, headers, null);
 }
 
-function blobToText(blob: any): Observable<string> {
-    return new Observable<string>((observer: any) => {
-        if (!blob) {
-            observer.next("");
-            observer.complete();
-        } else {
-            let reader = new FileReader();
-            reader.onload = event => {
-                observer.next((event.target as any).result);
-                observer.complete();
-            };
-            reader.readAsText(blob);
-        }
-    });
+function isAxiosError(obj: any): obj is AxiosError {
+    return obj && obj.isAxiosError === true;
 }

@@ -10,7 +10,7 @@ public sealed class ApplicationDbContextInitialiser(
     ILogger<ApplicationDbContextInitialiser> logger,
     ApplicationDbContext context,
     UserManager<ApplicationUser> userManager,
-    RoleManager<IdentityRole> roleManager)
+    RoleManager<IdentityRole> roleManager, ApplicationIdentityDbContext applicationIdentityDbContext)
 {
     public async Task InitialiseAsync()
     {
@@ -47,6 +47,23 @@ public sealed class ApplicationDbContextInitialiser(
         {
             await roleManager.CreateAsync(administratorRole);
         }
+        // Add claims to administrator role
+        var claims = new[]
+        {
+            new System.Security.Claims.Claim("Permission", "ManageUsers"),
+            new System.Security.Claims.Claim("Permission", "ManageRoles"),
+            new System.Security.Claims.Claim("Permission", "ManagePlaylists"),
+            new System.Security.Claims.Claim("Permission", "ViewAllPlaylists"),
+            new System.Security.Claims.Claim("Permission", "DeleteAllPlaylists")
+        };
+
+        foreach (var claim in claims)
+        {
+            if (!roleManager.GetClaimsAsync(administratorRole).Result.Any(c => c.Type == claim.Type && c.Value == claim.Value))
+            {
+                await roleManager.AddClaimAsync(administratorRole, claim);
+            }
+        }
 
         // Default users
         var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
@@ -56,7 +73,7 @@ public sealed class ApplicationDbContextInitialiser(
             await userManager.CreateAsync(administrator, "Administrator1!");
             if (!string.IsNullOrWhiteSpace(administratorRole.Name))
             {
-                await userManager.AddToRolesAsync(administrator, new [] { administratorRole.Name });
+                await userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
             }
         }
 

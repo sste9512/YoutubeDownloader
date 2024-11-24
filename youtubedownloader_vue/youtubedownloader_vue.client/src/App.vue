@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/YoutubeSearchBar.vue'
-import AppLayout from "@/components/AppLayout.vue";
+import AppLayout from "./components/layouts/AppLayout.vue";
 </script>
 
 <template>
 
 
   <main>
-    <AppLayout />
+    <AppLayout></AppLayout>
   </main>
 </template>
 

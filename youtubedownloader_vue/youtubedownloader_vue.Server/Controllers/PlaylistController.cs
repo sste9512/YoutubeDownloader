@@ -7,7 +7,7 @@ using YoutubeExplode.Playlists;
 namespace youtubedownloader_vue.Server.Controllers;
 
 public sealed class PlaylistController(YoutubeClient youtubeClient) : ApiControllerBase
-{ 
+{
     [HttpGet("[action]")]
     public async ValueTask<Playlist> GetAsync(PlaylistId playlistId, CancellationToken cancellationToken)
     {
@@ -24,7 +24,7 @@ public sealed class PlaylistController(YoutubeClient youtubeClient) : ApiControl
     public async IAsyncEnumerable<Batch<PlaylistVideo>> GetVideoBatchesAsync(PlaylistId playlistId,
         [EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        await foreach(var batch in youtubeClient.Playlists.GetVideoBatchesAsync(playlistId, cancellationToken))
+        await foreach (var batch in youtubeClient.Playlists.GetVideoBatchesAsync(playlistId, cancellationToken))
         {
             yield return batch;
         }

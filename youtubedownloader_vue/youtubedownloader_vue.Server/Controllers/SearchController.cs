@@ -38,22 +38,10 @@ public sealed class SearchController(YoutubeClient youtubeClient) : ApiControlle
     public async IAsyncEnumerable<Batch<ISearchResult>> GetResultBatchesAsync(string searchQuery, SearchFilter searchFilter,
         [EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        await foreach(var batch in youtubeClient.Search.GetResultBatchesAsync(searchQuery, searchFilter, cancellationToken))
+        await foreach (var batch in youtubeClient.Search.GetResultBatchesAsync(searchQuery, searchFilter, cancellationToken))
         {
             yield return batch;
         }
         //return youtubeClient.Search.GetResultBatchesAsync(searchQuery, searchFilter, cancellationToken);
     }
-
-    /*
-    [HttpGet("[action]")]
-    public async IAsyncEnumerable<Batch<ISearchResult>> GetResultBatchesAsync(string searchQuery,
-        [EnumeratorCancellation] CancellationToken cancellationToken)
-    {
-        await foreach(var batch in youtubeClient.Search.GetResultBatchesAsync(searchQuery, cancellationToken))
-        {
-            yield return batch;
-        }
-        //return youtubeClient.Search.GetResultBatchesAsync(searchQuery, cancellationToken);
-    }*/
 }
