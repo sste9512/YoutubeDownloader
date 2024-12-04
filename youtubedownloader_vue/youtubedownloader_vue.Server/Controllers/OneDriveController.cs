@@ -23,9 +23,11 @@ public sealed class OneDriveController : ApiControllerBase
         try
         {
             if (file == null || file.Length == 0)
+            {
                 return BadRequest("No file uploaded");
+            }
 
-            using var stream = file.OpenReadStream();
+            await using var stream = file.OpenReadStream();
             var driveItem = await _graphClient.Me.Drive.GetAsync();
 
             driveItem.Root.Children.Add(new DriveItem
@@ -56,7 +58,7 @@ public sealed class OneDriveController : ApiControllerBase
         }
     }
 
-    [HttpGet("[action]/{fileId}")]
+    /*[HttpGet("[action]/{fileId}")]
     public async Task<ActionResult> DownloadFile(string fileId)
     {
         try
@@ -76,7 +78,7 @@ public sealed class OneDriveController : ApiControllerBase
         {
             return StatusCode(500, $"Error downloading file: {ex.Message}");
         }
-    }
+    }*/
 
     [HttpGet("[action]")]
     public async Task<ActionResult<IEnumerable<DriveItem>>> ListFiles()

@@ -8,7 +8,7 @@ import AppLayout from "./components/layouts/AppLayout.vue";
 
 
   <main>
-    <AppLayout></AppLayout>
+    <router-view></router-view>
   </main>
 </template>
 

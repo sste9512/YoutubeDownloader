@@ -9,6 +9,7 @@ import * as directives from 'vuetify/directives'
 import { container } from "tsyringe";
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 // Components
 import App from './App.vue'
@@ -16,6 +17,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import type { IChannelClient, IPlaylistClient, ISearchClient, IVideoClient, IYoutubeClient } from "@/data/web-api-client";
 import { ChannelClient, VideoClient, PlaylistClient, SearchClient, YoutubeClient } from "@/data/web-api-client";
+import router from './router';
 
 const vuetify = createVuetify({
   components,
@@ -126,7 +128,9 @@ const pinia = createPinia();
 browserLogger.info("Creating app");
 const app = createApp(App);
 
+
 app.use(pinia)
+app.use(router)
 app.use(vuetify)
 app.mount('#app')
 

@@ -128,9 +128,7 @@ export default {
       // TODO: Implement search logic
       this.loading = true;
       const searchResults = await this.searchStore.searchVideo(this.youtubeUrl);
-
       if (searchResults.ok) {
-
         this.loading = false;
       }
       else {

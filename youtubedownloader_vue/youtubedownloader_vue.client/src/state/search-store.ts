@@ -26,12 +26,6 @@ import { browserLogger } from "@/main";
 
 
 
-
-
-
-
-
-
 /**
  * Store for managing search state and operations
  */
@@ -141,7 +135,7 @@ export const useSearchStore = defineStore('search', {
         videoResults: (state) => state.searchResults.filter(r => r.url?.includes('Video')),
 
         /**
-         * Returns only playlist results 
+         * Returns only playlist results
          */
         playlistResults: (state) => state.searchResults.filter(r => r.url?.includes('Playlist')),
 
