@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0-windows</TargetFramework>
         <RootNamespace>YoutubeDownloader_WPFCore</RootNamespace>
         <Nullable>enable</Nullable>
@@ -11,10 +11,8 @@
 
     <ItemGroup>
       <Folder Include="Core\Creational\" />
-      <Folder Include="Core\Structural\" />
       <Folder Include="Data\" />
       <Folder Include="Features\MainWindow\" />
-      <Folder Include="Resources\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +25,8 @@
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
       <PackageReference Include="YoutubeExplode" Version="4.2.0" />
+      <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+      <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     </ItemGroup>
 
     <ItemGroup>
@@ -62,6 +62,13 @@
         <DependentUpon>MainWindow.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\icons\close_icon.png" />
+      <Resource Include="Resources\icons\minimize_icon.png" />
+      <Resource Include="Resources\icons\resize_icon.png" />
+      <Resource Include="Resources\icons\search_icon.png" />
     </ItemGroup>
 
 </Project>

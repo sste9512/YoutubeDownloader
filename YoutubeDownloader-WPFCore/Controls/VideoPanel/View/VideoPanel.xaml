@@ -3,22 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel">
     <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="5,5,5,5">
 
         <Border CornerRadius="3,3,3,3" Background="LightGray" Margin="0,5,0,5" Padding="3,3,3,3">
             <StackPanel Orientation="Horizontal">
 
-                <TextBox Name="UrlInput" Margin="10,10,10,10" Width="425" />
+                <TextBox Name="UrlInput" 
+                         Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10,10,10,10" 
+                         Width="425" />
 
                 <Button     Margin="5,5,5,5"
                             BorderBrush="Transparent"
                             Background="Transparent"
                             materialDesign:ElevationAssist.Elevation="Dp0"
-                            Name="QueryVideoButton">
+                            Name="QueryVideoButton"
+                            Command="{Binding SearchCommand}">
 
                     <StackPanel>
-                        <Image Source="/Resources/search_icon.png"
+                        <Image Source="/Resources/icons/search_icon.png"
                                Width="25"
                                Height="25"
                                Margin="0,0,0,0" />
