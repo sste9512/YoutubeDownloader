@@ -6,17 +6,24 @@ namespace YoutubeDownloader_WPFCore.Controls.PlayList.View;
 
 public partial class PlayListControl : UserControl
 {
-    private readonly PlayListControlViewModel _viewModel;
+    private PlayListControlViewModel? _viewModel;
 
     public PlayListControl()
     {
         InitializeComponent();
-        _viewModel = new PlayListControlViewModel();
+    }
+
+    public void SetViewModel(PlayListControlViewModel viewModel)
+    {
+        _viewModel = viewModel;
         DataContext = _viewModel;
     }
 
     public async void InitPlayListFromUrl(string playListUrl, YoutubeClient client)
     {
-        await _viewModel.LoadPlaylistFromUrl(playListUrl, client);
+        if (_viewModel != null)
+        {
+            await _viewModel.LoadPlaylistFromUrl(playListUrl, client);
+        }
     }
 }

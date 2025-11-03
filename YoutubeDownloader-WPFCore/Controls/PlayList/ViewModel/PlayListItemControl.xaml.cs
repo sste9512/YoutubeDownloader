@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
 
@@ -9,14 +10,14 @@ public partial class PlayListItemControl : UserControl
 {
     public PlayListItemControl()
     {
-            InitializeComponent();
-            this.MouseEnter += (s, e) =>
-            {
-                //decoBorder.Background = Brushes.DarkGray;
-            };
-            this.MouseLeave += (s, e) =>
-            {
-                // decoBorder.Background = Brushes.Transparent;
-            };
-        }
+        InitializeComponent();
+        this.MouseEnter += (_, _) =>
+        {
+            DecoBorder.Background = new SolidColorBrush(Color.FromRgb(60, 60, 60));
+        };
+        this.MouseLeave += (_, _) =>
+        {
+            DecoBorder.Background = Brushes.Transparent;
+        };
+    }
 }
