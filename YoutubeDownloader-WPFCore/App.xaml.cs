@@ -9,6 +9,7 @@ using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.UserPlayListPanel.View;
 using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.View;
+using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.VideoPanel.View;
 
 namespace YoutubeDownloader_WPFCore;
@@ -34,7 +35,7 @@ public partial class App : PrismApplication
         // ViewModelLocationProvider.Register<MainWindow, MainWindowViewModel>();
         ViewModelLocationProvider.Register<VideoPanel, VideoPanelViewModel>();
         ViewModelLocationProvider.Register<PlayListControl, PlayListControlViewModel>();
-        // ViewModelLocationProvider.Register<VideoInfoPanel, VideoInfoPanelViewModel>();
+        ViewModelLocationProvider.Register<VideoInfoPanel, VideoInfoPanelViewModel>();
         // ViewModelLocationProvider.Register<UserPlayListPanel, UserPlayListPanelViewModel>();
 
         // Register Prism's EventAggregator as singleton (should be auto-registered, but explicit for clarity)
@@ -47,7 +48,7 @@ public partial class App : PrismApplication
         //   containerRegistry.Register<MainWindowViewModel>();
         containerRegistry.Register<VideoPanelViewModel>();
         containerRegistry.Register<PlayListControlViewModel>();
-        // containerRegistry.Register<VideoInfoPanelViewModel>();
+        containerRegistry.Register<VideoInfoPanelViewModel>();
         //   containerRegistry.Register<UserPlayListPanelViewModel>();
     }
 

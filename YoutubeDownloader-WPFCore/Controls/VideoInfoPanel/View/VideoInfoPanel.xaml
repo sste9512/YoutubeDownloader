@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <StackPanel Orientation="Vertical"
@@ -12,14 +14,13 @@
                       MaxHeight="620"
                       Margin="5,5,5,5">
             <StackPanel Orientation="Vertical">
-                <Label Content="Video Title"
+                <Label Content="{Binding VideoTitle}"
                        Foreground="Black"
                        FontSize="20"
-                       Name="VideoTitle"
                        FontWeight="DemiBold" />
                 <StackPanel Orientation="Horizontal">
 
-                    <Image Name="VideoThumbnail"
+                    <Image Source="{Binding VideoThumbnail}"
                            Width="150"
                            Height="100"
                            HorizontalAlignment="Left" />
@@ -35,8 +36,7 @@
                                                      Width="25"
                                                      Height="25"
                                                      VerticalAlignment="Center" />
-                            <Label Content="Likes"
-                                   Name="LikesCount"
+                            <Label Content="{Binding LikesCount}"
                                    Foreground="Gray"
                                    FontSize="12"
                                    VerticalAlignment="Center"
@@ -55,8 +55,7 @@
                                                      Width="25"
                                                      Height="25"
                                                      VerticalAlignment="Center" />
-                            <Label Content=" ThumbDown "
-                                   Name="DislikesCount"
+                            <Label Content="{Binding DislikesCount}"
                                    Foreground="Gray"
                                    FontSize="12"
                                    VerticalAlignment="Center"
@@ -65,8 +64,7 @@
                                    Height="auto" />
                         </StackPanel>
 
-                        <Label Content="Views"
-                               Name="ViewCount"
+                        <Label Content="{Binding ViewCount}"
                                Foreground="Gray"
                                FontSize="12"
                                HorizontalAlignment="Left"
@@ -75,24 +73,23 @@
                     </StackPanel>
                 </StackPanel>
 
-                <Label Content="Author" Foreground="Black" Name="VideoAuthor" FontSize="14" />
-                <Label Content="Published Date" Foreground="LightGray" FontSize="12" Name="VideoPublishedDate" />
-                <Label Content="Caption" Foreground="Black" Name="VideoDesciption" />
-                <Label Content="Author" Foreground="Black" />
+                <Label Content="{Binding VideoAuthor}" Foreground="Black" FontSize="14" />
+                <Label Content="{Binding VideoPublishedDate}" Foreground="LightGray" FontSize="12" />
+                <Label Content="{Binding VideoDescription}" Foreground="Black" />
 
                 <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5" />
 
                 <Label Content="Video Info" Foreground="Black" FontSize="19" FontWeight="DemiBold" />
-                <Label Content="Duration" Foreground="DarkGray" Name="VideoDuration" />
-                <Label Content="URL" Foreground="DarkGray" Name="VideoUrl" />
-                <Label Content="File Type" Foreground="DarkGray" Name="VideoExtension" />
+                <Label Content="{Binding VideoDuration}" Foreground="DarkGray" />
+                <Label Content="{Binding VideoUrl}" Foreground="DarkGray" />
+                <Label Content="{Binding VideoExtension}" Foreground="DarkGray" />
 
                 <Separator Background="DarkGray" Height="0.7" Margin="5,5,5,5" />
 
                 <Label Content="Availability" Foreground="Black" FontSize="17" />
-                <Label Content="Video Only" Foreground="DarkGray" Name="VideoAvailable" />
-                <Label Content="Sound Only" Foreground="DarkGray" Name="SoundAvailable" />
-                <Label Content="Mixed" Foreground="DarkGray" Name="MixedAvailable" />
+                <Label Content="{Binding VideoAvailable}" Foreground="DarkGray" />
+                <Label Content="{Binding SoundAvailable}" Foreground="DarkGray" />
+                <Label Content="{Binding MixedAvailable}" Foreground="DarkGray" />
             </StackPanel>
         </ScrollViewer>
 
@@ -103,7 +100,7 @@
                 Width="260"
                 BorderBrush="Transparent"
                 materialDesign:ElevationAssist.Elevation="Dp8"
-                Name="DownloadButton">
+                Command="{Binding DownloadVideoCommand}">
             <Button.ToolTip>
 
                 <ToolTip Background="#212121" BorderBrush="CadetBlue" BorderThickness="1" Padding="12,12,12,12"
@@ -150,7 +147,7 @@
                 Height="50"
                 Width="260"
                 BorderBrush="Transparent"
-
+                Command="{Binding DownloadAndAddToPlaylistCommand}"
                 materialDesign:ElevationAssist.Elevation="Dp2">
             <Button.ToolTip>
 

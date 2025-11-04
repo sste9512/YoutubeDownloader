@@ -20,7 +20,6 @@ public class WindowModule : Module
                 x.Instance.InitializeComponent();
                 x.Instance.CloseButton.Click += (sender, args) => { x.Instance.Close(); };
                 x.Instance.RootWindow.MouseDown += (sender, args) => { x.Instance.DragMove(); };
-                x.Instance.VideoInfoPanel.DownloadButton.Click += x.Instance.DownloadVideo;
                 x.Instance.MenuPanel.ManageProjectsMenuItem.Click += x.Instance.OpenProjectsPath_Click;
             })
             .SingleInstance();
