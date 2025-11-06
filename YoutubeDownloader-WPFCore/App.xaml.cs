@@ -41,8 +41,13 @@ public partial class App : PrismApplication
         // Register Prism's EventAggregator as singleton (should be auto-registered, but explicit for clarity)
         containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
 
-        // Register YoutubeClient as singleton
-        containerRegistry.RegisterSingleton<YoutubeClient>();
+        // Register YoutubeClient as a singleton instance with cookies disabled to avoid empty-domain cookie errors
+        var ytHandler = new System.Net.Http.SocketsHttpHandler
+        {
+            UseCookies = false
+        };
+        var ytHttpClient = new System.Net.Http.HttpClient(ytHandler);
+        containerRegistry.RegisterInstance(new YoutubeClient(ytHttpClient));
 
         // Register ViewModels for dependency injection
         //   containerRegistry.Register<MainWindowViewModel>();
