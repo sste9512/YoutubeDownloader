@@ -13,7 +13,5 @@ public partial class VideoPanel : UserControl
     public VideoPanel()
     {
         InitializeComponent();
-     
-         
     }
 }

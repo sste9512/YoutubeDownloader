@@ -1,5 +1,5 @@
 using Prism.Events;
-using YoutubeExplode.Models;
+using YoutubeExplode.Videos;
 
 namespace YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 

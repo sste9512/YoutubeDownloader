@@ -7,21 +7,25 @@
              mc:Ignorable="d"
              Width="360">
     <Border CornerRadius="2,2,2,2" Background="Transparent" Name="DecoBorder">
-    <StackPanel Orientation="Horizontal">
-        <Label Height="30" Width="30" Name="NumberLabel" Margin="5,5,5,5" Foreground="White" Content="{Binding Number}" />
-        <Image Height="85" Width="130" Name="VideoThumbnail" Margin="0,0,0,0" Stretch="Fill">
-            <Image.Source>
-                <BitmapImage UriSource="{Binding ThumbnailUrl}" />
-            </Image.Source>
-        </Image>
-        <StackPanel Orientation="Vertical">
-            <Label Foreground="White" Name="VideoTitle" Content="{Binding Title}" />
-            <Label Foreground="White" Name="VideoAuthor" Content="{Binding Author}" />
-        </StackPanel>
-        <Label Foreground="Gray" Name="VideoDuration" Content="{Binding Duration}" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="10" />
-            <Button Background="Transparent" materialDesign:ElevationAssist.Elevation="Dp8" Margin="30,5,5,5" BorderBrush="Transparent">
-            <materialDesign:PackIcon Kind="DotsHorizontal" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
-           </Button>
+        <StackPanel Orientation="Horizontal">
+            <Label Height="30" Width="30" Name="NumberLabel" Margin="5,5,5,5" Foreground="White"
+                   Content="{Binding Number}" />
+            <Image Height="85" Width="130" Name="VideoThumbnail" Margin="0,0,0,0" Stretch="Fill">
+                <Image.Source>
+                    <BitmapImage UriSource="{Binding ThumbnailUrl}" />
+                </Image.Source>
+            </Image>
+            <StackPanel Orientation="Vertical">
+                <Label Foreground="White" Name="VideoTitle" Content="{Binding Title}" />
+                <Label Foreground="White" Name="VideoAuthor" Content="{Binding Author}" />
             </StackPanel>
+            <Label Foreground="Gray" Name="VideoDuration" Content="{Binding Duration}" VerticalAlignment="Center"
+                   Margin="20,5,5,5" FontSize="10" />
+            <Button Background="Transparent" materialDesign:ElevationAssist.Elevation="Dp8" Margin="30,5,5,5"
+                    BorderBrush="Transparent">
+                <materialDesign:PackIcon Kind="DotsHorizontal" Opacity="1" Foreground="White" Width="25" Height="25"
+                                         VerticalAlignment="Center" />
+            </Button>
+        </StackPanel>
     </Border>
 </UserControl>

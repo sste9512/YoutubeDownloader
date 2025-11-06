@@ -6,14 +6,14 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using YoutubeExplode;
-using YoutubeExplode.Models;
-using YoutubeExplode.Models.MediaStreams;
+using YoutubeExplode.Playlists;
+using YoutubeExplode.Videos;
 
 namespace YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
 
 public class PlayListItemViewModel : BindableBase
 {
-    private readonly Video _video;
+    private readonly PlaylistVideo _video;
     private readonly IEventAggregator _eventAggregator;
     private readonly YoutubeClient _youtubeClient;
 
@@ -26,7 +26,7 @@ public class PlayListItemViewModel : BindableBase
     private double _downloadProgress;
     private bool _isDownloaded;
 
-    public PlayListItemViewModel(Video video, int number, IEventAggregator eventAggregator, YoutubeClient youtubeClient)
+    public PlayListItemViewModel(PlaylistVideo video, int number, IEventAggregator eventAggregator, YoutubeClient youtubeClient)
     {
         _video = video ?? throw new ArgumentNullException(nameof(video));
         _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
@@ -34,16 +34,16 @@ public class PlayListItemViewModel : BindableBase
 
         _number = number;
         _title = video.Title;
-        _author = video.Author;
-        _thumbnailUrl = video.Thumbnails.MediumResUrl;
-        _duration = FormatDuration(video.Duration);
+        _author = video.Author.ChannelTitle;
+        _thumbnailUrl = video.Thumbnails[0].Url;
+        _duration = FormatDuration(video.Duration.Value);
 
         DownloadVideoCommand = new DelegateCommand(async () => await DownloadVideoAsync(), CanDownloadVideo);
         PlayVideoCommand = new DelegateCommand(PlayVideo, CanPlayVideo);
         ShowDetailsCommand = new DelegateCommand(ShowDetails);
     }
 
-    public Video Video => _video;
+    public PlaylistVideo Video => _video;
 
     public int Number
     {
@@ -131,10 +131,11 @@ public class PlayListItemViewModel : BindableBase
             DownloadProgress = 0;
 
             var videoId = _video.Id;
-            var streamManifest = await _youtubeClient.GetVideoMediaStreamInfosAsync(videoId);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoId);
+           
 
             // Get the best muxed stream (video + audio)
-            var streamInfo = streamManifest.Muxed.WithHighestVideoQuality();
+            var streamInfo = streamManifest.GetMuxedStreams();
 
             if (streamInfo != null)
             {
@@ -142,7 +143,7 @@ public class PlayListItemViewModel : BindableBase
                 var sanitizedTitle = string.Join("_", Title.Split(Path.GetInvalidFileNameChars()));
                 var outputFilePath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyVideos),
-                    $"{sanitizedTitle}.{streamInfo.Container.GetFileExtension()}"
+                    $"{sanitizedTitle}.{streamInfo.First().Url}"
                 );
 
                 // Download with progress tracking
@@ -151,7 +152,7 @@ public class PlayListItemViewModel : BindableBase
                     DownloadProgress = p * 100;
                 });
 
-                await _youtubeClient.DownloadMediaStreamAsync(streamInfo, outputFilePath, progress);
+                await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo.First(), outputFilePath, progress);
 
                 IsDownloaded = true;
                 Debug.WriteLine($"Downloaded: {Title}");

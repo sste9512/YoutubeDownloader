@@ -2,7 +2,6 @@ using Prism.Mvvm;
 using Prism.Commands;
 using Prism.Events;
 using YoutubeExplode;
-using YoutubeExplode.Models;
 using System.Windows.Input;
 
 namespace YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
@@ -58,6 +57,12 @@ public class VideoPanelViewModel : BindableBase
         return !string.IsNullOrWhiteSpace(SearchInput) && !IsLoading;
     }
 
+    /// Asynchronously searches for a video based on the current input from the user.
+    /// If the input is empty or invalid, the operation will not proceed.
+    /// Validates the YouTube URL, retrieves video details, and publishes a notification with the video information.
+    /// Handles and logs any errors that occur during the search operation.
+    /// Updates the loading state during the operation.
+    /// <returns>A Task representing the asynchronous search operation.</returns>
     private async Task SearchVideoAsync()
     {
         if (string.IsNullOrWhiteSpace(SearchInput))
@@ -67,14 +72,28 @@ public class VideoPanelViewModel : BindableBase
         {
             IsLoading = true;
             
-            // For now, just simulate a search operation
-            await Task.Delay(1000); // Simulate API call
-            
             System.Diagnostics.Debug.WriteLine($"Searching for video: {SearchInput}");
+
+            // var videoId = YoutubeClient.ParseVideoId(SearchInput);
+            // if (string.IsNullOrWhiteSpace(videoId))
+            // {
+            //     throw new ArgumentException("Invalid YouTube URL");
+            // }
+
+            // var video = await _youtubeClient.GetVideoAsync(videoId);
             
-            // TODO: Implement actual YoutubeExplode integration
-            // When implemented, publish the VideoSearchedEvent with the found video
-            // _eventAggregator.GetEvent<VideoSearchedEvent>().Publish(video);
+            var videoUrl = "https://www.youtube.com/watch?v=YyIaCP4qUFE&t=10892s";
+            var id = await _youtubeClient.Videos.GetAsync(videoUrl);
+            Console.WriteLine(id.Id);
+            var video = id;
+
+            var title = video.Title; 
+            var author = video.Author.ChannelTitle;
+            var duration = video.Duration;
+            Console.WriteLine(duration);
+            Console.WriteLine(author); 
+            Console.WriteLine(title);
+            _eventAggregator.GetEvent<VideoSearchedEvent>().Publish(video);
         }
         catch (Exception ex)
         {

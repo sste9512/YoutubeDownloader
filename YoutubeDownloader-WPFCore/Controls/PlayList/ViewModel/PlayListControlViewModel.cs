@@ -6,8 +6,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using YoutubeExplode;
-using YoutubeExplode.Models;
-using YoutubeExplode.Models.MediaStreams;
+using YoutubeExplode.Playlists;
 
 namespace YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
 
@@ -27,7 +26,8 @@ public class PlayListControlViewModel : BindableBase
         _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
         _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
 
-        DownloadPlaylistCommand = new DelegateCommand(async () => await DownloadEntirePlaylistAsync(), CanDownloadPlaylist);
+        DownloadPlaylistCommand =
+            new DelegateCommand(async () => await DownloadEntirePlaylistAsync(), CanDownloadPlaylist);
     }
 
     public string PlaylistTitle
@@ -83,22 +83,19 @@ public class PlayListControlViewModel : BindableBase
             IsLoading = true;
             PlaylistItems.Clear();
 
-            var playlistId = YoutubeClient.ParsePlaylistId(playListUrl);
-            var playlist = await client.GetPlaylistAsync(playlistId);
-
+            var playlistId = PlaylistId.Parse(playListUrl);
+            var playlist = await client.Playlists.GetAsync(playlistId);
+            
             PlaylistTitle = playlist.Title;
-            PlaylistAuthor = playlist.Author;
-           
-            var videos = playlist.Videos;
+            PlaylistAuthor = playlist.Author.ChannelTitle;
 
-            int index = 1;
-            foreach (var video in videos)
+            await foreach (var video in client.Playlists.GetVideosAsync(playlistId))
             {
                 try
                 {
-                    var playlistItemViewModel = new PlayListItemViewModel(video, index, _eventAggregator, _youtubeClient);
+                    var playlistItemViewModel =
+                        new PlayListItemViewModel(video, PlaylistItems.Count + 1, _eventAggregator, _youtubeClient);
                     PlaylistItems.Add(playlistItemViewModel);
-                    index++;
                 }
                 catch (Exception ex)
                 {
@@ -135,8 +132,6 @@ public class PlayListControlViewModel : BindableBase
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine($"Error downloading video {item.Title}: {ex.Message}");
-                  
-                  
                 }
             }
         }

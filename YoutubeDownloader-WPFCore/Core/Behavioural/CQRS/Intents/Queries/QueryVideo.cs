@@ -3,32 +3,28 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 using YoutubeExplode;
-using YoutubeExplode.Models;
+using YoutubeExplode.Videos;
+
 
 namespace YoutubeDownloader_WPFCore.Core.Behavioural.CQRS.Intents.Queries;
 
-public class QueryVideoRequest : IRequest<Video>
+public sealed class QueryVideoRequest : IRequest<Video>
 {
     public string Url { get; set; }
     public WeakReference<MainWindow> MainWindowReference { get; set; }
 }
 
-public class QueryVideoRequestHandler : IRequestHandler<QueryVideoRequest, Video>
+public sealed class QueryVideoRequestHandler(YoutubeClient youtubeClient, ILogger logger)
+    : IRequestHandler<QueryVideoRequest, Video>
 {
-    private readonly YoutubeClient _youtubeClient;
-    private readonly ILogger _logger;
-
-    public QueryVideoRequestHandler(YoutubeClient youtubeClient, ILogger logger)
-    {
-        _youtubeClient = youtubeClient;
-        _logger = logger;
-    }
+    private readonly ILogger _logger = logger;
 
     public async Task<Video> Handle(QueryVideoRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            var video = await _youtubeClient.GetVideoAsync(YoutubeClient.ParseVideoId(request.Url));
+            var video = await youtubeClient.Videos.GetAsync(request.Url, cancellationToken);
+           
             // request.MainWindowReference.VideoInfoPanel.SyncInfoToPanel(video, VideoPanel.UrlInput.Text, _model.Client, _model.MediaStreamInfos));
             // PlayList.InitPlayListFromUrl(url, _model.Client);
             return video;

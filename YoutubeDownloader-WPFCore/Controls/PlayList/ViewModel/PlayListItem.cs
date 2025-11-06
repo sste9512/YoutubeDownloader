@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using YoutubeExplode.Models;
+using YoutubeExplode.Videos;
 
 
 namespace YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
