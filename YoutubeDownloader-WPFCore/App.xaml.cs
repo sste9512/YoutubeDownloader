@@ -12,6 +12,10 @@ using YoutubeDownloader_WPFCore.Controls.UserPlayListPanel.View;
 using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.View;
 using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.VideoPanel.View;
+using YoutubeDownloader_WPFCore.Infrastructure.Logging;
+using YoutubeDownloader_WPFCore.Infrastructure.Database;
+using YoutubeDownloader_WPFCore.Application.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace YoutubeDownloader_WPFCore;
 
@@ -49,7 +53,19 @@ public partial class App : PrismApplication
         };
         var ytHttpClient = new System.Net.Http.HttpClient(ytHandler);
         containerRegistry.RegisterInstance(new YoutubeClient(ytHttpClient));
-        containerRegistry.RegisterInstance(new SurrealDbRocksDbClient("data/rocksdb"));
+        
+        // Register SurrealDb RocksDB client as singleton
+        var surrealDbClient = new SurrealDbRocksDbClient("data/rocksdb");
+        containerRegistry.RegisterInstance(surrealDbClient);
+        
+        // Register logging infrastructure
+        containerRegistry.RegisterSingleton<ILoggerFactory>(() => new ApplicationLoggerFactory(surrealDbClient));
+        containerRegistry.RegisterSingleton<ILoggerProvider>(() => new ApplicationLoggerProvider(surrealDbClient));
+        containerRegistry.Register(typeof(ILogger<>), typeof(Logger<>));
+        containerRegistry.Register<ApplicationLogger>();
+
+        // Register database infrastructure
+        containerRegistry.Register<IDocumentDb, SurrealDocumentDb>();
 
         // Register ViewModels for dependency injection
         //   containerRegistry.Register<MainWindowViewModel>();

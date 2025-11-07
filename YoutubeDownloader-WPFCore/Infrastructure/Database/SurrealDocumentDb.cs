@@ -1,4 +1,5 @@
 using System.Data;
+using Microsoft.Extensions.Logging;
 using SurrealDb.Embedded.RocksDb;
 using SurrealDb.Net;
 using SurrealDb.Net.Handlers;
@@ -7,28 +8,49 @@ using YoutubeDownloader_WPFCore.Infrastructure.Values;
 
 namespace YoutubeDownloader_WPFCore.Infrastructure.Database;
 
-public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : IDocumentDb
+public sealed class SurrealDocumentDb : IDocumentDb
 {
+    private readonly SurrealDbRocksDbClient _rocksDbClient;
+    private readonly ILogger<SurrealDocumentDb> _logger;
+
+    public SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient, ILogger<SurrealDocumentDb> logger)
+    {
+        _rocksDbClient = rocksDbClient ?? throw new ArgumentNullException(nameof(rocksDbClient));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
     public async Task<bool> ConnectAsync(string url, string username, string password, string namespace_, string database)
     {
         try
         {
-            await rocksDbClient.Connect();
+            _logger.LogInformation("Connecting to SurrealDB with namespace: {Namespace}, database: {Database}", namespace_, database);
+            await _rocksDbClient.Connect();
        
-            await rocksDbClient.Use(namespace_, database);
+            await _rocksDbClient.Use(namespace_, database);
+            _logger.LogInformation("Successfully connected to SurrealDB");
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Failed to connect to SurrealDB");
             return false;
         }
     }
 
     public async Task DisconnectAsync()
     {
-        if (rocksDbClient != null)
+        try
         {
-            await rocksDbClient.DisposeAsync();
+            if (_rocksDbClient != null)
+            {
+                _logger.LogInformation("Disconnecting from SurrealDB");
+                await _rocksDbClient.DisposeAsync();
+                _logger.LogInformation("Successfully disconnected from SurrealDB");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during SurrealDB disconnection");
         }
     }
 
@@ -36,11 +58,14 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            var result = await rocksDbClient.Create<T>(table, data);
+            _logger.LogDebug("Creating record in table: {Table}", table);
+            var result = await _rocksDbClient.Create<T>(table, data);
+            _logger.LogDebug("Successfully created record in table: {Table}", table);
             return DbResult<T>.Success(result);
         }
         catch(Exception exception)
         {
+            _logger.LogError(exception, "Failed to create record in table: {Table}", table);
             return DbResult<T>.Failure(exception.Message);
         }
     }
@@ -49,11 +74,13 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            var result = await rocksDbClient.Select<T>($"{table}:{id}");
-            return DbResult<T>.Success(result.FirstOrDefault() ?? default);
+            _logger.LogDebug("Getting record from table: {Table}, id: {Id}", table, id);
+            var result = await _rocksDbClient.Select<T>($"{table}:{id}");
+            return DbResult<T>.Success(result.FirstOrDefault() ?? default!);
         }
         catch(Exception exception)
         {
+            _logger.LogError(exception, "Failed to get record from table: {Table}, id: {Id}", table, id);
             return DbResult<T>.Failure(exception.Message);
         }
     }
@@ -62,12 +89,15 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            var result = await rocksDbClient.Select<T>(table);
-            return DbResult<IEnumerable<T>>.Success(result);
+            _logger.LogDebug("Getting all records from table: {Table}", table);
+            var result = await _rocksDbClient.Select<T>(table);
+            _logger.LogDebug("Retrieved {Count} records from table: {Table}", result?.Count() ?? 0, table);
+            return DbResult<IEnumerable<T>>.Success(result ?? Enumerable.Empty<T>());
         }
         catch(Exception exception)
         {
-            return DbResult<IEnumerable<T>>.Failure(null);
+            _logger.LogError(exception, "Failed to get all records from table: {Table}", table);
+            return DbResult<IEnumerable<T>>.Failure(exception.Message);
         }
     }
 
@@ -75,12 +105,15 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            var result = await rocksDbClient.Update<T>($"{table}:{id}", data);
-            return DbResult<T>.Success(result.FirstOrDefault());
+            _logger.LogDebug("Updating record in table: {Table}, id: {Id}", table, id);
+            var result = await _rocksDbClient.Update<T>($"{table}:{id}", data);
+            _logger.LogDebug("Successfully updated record in table: {Table}, id: {Id}", table, id);
+            return DbResult<T>.Success(result.FirstOrDefault() ?? default!);
         }
         catch(Exception exception)
         {
-            return DbResult<T>.Failure(null);
+            _logger.LogError(exception, "Failed to update record in table: {Table}, id: {Id}", table, id);
+            return DbResult<T>.Failure(exception.Message);
         }
     }
 
@@ -88,11 +121,14 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            await rocksDbClient.Delete($"{table}:{id}");
+            _logger.LogDebug("Deleting record from table: {Table}, id: {Id}", table, id);
+            await _rocksDbClient.Delete($"{table}:{id}");
+            _logger.LogDebug("Successfully deleted record from table: {Table}, id: {Id}", table, id);
             return DbResult<bool>.Success(true);
         }
         catch(Exception exception)
         {
+            _logger.LogError(exception, "Failed to delete record from table: {Table}, id: {Id}", table, id);
             return DbResult<bool>.Failure(exception.Message);
         }
     }
@@ -101,18 +137,21 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
+            _logger.LogDebug("Executing query on table: {Table}, query: {Query}", table, query);
             
             var handler = new QueryInterpolatedStringHandler();
             handler.AppendLiteral(table);
             handler.AppendLiteral(":");
             handler.AppendLiteral(query);
          
-            var result = await rocksDbClient.Query(handler, cancellationToken);
+            var result = await _rocksDbClient.Query(handler, cancellationToken);
             var t =  result.GetValue<T>(0);
-            return DbResult<IEnumerable<T>>.Success([t]!);
+            _logger.LogDebug("Query executed successfully on table: {Table}", table);
+            return DbResult<IEnumerable<T>>.Success(t != null ? [t] : Enumerable.Empty<T>());
         }
         catch(Exception exception)
         {
+            _logger.LogError(exception, "Failed to execute query on table: {Table}, query: {Query}", table, query);
             return DbResult<IEnumerable<T>>.Failure(exception.Message);
         }
     }
@@ -121,11 +160,14 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            await rocksDbClient.Query($"BEGIN TRANSACTION");
+            _logger.LogDebug("Beginning transaction");
+            await _rocksDbClient.Query($"BEGIN TRANSACTION");
+            _logger.LogDebug("Transaction began successfully");
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Failed to begin transaction");
             return false;
         }
     }
@@ -134,11 +176,14 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            await rocksDbClient.Query($"COMMIT TRANSACTION");
+            _logger.LogDebug("Committing transaction");
+            await _rocksDbClient.Query($"COMMIT TRANSACTION");
+            _logger.LogDebug("Transaction committed successfully");
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Failed to commit transaction");
             return false;
         }
     }
@@ -147,11 +192,14 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
     {
         try
         {
-            await rocksDbClient.Query($"CANCEL TRANSACTION");
+            _logger.LogDebug("Rolling back transaction");
+            await _rocksDbClient.Query($"CANCEL TRANSACTION");
+            _logger.LogDebug("Transaction rolled back successfully");
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Failed to rollback transaction");
             return false;
         }
     }

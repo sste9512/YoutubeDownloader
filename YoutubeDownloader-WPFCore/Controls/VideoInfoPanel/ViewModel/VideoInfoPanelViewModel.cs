@@ -3,6 +3,7 @@ using Prism.Commands;
 using Prism.Events;
 using YoutubeExplode;
 using System.Windows.Media.Imaging;
+using SurrealDb.Embedded.RocksDb;
 using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Core.Values;
 using YoutubeExplode.Videos;
@@ -15,6 +16,7 @@ public sealed class VideoInfoPanelViewModel : BindableBase, IDisposable, IAsyncD
 {
     private readonly YoutubeClient _youtubeClient;
     private readonly IEventAggregator _eventAggregator;
+    private readonly SurrealDbRocksDbClient _surrealDbRocksDbClient;
 
     private string _videoTitle = string.Empty;
     private BitmapImage? _videoThumbnail;
@@ -36,10 +38,11 @@ public sealed class VideoInfoPanelViewModel : BindableBase, IDisposable, IAsyncD
     
     private SubscriptionToken? _subscriptionToken;
 
-    public VideoInfoPanelViewModel(YoutubeClient youtubeClient, IEventAggregator eventAggregator)
+    public VideoInfoPanelViewModel(YoutubeClient youtubeClient, IEventAggregator eventAggregator, SurrealDbRocksDbClient surrealDbRocksDbClient)
     {
         _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
         _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
+        _surrealDbRocksDbClient = surrealDbRocksDbClient;
 
         DownloadVideoCommand = new DelegateCommand(async () => await DownloadVideoAsync(), CanDownloadVideo);
         DownloadAndAddToPlaylistCommand =
@@ -322,6 +325,10 @@ public sealed class VideoInfoPanelViewModel : BindableBase, IDisposable, IAsyncD
 
             // TODO: Implement video download functionality
             await Task.Delay(1000, cancellationToken); // Simulate download
+            
+            var video = await _youtubeClient.Videos.GetAsync(_currentVideoId!, cancellationToken);
+            
+            
 
             System.Diagnostics.Debug.WriteLine($"Downloading video: {VideoTitle}");
         }
