@@ -3,17 +3,19 @@ using Prism.Commands;
 using Prism.Events;
 using YoutubeExplode;
 using System.Windows.Media.Imaging;
+using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Core.Values;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
+using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 
 namespace YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.ViewModel;
 
-public sealed class VideoInfoPanelViewModel : BindableBase
+public sealed class VideoInfoPanelViewModel : BindableBase, IDisposable, IAsyncDisposable
 {
     private readonly YoutubeClient _youtubeClient;
     private readonly IEventAggregator _eventAggregator;
-    
+
     private string _videoTitle = string.Empty;
     private BitmapImage? _videoThumbnail;
     private string _likesCount = string.Empty;
@@ -29,14 +31,35 @@ public sealed class VideoInfoPanelViewModel : BindableBase
     private string _soundAvailable = string.Empty;
     private string _mixedAvailable = string.Empty;
     private bool _isLoading;
+    private string? _playbackUrl;
+    private string? _currentVideoId;
+    
+    private SubscriptionToken? _subscriptionToken;
 
     public VideoInfoPanelViewModel(YoutubeClient youtubeClient, IEventAggregator eventAggregator)
     {
         _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
         _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
-        
+
         DownloadVideoCommand = new DelegateCommand(async () => await DownloadVideoAsync(), CanDownloadVideo);
-        DownloadAndAddToPlaylistCommand = new DelegateCommand(async () => await DownloadAndAddToPlaylistAsync(), CanDownloadVideo);
+        DownloadAndAddToPlaylistCommand =
+            new DelegateCommand(async () => await DownloadAndAddToPlaylistAsync(), CanDownloadVideo);
+
+
+        _subscriptionToken = _eventAggregator.GetEvent<VideoSearchedEvent>().Subscribe(async x =>
+        {
+            await Action(x);
+        });
+    }
+
+    private async ValueTask Action(Video x)
+    {
+        var videoUrl = _videoUrl; // Preserve the current URL
+        var result = await LoadVideoInfoAsync(x, videoUrl);
+        if (!result.IsOk)
+        {
+            System.Diagnostics.Debug.WriteLine($"Failed to load video info: {result.UnwrapErr()}");
+        }
     }
 
     #region Properties
@@ -128,8 +151,8 @@ public sealed class VideoInfoPanelViewModel : BindableBase
     public bool IsLoading
     {
         get => _isLoading;
-        set 
-        { 
+        set
+        {
             if (SetProperty(ref _isLoading, value))
             {
                 DownloadVideoCommand.RaiseCanExecuteChanged();
@@ -149,32 +172,47 @@ public sealed class VideoInfoPanelViewModel : BindableBase
 
     #region Public Methods
 
-    public async ValueTask<Result<bool, string>> LoadVideoInfoAsync(Video video, string url, CancellationToken cancellationToken = default)
+    public async ValueTask<Result<bool, string>> LoadVideoInfoAsync(Video video, string url,
+        CancellationToken cancellationToken = default)
     {
         try
         {
             IsLoading = true;
-            
+
+            _currentVideoId = video.Id;
+            var watchUrl = $"https://www.youtube.com/watch?v={_currentVideoId}";
+            var embedUrl = $"https://www.youtube.com/embed/{_currentVideoId}?autoplay=1&playsinline=1&mute=1&enablejsapi=1";
+
             VideoTitle = video.Title ?? string.Empty;
             VideoAuthor = video.Author.ChannelTitle ?? string.Empty;
             VideoPublishedDate = video.UploadDate.ToString("yyyy-MM-dd");
             VideoDescription = video.Description ?? string.Empty;
             VideoDuration = video.Duration.ToString();
-            VideoUrl = url;
-            
+            VideoUrl = watchUrl;
+
+            // Prefer WebView2 embed playback; set early, keep streams for info only
+            _playbackUrl = embedUrl;
+
             // Load thumbnail
             await LoadThumbnailAsync(video, cancellationToken);
-            
+
             // Load statistics
             LoadStatistics(video);
-            
-            // Load media stream info
-            var mediaStreamResult = await LoadMediaStreamInfoAsync(url, cancellationToken);
+
+            // Load media stream info (for info UI, not for WebView2 playback)
+            var mediaStreamResult = await LoadMediaStreamInfoAsync(watchUrl, cancellationToken);
             if (!mediaStreamResult.IsOk)
             {
-                return Result.Err<bool, string>(mediaStreamResult.UnwrapErr());
+                // Even if stream info fails, attempt to play via embed URL
+                System.Diagnostics.Debug.WriteLine($"Stream manifest load failed: {mediaStreamResult.UnwrapErr()}");
             }
-            
+
+            // If we have a resolved playback URL, request playback in the VideoPanel via event
+            if (!string.IsNullOrWhiteSpace(_playbackUrl))
+            {
+                _eventAggregator.GetEvent<VideoPlaybackRequestedEvent>().Publish(_playbackUrl);
+            }
+
             return Result.Ok<bool, string>(true);
         }
         catch (OperationCanceledException)
@@ -207,7 +245,7 @@ public sealed class VideoInfoPanelViewModel : BindableBase
                 thumbnail.BeginInit();
                 thumbnail.UriSource = new Uri(thumbnailUrl, UriKind.Absolute);
                 thumbnail.EndInit();
-                
+
                 // Freeze for cross-thread access
                 thumbnail.Freeze();
                 VideoThumbnail = thumbnail;
@@ -229,7 +267,8 @@ public sealed class VideoInfoPanelViewModel : BindableBase
 
     private const string AudioContainerFilter = "audio";
 
-    private async ValueTask<Result<StreamManifest, string>> LoadMediaStreamInfoAsync(string url, CancellationToken cancellationToken)
+    private async ValueTask<Result<StreamManifest, string>> LoadMediaStreamInfoAsync(string url,
+        CancellationToken cancellationToken)
     {
         try
         {
@@ -247,7 +286,7 @@ public sealed class VideoInfoPanelViewModel : BindableBase
         }
     }
 
-    private void UpdateVideoStreamProperties(StreamManifest streamManifest) 
+    private void UpdateVideoStreamProperties(StreamManifest streamManifest)
     {
         var bestQualityStream = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
         if (bestQualityStream != null)
@@ -255,6 +294,9 @@ public sealed class VideoInfoPanelViewModel : BindableBase
             var extension = bestQualityStream.Container.Name;
             VideoExtension = extension;
             VideoAvailable = extension;
+
+            // Capture a playable muxed URL for the media element
+            _playbackUrl = bestQualityStream.Url;
         }
     }
 
@@ -277,10 +319,10 @@ public sealed class VideoInfoPanelViewModel : BindableBase
         try
         {
             IsLoading = true;
-            
+
             // TODO: Implement video download functionality
             await Task.Delay(1000, cancellationToken); // Simulate download
-            
+
             System.Diagnostics.Debug.WriteLine($"Downloading video: {VideoTitle}");
         }
         catch (OperationCanceledException)
@@ -302,10 +344,10 @@ public sealed class VideoInfoPanelViewModel : BindableBase
         try
         {
             IsLoading = true;
-            
+
             // TODO: Implement download and add to playlist functionality
             await Task.Delay(1000, cancellationToken); // Simulate operation
-            
+
             System.Diagnostics.Debug.WriteLine($"Downloading and adding to playlist: {VideoTitle}");
         }
         catch (OperationCanceledException)
@@ -323,4 +365,24 @@ public sealed class VideoInfoPanelViewModel : BindableBase
     }
 
     #endregion
+
+    public void Dispose()
+    {
+        _subscriptionToken?.Dispose();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_subscriptionToken != null) await CastAndDispose(_subscriptionToken);
+
+        return;
+
+        static async ValueTask CastAndDispose(IDisposable resource)
+        {
+            if (resource is IAsyncDisposable resourceAsyncDisposable)
+                await resourceAsyncDisposable.DisposeAsync();
+            else
+                resource.Dispose();
+        }
+    }
 }

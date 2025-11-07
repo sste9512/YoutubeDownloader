@@ -26,6 +26,7 @@
       <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="12.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3595.46" />
       <PackageReference Include="YoutubeExplode" Version="6.5.6" />
       <PackageReference Include="Prism.Wpf" Version="8.1.97" />
       <PackageReference Include="Prism.DryIoc" Version="8.1.97" />

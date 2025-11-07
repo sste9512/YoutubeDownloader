@@ -10,28 +10,53 @@ public class VideoPanelViewModel : BindableBase
 {
     private readonly YoutubeClient _youtubeClient;
     private readonly IEventAggregator _eventAggregator;
-    
+    private const string YouTubeDomain = "youtube.com";
+
     private string _searchInput = string.Empty;
     private bool _isLoading;
+    private Uri? _mediaSource;
+    private SubscriptionToken? _playbackSubscription;
 
     public VideoPanelViewModel(YoutubeClient youtubeClient, IEventAggregator eventAggregator)
     {
         _youtubeClient = youtubeClient ?? throw new ArgumentNullException(nameof(youtubeClient));
         _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
-        
+
         SearchCommand = new DelegateCommand(async () => await SearchVideoAsync(), CanSearch);
         PlayCommand = new DelegateCommand(PlayVideo);
         NextCommand = new DelegateCommand(PlayNext);
         VolumeCommand = new DelegateCommand(ToggleVolume);
         ClosedCaptionCommand = new DelegateCommand(ToggleClosedCaption);
         SettingsCommand = new DelegateCommand(OpenSettings);
+
+        // Subscribe to playback requests coming from VideoInfoPanelViewModel
+        _playbackSubscription = _eventAggregator.GetEvent<VideoPlaybackRequestedEvent>().Subscribe(url =>
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    MediaSource = new Uri(url, UriKind.Absolute);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid media URL: {ex.Message}");
+            }
+        });
+    }
+
+    public Uri? MediaSource
+    {
+        get => _mediaSource;
+        set => SetProperty(ref _mediaSource, value);
     }
 
     public string SearchInput
     {
         get => _searchInput;
-        set 
-        { 
+        set
+        {
             if (SetProperty(ref _searchInput, value))
             {
                 SearchCommand.RaiseCanExecuteChanged();
@@ -68,30 +93,30 @@ public class VideoPanelViewModel : BindableBase
         if (string.IsNullOrWhiteSpace(SearchInput))
             return;
 
+        if (!Uri.TryCreate(SearchInput, UriKind.Absolute, out var uri) || !IsYouTubeUrl(uri))
+        {
+            System.Diagnostics.Debug.WriteLine($"Invalid YouTube URL: {SearchInput}");
+            return;
+        }
+
+
         try
         {
             IsLoading = true;
-            
+
             System.Diagnostics.Debug.WriteLine($"Searching for video: {SearchInput}");
 
-            // var videoId = YoutubeClient.ParseVideoId(SearchInput);
-            // if (string.IsNullOrWhiteSpace(videoId))
-            // {
-            //     throw new ArgumentException("Invalid YouTube URL");
-            // }
 
-            // var video = await _youtubeClient.GetVideoAsync(videoId);
-            
-            var videoUrl = "https://www.youtube.com/watch?v=YyIaCP4qUFE&t=10892s";
+            var videoUrl = SearchInput;
             var id = await _youtubeClient.Videos.GetAsync(videoUrl);
             Console.WriteLine(id.Id);
             var video = id;
 
-            var title = video.Title; 
+            var title = video.Title;
             var author = video.Author.ChannelTitle;
             var duration = video.Duration;
             Console.WriteLine(duration);
-            Console.WriteLine(author); 
+            Console.WriteLine(author);
             Console.WriteLine(title);
             _eventAggregator.GetEvent<VideoSearchedEvent>().Publish(video);
         }
@@ -134,5 +159,10 @@ public class VideoPanelViewModel : BindableBase
     {
         // Implement settings functionality
         System.Diagnostics.Debug.WriteLine("Open settings command executed");
+    }
+
+    private bool IsYouTubeUrl(Uri uri)
+    {
+        return uri.Host.Contains(YouTubeDomain, StringComparison.OrdinalIgnoreCase);
     }
 }

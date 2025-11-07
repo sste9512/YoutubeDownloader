@@ -6,46 +6,71 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:viewModel="clr-namespace:YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel">
+             xmlns:viewModel="clr-namespace:YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel"
+             xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf">
     <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="5,5,5,5">
 
-        <Border CornerRadius="3,3,3,3" Background="LightGray" Margin="0,5,0,5" Padding="3,3,3,3">
-            <StackPanel Orientation="Horizontal">
-
-                <TextBox Name="UrlInput" 
+        <Border CornerRadius="3" Background="LightGray" Margin="0,5" Padding="3">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness"
+                                                            From="0" To="1" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness"
+                                                            From="1" To="0" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <DockPanel>
+                <TextBox Name="UrlInput"
                          Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="10,10,10,10" 
-                         Width="425" />
+                         Margin="10"
+                         Width="425"
+                         DockPanel.Dock="Left" />
 
-                <Button     Margin="5,5,5,5"
-                            BorderBrush="Transparent"
-                            Background="Transparent"
-                            materialDesign:ElevationAssist.Elevation="Dp0"
-                            Name="QueryVideoButton"
-                            Command="{Binding SearchCommand}">
-
+                <Button Margin="2"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ElevationAssist.Elevation="Dp0"
+                        Name="QueryVideoButton"
+                        Command="{Binding SearchCommand}"
+                        DockPanel.Dock="Right">
                     <StackPanel>
                         <Image Source="/Resources/icons/search_icon.png"
                                Width="25"
-                               Height="25"
-                               Margin="0,0,0,0" />
+                               Height="25" />
                     </StackPanel>
                 </Button>
-            </StackPanel>
+            </DockPanel>
         </Border>
-        <MediaElement Source="C:/Users/steve/Desktop/Private world (Vaporwave mix).Mp4"
-                      Width="500"
-                      Height="500"
-                      LoadedBehavior="Manual"
-                      Name="YoutubePlayer" />
+        <wpf:WebView2 Source="{Binding MediaSource}"
+                 Width="500"
+                 Height="500"
+                 Name="YoutubePlayer" />
 
         <StackPanel Orientation="Horizontal" Background="LightGray">
             <DockPanel>
                 <!-- Play Video Button -->
-                <Button   DockPanel.Dock="Left" Margin="5,5,5,5"
-                          BorderBrush="Transparent"
-                          Background="Transparent"
-                          materialDesign:ElevationAssist.Elevation="Dp3">
+                <Button DockPanel.Dock="Left" Margin="5,5,5,5"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        materialDesign:ElevationAssist.Elevation="Dp3">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Play"
                                                  Opacity="1"
@@ -70,40 +95,43 @@
                     </StackPanel>
                 </Button>
                 <!-- Undo Button -->
-                <Button    
+                <Button
                     DockPanel.Dock="Left"
                     Margin="5,5,5,5"
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp0">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="VolumeMedium" Opacity="1" Foreground="White" Width="25"
+                                                 Height="25" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
 
-             
-                 <!-- Closed Caption Button -->
+
+                <!-- Closed Caption Button -->
                 <Button
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp0"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="ClosedCaption" Opacity="1" Foreground="White" Width="25"
+                                                 Height="25" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-                    
-                
+
+
                 <Button
                     BorderBrush="Transparent"
                     Background="Transparent"
                     materialDesign:ElevationAssist.Elevation="Dp1"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25"
+                                                 VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
-                   
+
                 <!--Settings Button -->
                 <Button
                     BorderBrush="Transparent"
@@ -111,11 +139,12 @@
                     materialDesign:ElevationAssist.Elevation="Dp1"
                     DockPanel.Dock="Right">
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Settings" Opacity="1" Foreground="White" Width="25" Height="25"
+                                                 VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
             </DockPanel>
-          
+
         </StackPanel>
     </StackPanel>
 </UserControl>
