@@ -3,6 +3,7 @@ using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Events;
 using Prism.Mvvm;
+using SurrealDb.Embedded.RocksDb;
 using YoutubeDownloader_WPFCore.Controls.PlayList.View;
 using YoutubeExplode;
 using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
@@ -48,6 +49,7 @@ public partial class App : PrismApplication
         };
         var ytHttpClient = new System.Net.Http.HttpClient(ytHandler);
         containerRegistry.RegisterInstance(new YoutubeClient(ytHttpClient));
+        containerRegistry.RegisterInstance(new SurrealDbRocksDbClient("data/rocksdb"));
 
         // Register ViewModels for dependency injection
         //   containerRegistry.Register<MainWindowViewModel>();
