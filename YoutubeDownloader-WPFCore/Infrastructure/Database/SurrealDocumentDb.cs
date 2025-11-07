@@ -1,3 +1,4 @@
+using System.Data;
 using SurrealDb.Embedded.RocksDb;
 using SurrealDb.Net;
 using SurrealDb.Net.Handlers;
@@ -49,7 +50,7 @@ public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient) : ID
         try
         {
             var result = await rocksDbClient.Select<T>($"{table}:{id}");
-            return DbResult<T>.Success(result.FirstOrDefault());
+            return DbResult<T>.Success(result.FirstOrDefault() ?? default);
         }
         catch(Exception exception)
         {
