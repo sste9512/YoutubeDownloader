@@ -109,7 +109,7 @@ public class VideoPanelViewModel : BindableBase
 
             var videoUrl = SearchInput;
             var id = await _youtubeClient.Videos.GetAsync(videoUrl);
-            Console.WriteLine(id.Id);
+            Console.WriteLine(id.Id); 
             var video = id;
 
             var title = video.Title;

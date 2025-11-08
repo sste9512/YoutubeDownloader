@@ -8,24 +8,27 @@ using YoutubeDownloader_WPFCore.Infrastructure.Values;
 
 namespace YoutubeDownloader_WPFCore.Infrastructure.Database;
 
-public sealed class SurrealDocumentDb : IDocumentDb
+public sealed class SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient, ILogger<SurrealDocumentDb> logger) : IDocumentDb
 {
-    private readonly SurrealDbRocksDbClient _rocksDbClient;
-    private readonly ILogger<SurrealDocumentDb> _logger;
+    private readonly SurrealDbRocksDbClient _rocksDbClient = rocksDbClient ?? throw new ArgumentNullException(nameof(rocksDbClient));
+    private readonly ILogger<SurrealDocumentDb> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-    public SurrealDocumentDb(SurrealDbRocksDbClient rocksDbClient, ILogger<SurrealDocumentDb> logger)
-    {
-        _rocksDbClient = rocksDbClient ?? throw new ArgumentNullException(nameof(rocksDbClient));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-
+    /// <summary>
+    /// Connect to SurrealDB    
+    /// </summary>
+    /// <param name="url">The URL of the SurrealDB instance</param>
+    /// <param name="username">The username to connect to the SurrealDB instance</param>
+    /// <param name="password">The password to connect to the SurrealDB instance</param>
+    /// <param name="namespace_">The namespace to connect to the SurrealDB instance</param>
+    /// <param name="database">The database to connect to the SurrealDB instance</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation</returns>
     public async Task<bool> ConnectAsync(string url, string username, string password, string namespace_, string database)
     {
         try
         {
             _logger.LogInformation("Connecting to SurrealDB with namespace: {Namespace}, database: {Database}", namespace_, database);
             await _rocksDbClient.Connect();
-       
+
             await _rocksDbClient.Use(namespace_, database);
             _logger.LogInformation("Successfully connected to SurrealDB");
             return true;
@@ -37,6 +40,10 @@ public sealed class SurrealDocumentDb : IDocumentDb
         }
     }
 
+    /// <summary>
+    /// Disconnect from SurrealDB
+    /// </summary>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation</returns>
     public async Task DisconnectAsync()
     {
         try
@@ -63,13 +70,20 @@ public sealed class SurrealDocumentDb : IDocumentDb
             _logger.LogDebug("Successfully created record in table: {Table}", table);
             return DbResult<T>.Success(result);
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to create record in table: {Table}", table);
             return DbResult<T>.Failure(exception.Message);
         }
     }
 
+    /// <summary>
+    /// Get a record from a table by id
+    /// </summary>
+    /// <typeparam name="T">The type of the record to get</typeparam>
+    /// <param name="table">The table to get the record from</param>
+    /// <param name="id">The id of the record to get</param>
+    /// <returns>A <see cref="DbResult{T}"/> containing the record if successful, otherwise an error message</returns>
     public async Task<DbResult<T>> GetAsync<T>(string table, string id) where T : class
     {
         try
@@ -78,13 +92,19 @@ public sealed class SurrealDocumentDb : IDocumentDb
             var result = await _rocksDbClient.Select<T>($"{table}:{id}");
             return DbResult<T>.Success(result.FirstOrDefault() ?? default!);
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to get record from table: {Table}, id: {Id}", table, id);
             return DbResult<T>.Failure(exception.Message);
         }
     }
 
+    /// <summary>
+    /// Get all records from a table
+    /// </summary>
+    /// <typeparam name="T">The type of the records to get</typeparam>
+    /// <param name="table">The table to get the records from</param>
+    /// <returns>A <see cref="DbResult{IEnumerable{T}}}"/> containing the records if successful, otherwise an error message</returns>
     public async Task<DbResult<IEnumerable<T>>> GetAllAsync<T>(string table) where T : class
     {
         try
@@ -94,13 +114,21 @@ public sealed class SurrealDocumentDb : IDocumentDb
             _logger.LogDebug("Retrieved {Count} records from table: {Table}", result?.Count() ?? 0, table);
             return DbResult<IEnumerable<T>>.Success(result ?? Enumerable.Empty<T>());
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to get all records from table: {Table}", table);
             return DbResult<IEnumerable<T>>.Failure(exception.Message);
         }
     }
 
+    /// <summary>
+    /// Update a record in a table by id
+    /// </summary>
+    /// <typeparam name="T">The type of the record to update</typeparam>
+    /// <param name="table">The table to update the record in</param>
+    /// <param name="id">The id of the record to update</param>
+    /// <param name="data">The data to update the record with</param>
+    /// <returns>A <see cref="DbResult{T}"/> containing the updated record if successful, otherwise an error message</returns>
     public async Task<DbResult<T>> UpdateAsync<T>(string table, string id, T data) where T : class
     {
         try
@@ -110,7 +138,7 @@ public sealed class SurrealDocumentDb : IDocumentDb
             _logger.LogDebug("Successfully updated record in table: {Table}, id: {Id}", table, id);
             return DbResult<T>.Success(result.FirstOrDefault() ?? default!);
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to update record in table: {Table}, id: {Id}", table, id);
             return DbResult<T>.Failure(exception.Message);
@@ -126,7 +154,7 @@ public sealed class SurrealDocumentDb : IDocumentDb
             _logger.LogDebug("Successfully deleted record from table: {Table}, id: {Id}", table, id);
             return DbResult<bool>.Success(true);
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to delete record from table: {Table}, id: {Id}", table, id);
             return DbResult<bool>.Failure(exception.Message);
@@ -138,18 +166,18 @@ public sealed class SurrealDocumentDb : IDocumentDb
         try
         {
             _logger.LogDebug("Executing query on table: {Table}, query: {Query}", table, query);
-            
+
             var handler = new QueryInterpolatedStringHandler();
             handler.AppendLiteral(table);
             handler.AppendLiteral(":");
             handler.AppendLiteral(query);
-         
+
             var result = await _rocksDbClient.Query(handler, cancellationToken);
-            var t =  result.GetValue<T>(0);
+            var t = result.GetValue<T>(0);
             _logger.LogDebug("Query executed successfully on table: {Table}", table);
-            return DbResult<IEnumerable<T>>.Success(t != null ? [t] : Enumerable.Empty<T>());
+            return DbResult<IEnumerable<T>>.Success(t != null ? [t] : []);
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             _logger.LogError(exception, "Failed to execute query on table: {Table}, query: {Query}", table, query);
             return DbResult<IEnumerable<T>>.Failure(exception.Message);

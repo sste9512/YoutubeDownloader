@@ -1,10 +1,7 @@
 ﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Web.WebView2.Core;
-using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 
 namespace YoutubeDownloader_WPFCore.Controls.VideoPanel.View;
 

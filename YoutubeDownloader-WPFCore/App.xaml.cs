@@ -1,21 +1,21 @@
 ﻿using System.Windows;
+using Microsoft.Extensions.Logging;
 using Prism.DryIoc;
-using Prism.Ioc;
 using Prism.Events;
+using Prism.Ioc;
 using Prism.Mvvm;
 using SurrealDb.Embedded.RocksDb;
+using YoutubeDownloader_WPFCore.Application.Interfaces;
 using YoutubeDownloader_WPFCore.Controls.PlayList.View;
-using YoutubeExplode;
-using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.PlayList.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.UserPlayListPanel.View;
 using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.View;
 using YoutubeDownloader_WPFCore.Controls.VideoInfoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Controls.VideoPanel.View;
-using YoutubeDownloader_WPFCore.Infrastructure.Logging;
+using YoutubeDownloader_WPFCore.Controls.VideoPanel.ViewModel;
 using YoutubeDownloader_WPFCore.Infrastructure.Database;
-using YoutubeDownloader_WPFCore.Application.Interfaces;
-using Microsoft.Extensions.Logging;
+using YoutubeDownloader_WPFCore.Infrastructure.Logging;
+using YoutubeExplode;
 
 namespace YoutubeDownloader_WPFCore;
 

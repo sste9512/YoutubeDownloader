@@ -13,5 +13,5 @@ public record VideoDocument(
     DateTimeOffset UploadDate
 )
 {
-    public string table => "video";
+    public static readonly string TableName = "video";
 }
