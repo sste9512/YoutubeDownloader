@@ -8,7 +8,7 @@ namespace YoutubeDownloader_WPFCore.Infrastructure.Values;
 public sealed class DbResult<T>
 {
     public bool IsSuccess { get; }
-    public T? Value { get; }
+    public T? Value;
     public string? ErrorMessage { get; }
     public DbError ErrorType { get; }
 
@@ -19,6 +19,11 @@ public sealed class DbResult<T>
         ErrorMessage = errorMessage;
         ErrorType = errorType;
     }
+
+
+    public ref T ValueRef() {
+        return ref Value!;
+    }  
 
     public static DbResult<T> Success(T value) => new(true, value, null, DbError.None);
 

@@ -52,13 +52,15 @@ public static class SurrealDbRocksDbClientExtensions
         string? relationTable = null)
         where T : class
     {
-        var query = relationTable != null 
-            ? $"SELECT * FROM {relationTable} WHERE in = {recordId}"
-            : $"SELECT * FROM ->* WHERE in = {recordId}";
-        
-        
+        QueryInterpolatedStringHandler query = new();
+
+        query.AppendFormatted(relationTable != null
+            ? $"SELECT * FROM {relationTable} WHERE out = {recordId}"
+            : $"SELECT * FROM <-* WHERE out = {recordId}");
+
+
         var result = await client.Query(query);
-        return result.GetValue<IEnumerable<T>>(0) ?? Enumerable.Empty<T>();
+        return result.GetValue<IEnumerable<T>>(0) ?? [];
     }
 
     /// <summary>
@@ -75,18 +77,15 @@ public static class SurrealDbRocksDbClientExtensions
         string? relationTable = null)
         where T : class
     {
-        var handler = relationTable != null 
-            ? new QueryInterpolatedStringHandler()
-                .AppendLiteral("SELECT * FROM ")
-                .AppendLiteral(relationTable)
-                .AppendLiteral(" WHERE out = ")
-                .AppendLiteral(recordId)
-            : new QueryInterpolatedStringHandler()
-                .AppendLiteral("SELECT * FROM <-* WHERE out = ")
-                .AppendLiteral(recordId);
-        
+        QueryInterpolatedStringHandler query = new();
+
+        query.AppendFormatted(relationTable != null
+            ? $"SELECT * FROM {relationTable} WHERE out = {recordId}"
+            : $"SELECT * FROM <-* WHERE out = {recordId}");
+
+
         var result = await client.Query(query);
-        return result.GetValue<IEnumerable<T>>(0) ?? Enumerable.Empty<T>();
+        return result.GetValue<IEnumerable<T>>(0) ?? [];
     }
 
     /// <summary>
@@ -103,10 +102,12 @@ public static class SurrealDbRocksDbClientExtensions
         string? relationTable = null)
         where T : class
     {
-        var query = relationTable != null 
-            ? $"SELECT out.* FROM {relationTable} WHERE in = {recordId}"
-            : $"SELECT ->*.out FROM {recordId}";
-        
+        QueryInterpolatedStringHandler query = new();
+
+        query.AppendFormatted(relationTable != null
+            ? $"SELECT * FROM {relationTable} WHERE out = {recordId}"
+            : $"SELECT * FROM <-* WHERE out = {recordId}");
+
         var result = await client.Query(query);
         return result.GetValue<IEnumerable<T>>(0) ?? Enumerable.Empty<T>();
     }
@@ -125,12 +126,14 @@ public static class SurrealDbRocksDbClientExtensions
         string? relationTable = null)
         where T : class
     {
-        var query = relationTable != null 
-            ? $"SELECT in.* FROM {relationTable} WHERE out = {recordId}"
-            : $"SELECT <-*.in FROM {recordId}";
-        
+        QueryInterpolatedStringHandler query = new();
+
+        query.AppendFormatted(relationTable != null
+            ? $"SELECT * FROM {relationTable} WHERE out = {recordId}"
+            : $"SELECT * FROM <-* WHERE out = {recordId}");
+
         var result = await client.Query(query);
-        return result.GetValue<IEnumerable<T>>(0) ?? Enumerable.Empty<T>();
+        return result.GetValue<IEnumerable<T>>(0) ?? [];
     }
 
     /// <summary>
@@ -167,22 +170,13 @@ public static class SurrealDbRocksDbClientExtensions
         int? depth = 1)
         where T : class
     {
-        var query = depth.HasValue 
-            ? $"SELECT * FROM {startRecord}{traversalPattern} LIMIT {depth}"
-            : $"SELECT * FROM {startRecord}{traversalPattern}";
+        QueryInterpolatedStringHandler query = new();
 
-        var handler = new QueryInterpolatedStringHandler();
-        handler.AppendLiteral("SELECT * FROM ");
-        handler.AppendLiteral(startRecord);
-        handler.AppendLiteral(traversalPattern);
-        
-        if (depth.HasValue)
-        {
-            handler.AppendLiteral(" LIMIT ");
-            handler.AppendLiteral(depth.Value.ToString());
-        }
+        // query.AppendFormatted(relationTable != null
+        //     ? $"SELECT * FROM {relationTable} WHERE out = {recordId}"
+        //     : $"SELECT * FROM <-* WHERE out = {recordId}");
 
-        var result = await client.Query(handler);
+        var result = await client.Query(query);
         return result.GetValue<IEnumerable<T>>(0) ?? [];
     }
 }
